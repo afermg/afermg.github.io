@@ -1,8 +1,7 @@
 ## Hi there 👋
 
-- 🔭 I’m currently working on developing methods for morphological profiling.
-- 🌱 I’m currently learning AWK, Gaussian Processes and many new tools and methods :).
-- 👯 I’m looking to collaborate on isolating CellProfiler features to turn them into their own skimage-compatible package.
-- 🤔 I’m looking for help with interpretability of deep learning models in biology.
-- 💬 Ask me about yeast cells and why they are so cool and underrated!
-- ⚡ Fun fact: I am building a personal cookbook solely in org-mode. 
+- 🔭 I’m currently working on developing ML and DL methods for novel insights in bio/chem.
+- 🌱 I’m currently learning AWK, Gaussian Processes and sensible integration of AI into my workflows.
+- 🤔 I’m looking for help with interpretability of deep learning models in biology and biochemistry.
+- 💬 Ask me about lambda calculus and S-expressions and why they are so cool!
+- ⚡ Fun fact: I am building a personal cookbook solely in org-mode, and plan to apply RAGs on it. 
