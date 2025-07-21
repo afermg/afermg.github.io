@@ -9,5 +9,12 @@ Currently, I am a postdoc at Anne Carpenter and Shantanu Singh's Lab, at the Bro
 
 ## Sections
 
-| [Technical blog (Under construction)](./blog/README.md)| [CV](./cv/resume.pdf) |
+| [Technical blog (Under construction)](./blog/README.md)| [TIL](./til/README.md) | [CV](./cv/resume.pdf) |
+
+## My current projects
+
+- [cp_measure](https://github.com/afermg/cp_measure): Featurize objects in images.
+- [Nahual](github.com/afermg/nahual): Transfer data between environments for dependency-free deployment of complex models and algorithms.
+- The Imaging platform [monorepo](https://github.com/broadinstitute/monorepo): A collection of tools used by the Broad Institute's Imaging platform.
+- [aliby](github.com/afermg/aliby): End-to-end processing of high throughput microscopy time lapses.
 
