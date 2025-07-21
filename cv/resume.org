@@ -20,7 +20,7 @@
 #+BEGIN_EXPORT latex
 \begin{center}
 \textbf{\Large{Alan F. Mu\~noz}}\\
-(857)-919-9011 |
+(857)-919-9011 | \href{https://afermg.github.io/}{Website} |
 \href{mailto:alanmunoz@tutanota.com}{alanmunoz@tutanota.com} | \href{https://github.com/afermg}{github.com/afermg} |
 \href{https://scholar.google.com/citations?user=au0H13AAAAAJ&hl=en}{Google Scholar}
 \end{center}
