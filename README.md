@@ -1,5 +1,3 @@
-## Hi there 👋
-
 # Alán F. Muñoz's website
 
 ## About me
