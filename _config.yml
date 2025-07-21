@@ -1,4 +1,4 @@
-remote_theme: "jekyll/minima@1e8a445"
+# remote_theme: "jekyll/minima@1e8a445"
 remote_theme: pages-themes/midnight@v0.2.0
 plugins:
     - jekyll-remote-theme
@@ -8,3 +8,5 @@ relative_links:
     collections: true
 include:
     - README.md
+github:
+    is_project_page: false
