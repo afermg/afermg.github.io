@@ -1,0 +1,117 @@
+* Project
+**** =org= LaTeX class
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-compiler "xelatex")
+    (unless (boundp 'org-latex-classes)
+      (setq org-latex-classes nil))
+
+    (add-to-list 'org-latex-classes
+    	       '("pdf-cv"
+    		 "\\documentclass{extarticle}
+\\usepackage{latexsym}
+\\usepackage[empty]{fullpage}
+\\usepackage{titlesec}
+\\usepackage{marvosym}
+\\usepackage[usenames,dvipsnames]{color}
+\\usepackage{verbatim}
+\\usepackage{enumitem}
+\\usepackage{hyperref}
+\\usepackage{fancyhdr}
+\\usepackage[english]{babel}
+\\usepackage{tabularx}
+\\pagestyle{fancy}
+\\fancyhf{} % clear all header and footer fields
+\\fancyfoot{}
+\\renewcommand{\\headrulewidth}{0pt}
+\\renewcommand{\\footrulewidth}{0pt}
+[NO-DEFAULT-PACKAGES]"
+                  ("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+END_SRC
+** Latex
+#+begin_src elisp
+  (setq this-directory (file-name-directory (or load-file-name buffer-file-name)))
+  (setq pub-directory (concat this-directory "pub/pdf"))
+  (unless (boundp 'org-publish-project-alist)
+    (setq org-publish-project-alist nil))
+
+
+  (add-to-list
+   'org-publish-project-alist
+   `("publish-pdf-cv"
+     :base-directory ,this-directory
+     :base-extension "org"
+     :publishing-directory ,pub-directory
+     :publishing-function org-latex-publish-to-pdf
+     :exclude ".*publish.*.org\\|readme.org\\|emacs_config.org"
+     ;; :section-numbers 2
+     :with-toc        nil
+     :latex-class "pdf-cv"
+     ;; :latex-header-extra ""
+     ))
+
+#+end_src
+** HTML
+*** Building html preamble
+#+NAME: html-preamble
+#+BEGIN_src bash :tangle no :results output
+  # preamble+='<div id=\"address\">'
+  # preamble+='<span class=\"name\">Alán F. Muñoz]</span><br>'
+  # preamble+='<a href=\"https://carpenter-singh-lab.broadinstitute.org/">Carpenter-Singh Lab</a><br>'
+  # preamble+='Broad Institute of harvard and MIT<br>'
+  # preamble+='</div>'
+  # preamble+='<div id=\"contact\">'
+  # preamble+='<span class=\"name\">&nbsp;</span><br>'
+  # preamble+='+1 (857) 919 9011<br>'
+  # preamble+='<a href=\"afermg.github.com\">afermg.github.com</a><br>'
+  # preamble+='<a href=\"mailto:amunozgo@broadinstitute.org\">amunozgo@broadinstitute.org</a>'
+  # preamble+='</div>'
+  # echo -ne $preamble
+#+END_SRC
+
+**** Project definition
+#+BEGIN_SRC emacs-lisp :noweb yes
+  (setq pub-directory (concat this-directory "pub/html"))
+  (unless (boundp 'org-publish-project-alist)
+    (setq org-publish-project-alist nil))
+  (setq org-publish-timestamp-directory "/tmp/org-timestamps/")
+
+  (setq org-html-style-default "")
+  (setq org-html-htmlize-output-type 'css)
+
+  (add-to-list
+   'org-publish-project-alist
+   `("publish-html-cv"
+     :base-directory ,this-directory
+     :base-extension "org"
+     :publishing-directory ,(expand-file-name "html" pub-directory)
+     :publishing-function org-html-publish-to-html
+     :exclude ".*publish.*.org\\|readme.org\\|emacs_config.org"
+     :time-stamp-file nil
+     :section-numbers nil
+     :with-toc nil
+     :html-head-include-scripts nil))
+#+END_SRC
+
+** Exporter functions
+#+BEGIN_SRC emacs-lisp
+  (defun org-publish-html ()
+    (progn
+      (org-publish-project "publish-html-cv" 'force)
+      (rename-file (expand-file-name "resume.html" (expand-file-name "html" pub-directory))
+                   (expand-file-name "index.html" (expand-file-name "html" pub-directory)) t)
+      ))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun org-publish-pdf ()
+    (progn
+      (org-publish-project "publish-pdf-cv" 'force)
+      ;; (shell-command "mv ./latex.d pub/pdf/.; mv -f resume* *.sty ./pub/pdf/latex.d/.; mv ./pub/pdf/latex.d/resume*.org .")
+      (shell-command "rm resume.tex; mv resume.* pub/pdf/; mv pub/pdf/resume.org .")
+      ))
+#+END_SRC
+

@@ -1,0 +1,8 @@
+#+TITLE:  Curiculum Vitæ
+#+AUTHOR: Alán F. Muñoz
+
+* Quick Instructions
+Provided you have nix this should be all you need.
+#+begin_src shell
+nix develop . --command bash -c "make publish"
+#+end_src
