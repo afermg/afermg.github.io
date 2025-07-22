@@ -1,5 +1,5 @@
-# Alán F. Muñoz
-## Sections
+# Alán F. Muñoz's website
+## Categories
 
 | [Technical blog (Under construction)](./blog/README.md) | [TIL](./til/README.md) | [CV](./cv/resume.pdf) |
 
