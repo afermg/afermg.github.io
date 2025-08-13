@@ -5,7 +5,7 @@ Collection of snippets of know-how I have accumulated.
 
 It uses `ripgrep`, `xargs` and `GNU sed`. [source](https://github.com/BurntSushi/ripgrep/blob/master/FAQ.md#search-and-replace).
 
-    rg old_pattern --files-with-matches | xargs sed -i 's/foo/bar/g'
+    rg old_pattern --files-with-matches | xargs sed -i 's/old_pattern/new_pattern/g'
 
 
 # Github code review on existing code base <span class="timestamp-wrapper"><span class="timestamp">&lt;2024-11-26 Tue&gt;</span></span>
