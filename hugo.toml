@@ -21,6 +21,7 @@ main = [
   {identifier = "Categories", name = "Categories", url = "/categories/"},
   {identifier = "RSS", name = "RSS", url = "index.xml"},
   {identifier = "About", name = "About", url = "/about/"},
+  {identifier = "CV", name = "CV", url = "/cv/cv.pdf"},
 ]
 
 [taxonomies]
