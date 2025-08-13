@@ -1,7 +1,7 @@
 # Alán F. Muñoz's website
 ## Categories
 
-| [Technical blog](./blog/README.md) | [TIL](./til/README.md) | [CV](./cv/resume.pdf) |
+| [Technical blog](./blog.md) | [TIL](./til.md) | [CV](./cv/resume.pdf) |
 
 ## About me
 I am a computational biologist with software engineering chops working of the interface of ML/DL and biology. I build tools for high throughput biological data and then use them to generate new discoveries. I am interested in interpretable AI for mechanistic understanding of biology and its drug discovery applications.
