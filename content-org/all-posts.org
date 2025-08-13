@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
 #+toc: headlines 1
 
-* DONE Recursive search and replace                                 :@til:ripgrep:
+* DONE Recursive search and replace      :@til:ripgrep:oneliner:text:editing:
 CLOSED: [2025-08-12 Tue 13:07]
 :PROPERTIES:
 :EXPORT_FILE_NAME: recursive-search-replace
