@@ -25,6 +25,7 @@ main = [
 
 [taxonomies]
 tag = 'tags'
+categories = 'categories'
 
 [params]
 DateFormat = "2006-01-02"
