@@ -48,6 +48,10 @@ jobs:
                   tar -xf ${{ runner.temp }}/dart-sass.tar.gz --directory ${{ runner.temp }}
                   mv ${{ runner.temp }}/dart-sass/ /usr/local/bin
                   echo "/usr/local/bin/dart-sass" >> $GITHUB_PATH
+            - name: Install papermod
+              run: |
+                  hugo mod init github.com/afermg/afermg.github.io
+                  hugo mod get -u
             - name: Checkout
               uses: actions/checkout@v4
               with:
