@@ -2,7 +2,8 @@
 title = "Recursive search and replace"
 author = ["Alán F. Muñoz"]
 date = 2025-08-12T13:07:00-04:00
-tags = ["til", "rg"]
+tags = ["rg"]
+categories = ["til"]
 draft = false
 +++
 

@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
 #+toc: headlines 1
 
-* DONE Recursive search and replace                                 :til:rg:
+* DONE Recursive search and replace                                 :@til:rg:
 CLOSED: [2025-08-12 Tue 13:07]
 :PROPERTIES:
 :EXPORT_FILE_NAME: recursive-search-replace
@@ -12,7 +12,7 @@ I needed to rename all occurrences of a pattern with another, where I knew there
 rg old_pattern --files-with-matches | xargs sed -i 's/old_pattern/new_pattern/g'
 #+end_src
 
-* DONE Github code review on existing code base     :til:github:code:review:
+* DONE Github code review on existing code base     :@til:github:code:review:
 CLOSED: [2024-11-26 Tue 13:06]
 :PROPERTIES:
 :EXPORT_FILE_NAME: github-review-existing-code
@@ -33,7 +33,7 @@ CLOSED: [2024-11-26 Tue 13:06]
 
   That should make a pull request possible, providing the code review tooling.
   [[https://thib.me/recipe-code-reviews-for-existing-code-with-github][source]]
-* DONE A workflow for bioimaging and data exploration :post:marimo:visualizations:tools:demo:
+* DONE A workflow for bioimaging and data exploration :@post:marimo:dataviz:tools:demo:
 CLOSED: [2025-07-30 Wed 13:05]
 :PROPERTIES:
 :EXPORT_FILE_NAME: marimo-for-bioimage-exploration

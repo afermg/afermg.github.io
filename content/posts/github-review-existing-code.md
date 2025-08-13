@@ -2,7 +2,8 @@
 title = "Github code review on existing code base"
 author = ["Alán F. Muñoz"]
 date = 2024-11-26T13:06:00-05:00
-tags = ["til", "github", "code", "review"]
+tags = ["github", "code", "review"]
+categories = ["til"]
 draft = false
 +++
 
