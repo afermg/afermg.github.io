@@ -6,7 +6,7 @@ CLOSED: [2025-08-12 Tue 13:07]
 :PROPERTIES:
 :EXPORT_FILE_NAME: recursive-search-replace
 :END:
-It uses =ripgrep=, =xargs= and =GNU sed=. [[https://github.com/BurntSushi/ripgrep/blob/master/FAQ.md#search-and-replace][source]].
+I needed to rename all occurrences of a pattern with another, where I knew there was no ambiguous situations. This uses =ripgrep=, =xargs= and =GNU sed=. [[https://github.com/BurntSushi/ripgrep/blob/master/FAQ.md#search-and-replace][source]].
 
 #+begin_src shell
 rg old_pattern --files-with-matches | xargs sed -i 's/old_pattern/new_pattern/g'
