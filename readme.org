@@ -1,0 +1,3 @@
+#+TITLE: Website generator
+
+This repository uses ox-hugo to generate my personal website, including blog posts.
