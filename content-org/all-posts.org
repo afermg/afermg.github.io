@@ -1,10 +1,44 @@
 #+hugo_base_dir: ../
 #+toc: headlines 1
 
-* My first post                                        :tag1:@category1:
+* Recursive search and replace                                      :@til:rg:
 :PROPERTIES:
-:EXPORT_FILE_NAME: my-first-post
+:EXPORT_FILE_NAME: recursive-search-replace
+:EXPORT_DATE: <2025-08-11 Mon>
 :END:
-This is my post body. New tests.
+It uses =ripgrep=, =xargs= and =GNU sed=. [[https://github.com/BurntSushi/ripgrep/blob/master/FAQ.md#search-and-replace][source]].
+
+#+begin_src shell
+rg old_pattern --files-with-matches | xargs sed -i 's/old_pattern/new_pattern/g'
+#+end_src
+
+* Github code review on existing code base          :github:code:review:@til:
+:PROPERTIES:
+:EXPORT_FILE_NAME: github-review-existing-code
+:EXPORT_DATE: <2024-11-26 Tue>
+:END:
+
+  Create an empty branch with one empty commit
+  1. Create new branch =git checkout --orphan review-1-target=
+  2. Reset =git reset .=
+  3. Clean branch =git clean -df=
+  4. Add empty commit =git commit --allow-empty -m 'Empty commit'=
+     
+  Rebase a branch to put this commit at the root
+  5. Push to your fork =git push -u origin review-1-target=
+  6. Move to branch to review =git checkout origin/main=
+  7. Spin-off branch from here =git checkout -b review-1=
+  8. Rebase to empty branch =git rebase -i review-1-target=, the empty commit must be at the start
+  9. Push =git push -u origin review-1=
+
+  That should make a pull request possible, providing the code review tooling.
+  [[https://thib.me/recipe-code-reviews-for-existing-code-with-github][source]]
+* A workflow for bioimaging and data exploration :marimo:visualizations:tools:demo:@blog:
+:PROPERTIES:
+:EXPORT_FILE_NAME: marimo-for-bioimage-exploration
+:EXPORT_DATE: <2025-07-30 Wed> 
+:END:
+One of the common challenges when analysing large bioimaging datasets is to bring it all together in one place. Internally using tools like [[https://duckdb.org/][DuckDB]] for database querying and [[https://github.com/cytomining/copairs][copairs]] for selecting statistically significant subsets of the data. For one of my recent projects I built a [[https://github.com/marimo-team/marimo][marimo]] interface to explore the result of large-scale (~2TB images, ~2GB feature profiles) image-based profiles, then performs dimensionality reduction of the data, and finally retrieves back the images. This I think is the ideal workflow, one where you can be nimble and pull up the images alongside statistical analyses to be able to interpret the data structure in the biological context. The code is not yet available to the public, but you can find the demo [[https://drive.google.com/file/d/1t2ygATiJ2r0GPkeEwdw6FqHZxoOwQmzW/view][here]]. 
+
 * Not exported                                                     :noexport:
 
