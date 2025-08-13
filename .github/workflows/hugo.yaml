@@ -72,7 +72,6 @@ jobs:
               run: |
                   hugo mod init github.com/afermg/afermg.github.io
                   hugo mod tidy
-                  hugo mod get -u
             - name: Build with Hugo
               run: |
                   hugo \
