@@ -47,3 +47,6 @@ socialIcons = [
 # shouldSort = true
 # threshold = 0.0
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
