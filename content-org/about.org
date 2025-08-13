@@ -1,5 +1,7 @@
 #+TITLE: Homepage
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:nil ^:nil
+#+EXPORT_FILE_NAME: ../content/about.md
+
 * About me
 I am a computational biologist with software engineering chops working of the interface of ML/DL and biology. I build tools for high throughput biological data and then use them to generate new discoveries. I am interested in interpretable AI for mechanistic understanding of biology and its drug discovery applications.
 
