@@ -1,17 +1,11 @@
 #+TITLE: Homepage
-* Alán F. Muñoz's website
-** Categories
-
-#+begin_verse
-  [[./blog.md][Technical blog]] | [[./til.md][TIL]] | [[./cv/resume.pdf][CV]] |
-#+end_verse
-
-** About me
+#+OPTIONS: toc:nil
+* About me
 I am a computational biologist with software engineering chops working of the interface of ML/DL and biology. I build tools for high throughput biological data and then use them to generate new discoveries. I am interested in interpretable AI for mechanistic understanding of biology and its drug discovery applications.
 
 Currently, I have a postdoc role at Anne Carpenter and Shantanu Singh's Lab, at the Broad Institute of MIT and Harvard.
 
-** My current projects
+* My current projects
 - [[https://github.com/afermg/cp_measure][cp_measure]]: Featurise objects in images (microscopy or otherwise).
 - [[file:github.com/afermg/nahual][nahual]]: Transfer data between environments for dependency-free deployment of complex models and algorithms.
 - The Imaging platform [[https://github.com/broadinstitute/monorepo][monorepo]]: A collection of tools used by the Broad Institute's Imaging platform.
