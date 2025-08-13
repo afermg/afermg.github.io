@@ -22,6 +22,7 @@ main = [
   {identifier = "RSS", name = "RSS", url = "index.xml"},
   {identifier = "About", name = "About", url = "/about/"},
   {identifier = "CV", name = "CV", url = "/cv/cv.pdf"},
+  {identifier = "Source", name = "Source", url = "https://github.com/afermg/afermg.github.io"},
 ]
 
 [taxonomies]
