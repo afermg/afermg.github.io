@@ -1,6 +1,7 @@
 +++
 title = "A workflow for bioimaging and data exploration"
 author = ["Alán F. Muñoz"]
+date = 2025-07-30T13:05:00-04:00
 tags = ["marimo", "visualizations", "tools", "demo"]
 categories = ["blog"]
 draft = false
