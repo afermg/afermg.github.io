@@ -11,7 +11,7 @@ On a personal level, I enjoy multi-day hikes, bikepacking trips and, more recent
 
 * My current projects
 - [[https://github.com/afermg/cp_measure][cp_measure]]: Featurise objects in images (microscopy or otherwise).
-- [[file:github.com/afermg/nahual][nahual]]: Transfer data between environments for dependency-free deployment of complex models and algorithms.
+- [[file:github.com/afermg/nahual][nahual]]: Transfer data between running Python instances  for dependency-free deployment of complex models and algorithms (mostly deep learning models).
 - The Imaging platform [[https://github.com/broadinstitute/monorepo][monorepo]]: A collection of tools used by the Broad Institute's Imaging platform.
 - [[file:github.com/afermg/aliby][aliby]]: End-to-end processing of high throughput microscopy time lapses.
 - [[https://github.com/afermg/nix-configs][Nix Config]]: Fully reproducible computing environments for both multi-user workstations/servers and a personal Macbook.
