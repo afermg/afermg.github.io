@@ -7,6 +7,8 @@ I am a computational biologist with software engineering chops working of the in
 
 Currently, I have a postdoc role at Anne Carpenter and Shantanu Singh's Lab, at the Broad Institute of MIT and Harvard.
 
+On a personal level, I enjoy multi-day hikes, bikepacking trips and, more recently, I got into board games.
+
 * My current projects
 - [[https://github.com/afermg/cp_measure][cp_measure]]: Featurise objects in images (microscopy or otherwise).
 - [[file:github.com/afermg/nahual][nahual]]: Transfer data between environments for dependency-free deployment of complex models and algorithms.
