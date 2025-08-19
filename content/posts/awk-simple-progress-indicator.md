@@ -41,7 +41,7 @@ which results in this:
 ...
 ```
 
-We could easily use `wc -l` to get the number of files per directory, we want a bunch of progress bars to get a better sense of change over time. For this I use `awk`, my swiss-army knife for text processing, and I write a short script that counts, [sorts](https://stackoverflow.com/a/68371463) and [prints](https://stackoverflow.com/a/68371463) the number of occurrences as a number of dots:
+We could easily use `wc -l` to get the number of files per directory, we want a bunch of progress bars to get a better sense of change over time. For this I use `awk`, my swiss-army knife for text processing, and I write a short script that counts, [sorts](https://stackoverflow.com/a/2458455) and [prints](https://stackoverflow.com/a/68371463) the number of occurrences as a number of dots:
 
 ```awk
 # progress_bar.awk
