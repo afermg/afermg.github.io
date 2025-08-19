@@ -7,7 +7,7 @@ categories = ["script"]
 draft = false
 +++
 
-I wanted a simple way to see the progress of a data processing pipeline, and the internal progress bar tools were messed up by threading. I thus decided to use the number of output files in each folder as an indicator of progress. In my case the output of \`tree .\` looks like this:
+I wanted a simple way to see the progress of a data processing pipeline, and the internal progress bar tools were messed up by threading. I thus decided to use the number of output files in each folder as an indicator of progress. In my case the output of `tree .` looks like this:
 
 ```text
 .
@@ -24,10 +24,10 @@ I wanted a simple way to see the progress of a data processing pipeline, and the
     │   │   ├── ...
 ```
 
-I can get the info I need by counting the total number of files and the occurrences of the \`A01_001\`-&gt;\`P24_005\` (these are fields of view from a microscopy experiment). Using this simple `find` command we get all the files in the current folder.
+I can get the info I need by counting the total number of files and the occurrences of the `A01_001` -&gt; `P24_005` range (these are fields of view from a microscopy experiment). Using this simple `find` command we get all the files in the current folder.
 
 ```bash
-`find . -type f`
+find . -type f
 ```
 
 which results in this:
@@ -41,7 +41,7 @@ which results in this:
 ...
 ```
 
-We could easily use \`wc -l\` to get the number of files per directory, we want a bunch of progress bars to get a better sense of change over time. For this I use \`awk\`, my swiss-army knife for text processing, and I write a short script that counts, [sorts](https://stackoverflow.com/a/68371463) and [prints](https://stackoverflow.com/a/68371463) the number of occurrences as a number of dots:
+We could easily use `wc -l` to get the number of files per directory, we want a bunch of progress bars to get a better sense of change over time. For this I use `awk`, my swiss-army knife for text processing, and I write a short script that counts, [sorts](https://stackoverflow.com/a/68371463) and [prints](https://stackoverflow.com/a/68371463) the number of occurrences as a number of dots:
 
 ```awk
 # progress_bar.awk
@@ -61,7 +61,7 @@ END{
 }
 ```
 
-Running the \`find\` command and the \`awk\` script (\`find . type -f | awk -f progress_bar.awk\`) yields the following snapshot of the processing progess
+Running the `find` command and the `awk` script (`find . type -f | awk -f progress_bar.awk`) yields the following snapshot of the processing progess
 
 ```text
 A01_001 ...............................................................
@@ -79,6 +79,6 @@ A03_001 ..............................................
 
 Thus the last thing to do is to use \`watch\` to automatically refresh the status:
 
-\`watch --interval 1 'find . type -f | awk -f progress_bar.awk'\`
+`watch --interval 1 'find . type -f | awk -f progress_bar.awk'`
 
 Which I like to keep running somewhere in another terminal or in a \`screen\` terminal multiplexer. When the number of rows becomes too many it may be useful find a heuristic to remove uninformative lines.
