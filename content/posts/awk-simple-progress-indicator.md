@@ -61,7 +61,7 @@ END{
 }
 ```
 
-Running the `find` command and the `awk` script (`find . type -f | awk -f progress_bar.awk`) yields the following snapshot of the processing progess
+Running the `find` command and the `awk` script (`find . -type f | awk -f progress_bar.awk`) yields the following snapshot of the processing progess
 
 ```text
 A01_001 ...............................................................
@@ -79,6 +79,6 @@ A03_001 ..............................................
 
 Thus the last thing to do is to use \`watch\` to automatically refresh the status:
 
-`watch --interval 1 'find . type -f | awk -f progress_bar.awk'`
+`watch --interval 1 'find . -type f | awk -f progress_bar.awk'`
 
 Which I like to keep running somewhere in another terminal or in a \`screen\` terminal multiplexer. When the number of rows becomes too many it may be useful find a heuristic to remove uninformative lines.
