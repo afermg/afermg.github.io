@@ -86,12 +86,12 @@ A03_001 ..............................................
 
 Thus the last thing to do is to use `watch` to automatically refresh the status:
 
-=watch --interval 1 'find . -type f | awk -f progress_bar.awk'=
+=watch -dc --interval 1 'find . -type f | awk -f progress_bar.awk'=
 
-Which I like to keep running somewhere in another terminal or in a `screen` terminal multiplexer. When the number of rows becomes too many it may be useful find a heuristic to remove uninformative lines.
+The =watch=  flag =-d= highlight the changes over time and =-c= enables intrepreting ANSI colours, in my terminal this makes the changes last stay longer, but YMMV. I like to run this command somewhere in another terminal or in a `screen` terminal multiplexer. When the number of rows becomes too high it may be useful find a heuristic to remove uninformative lines.
 
 * DONE Update figure numbering                      :@script:awk:textediting:
-CLOSED: [2025-08-14 Thu 15:42]
+CLOSED: 
 :PROPERTIES:
 :EXPORT_FILE_NAME: awk-update-figure-numbering
 :END:
