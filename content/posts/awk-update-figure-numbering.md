@@ -1,7 +1,7 @@
 +++
 title = "Update figure numbering"
 author = ["Alán F. Muñoz"]
-date = 2025-08-14T15:42:00-04:00
+date = 2025-08-19T15:42:00-04:00
 tags = ["awk", "textediting"]
 categories = ["script"]
 draft = false
