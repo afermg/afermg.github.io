@@ -41,22 +41,25 @@ which results in this:
 ...
 ```
 
-We could easily use `wc -l` to get the number of files per directory, we want a bunch of progress bars to get a better sense of change over time. For this I use `awk`, my swiss-army knife for text processing, and I write a short script that counts, [sorts](https://stackoverflow.com/a/2458455) and [prints](https://stackoverflow.com/a/68371463) the number of occurrences as a number of dots:
+We could use `wc -l` to get the number of files per directory, we want a bunch of progress bars to get a better sense of change over time. For this I use `awk`, my swiss-army knife for text processing, and I write a short script that counts, [sorts](https://stackoverflow.com/a/2458455) and [prints](https://stackoverflow.com/a/68371463) the number of occurrences as a number of dots. I also added a conditional to only track after more than one file has been produced, for pipelines that produce save one file before actually running the whole pipeline.
 
 ```awk
 # progress_bar.awk
 {
-  if (match($0,"([A-P][0-9]{2}_[0-9]{3})", capture)){
-      count[capture[1]] += 1
+    if (match($0,"([A-P][0-9]{2}_[0-9]{3})", capture)){
+        count[capture[1]] += 1
     }
 
 }
 END{
     n=asorti(count, sorted)
     for (i=1; i<=n; i++){
-        s = sprintf(key "%*s", count[sorted[i]], "");
-        gsub(".", ".", s)
-        print sorted[i] " " s
+        nfiles = count[sorted[i]]
+        if (nfiles > 1){
+            s = sprintf(key "%*s", nfiles, "");
+            gsub(".", ".", s)
+            print sorted[i] " " s
+        }
     }
 }
 ```
@@ -79,6 +82,6 @@ A03_001 ..............................................
 
 Thus the last thing to do is to use \`watch\` to automatically refresh the status:
 
-`watch -dc --interval 1 'find . -type f | awk -f progress_bar.awk'`
+`watch -dc --interval 1 'find . -type f | awk -f progress_bar.awk | tac'`
 
-The `watch`  flag `-d` highlight the changes over time and `-c` enables intrepreting ANSI colours, in my terminal this makes the changes last stay longer, but YMMV. I like to run this command somewhere in another terminal or in a \`screen\` terminal multiplexer. When the number of rows becomes too high it may be useful find a heuristic to remove uninformative lines.
+The `watch`  flag `-d` highlight the changes over time and `-c` enables intrepreting ANSI colours, in my terminal this makes the changes last stay longer, but YMMV. Finally, `tac` makes sure that the last lines are displayed at the top. I like to run this command somewhere in another terminal or in a \`screen\` terminal multiplexer. When the number of rows becomes too high it may be useful find a heuristic to remove uninformative lines.
