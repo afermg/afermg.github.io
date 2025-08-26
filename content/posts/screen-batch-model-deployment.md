@@ -11,8 +11,8 @@ To solve a multitude of challenges I have faced when processing high throughput 
 
 ```shell
 cd cellpose
-screen -d -S cellpose2 -m bash -c 'nix develop . --command bash -c "python server.py ipc:///tmp/cellpose2.ipc"'
 screen -d -S cellpose1 -m bash -c 'nix develop . --command bash -c "python server.py ipc:///tmp/cellpose1.ipc"'
+screen -d -S cellpose2 -m bash -c 'nix develop . --command bash -c "python server.py ipc:///tmp/cellpose2.ipc"'
 cd ../trackastra
 screen -d -S trackastra -m bash -c 'nix develop . --command bash -c "python server.py ipc:///tmp/trackastra.ipc"'
 cd ..
