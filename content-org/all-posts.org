@@ -8,6 +8,30 @@
 ** Getting training working
 - reusing microbiology's fixes
 
+* DONE Deploy multiple models in the background :@script:screen:nahual:shell:nix:
+CLOSED: [2025-08-26 Tue 14:29]
+:PROPERTIES:
+:EXPORT_FILE_NAME: screen-batch-model-deployment
+:END:
+:LOGBOOK:
+- State "DONE"       from              [2025-08-26 Tue 14:29]
+:END:
+
+To solve a multitude of challenges I have faced when processing high throughput microscopy data, have developed [[https://github.com/afermg/nahual][Nahual]], a tool that allows me to move data across multiple Python environments that deploy deep learning models in the background. I usually keep these models "listening" in the background for the main analysis pipeline ([[https://github.com/afermg/aliby][aliby]]) to send them data to process. To be able to monitor what's going on inside of these scripts I use [[https://www.gnu.org/software/screen/][GNU screen]], which allows me to detach and reattach into these sessions whenever I need to. At some point I had to reboot my server and had rerun all these in independent screens. This rudimentary shell script did the job:
+
+#+begin_src shell
+  cd cellpose
+  screen -d -S cellpose2 -m bash -c 'nix develop . --command bash -c "python server.py ipc:///tmp/cellpose2.ipc"'
+  screen -d -S cellpose1 -m bash -c 'nix develop . --command bash -c "python server.py ipc:///tmp/cellpose1.ipc"'
+  cd ../trackastra
+  screen -d -S trackastra -m bash -c 'nix develop . --command bash -c "python server.py ipc:///tmp/trackastra.ipc"'
+  cd ..
+#+end_src
+
+Basically the screen runs my Nix environment and deploys the model (in this case, my [[github.com/afermg/cellpose][fork]] of cellpose with Nix dependency management) while detached. This executes a =server.py= file within the Nix enviroment, it runs on a loop waiting to receive data and process it. Automatically deploying to multiple screens reduces the annoyance of having to the usual steps of (go to the folder -> run screen -> Nix environment -> run Python server -> Detach screen session). I just add more models if I want further deployments, put it in a bash script and call it a day.
+
+To access any of these screens for inspection I just use the name indicated after the =-S= flag (e.g., =screen -r cellpose1=). This way I can check if any issue crops up in the main analysis script or pipeline.
+
 * DONE Simple progress indicators with awk           :@script:awk:find:watch:
 CLOSED: [2025-08-19 Tue 18:58]
 :PROPERTIES:
@@ -105,9 +129,8 @@ I was editing some markdown and had to insert a new figure in the middle. The pr
   # update_figures.awk
   {
       if (match($0, "Figure ([0-9]+)", num)){
-  	   if (num[1] > after){
+  	   if (num[1] > after)
   	       gsub("Figure ([0-9]+)", "Figure " num[1] + increase_by)
-  	   }
       };
       print $0
   }
