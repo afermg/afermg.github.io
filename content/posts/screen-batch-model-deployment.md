@@ -1,5 +1,5 @@
 +++
-title = "Deploy multiple models in the background"
+title = "Run multiple python scripts in the background"
 author = ["Alán F. Muñoz"]
 date = 2025-08-26T14:29:00-04:00
 tags = ["screen", "nahual", "shell", "nix"]

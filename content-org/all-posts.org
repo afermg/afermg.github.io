@@ -8,7 +8,7 @@
 ** Getting training working
 - reusing microbiology's fixes
 
-* DONE Deploy multiple models in the background :@script:screen:nahual:shell:nix:
+* DONE Run multiple python scripts in the background :@script:screen:nahual:shell:nix:
 CLOSED: [2025-08-26 Tue 14:29]
 :PROPERTIES:
 :EXPORT_FILE_NAME: screen-batch-model-deployment
