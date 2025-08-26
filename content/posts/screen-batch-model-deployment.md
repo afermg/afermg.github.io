@@ -18,6 +18,6 @@ screen -d -S trackastra -m bash -c 'nix develop . --command bash -c "python serv
 cd ..
 ```
 
-Basically the screen runs my Nix environment and deploys the model (in this case, my [BROKEN LINK: .pre-processed.org] of cellpose with Nix dependency management) while detached. This executes a `server.py` file within the Nix enviroment, it runs on a loop waiting to receive data and process it. Automatically deploying to multiple screens reduces the annoyance of having to the usual steps of (go to the folder -&gt; run screen -&gt; Nix environment -&gt; run Python server -&gt; Detach screen session). I just add more models if I want further deployments, put it in a bash script and call it a day.
+Basically the screen runs my Nix environment and deploys the model (in this case, my [fork](https://github.com/afermg/nahual) of cellpose with Nix dependency management) while detached. This executes a `server.py` file within the Nix enviroment, it runs on a loop waiting to receive data and process it. Automatically deploying to multiple screens reduces the annoyance of having to the usual steps of (go to the folder -&gt; run screen -&gt; Nix environment -&gt; run Python server -&gt; Detach screen session). I just add more models if I want further deployments, put it in a bash script and call it a day.
 
 To access any of these screens for inspection I just use the name indicated after the `-S` flag (e.g., `screen -r cellpose1`). This way I can check if any issue crops up in the main analysis script or pipeline.
