@@ -13,9 +13,8 @@ I was editing some markdown and had to insert a new figure in the middle. The pr
 # update_figures.awk
 {
     if (match($0, "Figure ([0-9]+)", num)){
-           if (num[1] > after){
+           if (num[1] > after)
                gsub("Figure ([0-9]+)", "Figure " num[1] + increase_by)
-           }
     };
     print $0
 }
