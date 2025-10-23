@@ -1,9 +1,13 @@
 #+hugo_base_dir: ../
 #+toc: headlines 1
-* Calculate the cumulative sum of a column using DuckDB :@script:duckdb:datascience:gnuplot:dataviz:terminal_viz:
+* DONE Calculate the cumulative sum of a column using DuckDB :@script:duckdb:datascience:gnuplot:dataviz:terminal_viz:
+CLOSED: [2025-10-22 Wed 20:34]
 :PROPERTIES:
 :header-args:duckdb: :session duckdb_cumsum :exports both
 :EXPORT_FILE_NAME: duckdb_cumsum
+:END:
+:LOGBOOK:
+- State "DONE"       from              [2025-10-22 Wed 20:34]
 :END:
 
 Duckdb, the (tabular) data exploration tool I use supports window operations. I recently discovered that it can also perform cumulative sums in a very efficient manner.
@@ -244,7 +248,7 @@ Thus the last thing to do is to use `watch` to automatically refresh the status:
 The =watch=  flag =-d= highlight the changes over time and =-c= enables intrepreting ANSI colours, in my terminal this makes the changes last stay longer, but YMMV. Finally, =tac= makes sure that the last lines are displayed at the top. I like to run this command somewhere in another terminal or in a `screen` terminal multiplexer. When the number of rows becomes too high it may be useful find a heuristic to remove uninformative lines.
 
 * DONE Update figure numbering                      :@script:awk:textediting:
-CLOSED: [2025-08-19 Tue 15:42]
+CLOSED: [2025-08-14 Thu 15:42]
 :PROPERTIES:
 :EXPORT_FILE_NAME: awk-update-figure-numbering
 :END:
