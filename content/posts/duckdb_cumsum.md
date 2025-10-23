@@ -76,7 +76,9 @@ The cumulative sum can be pretty handy to get a general notion of a distribution
  directly in a terminal by using [gnuplot](https://gnuplotting.org/).
 
 ```shell
-duckdb -csv -c "SELECT *, sum(column_2) OVER (ORDER by column_1) AS cumulative_sum FROM read_csv('my_table.csv');" |
+duckdb -csv -c "
+    SELECT *, sum(column_2) OVER (ORDER by column_1) AS cumulative_sum
+    FROM read_csv('my_table.csv');" |
     gnuplot -e "
     set terminal dumb;
     set datafile separator ',';
@@ -124,8 +126,9 @@ We get a cute ascii-like plot! That is a bit too long of a "one-liner", I'll go 
     -   `set terminal dumb`: it will send as plain text to stdout.
     -   `set datafiler separator ","`: The input is a CSV file.
     -   `set style data histograms`: Changes the plotting style into a barplot.
+    -   `set style fill solid ...`: Visual adjustments to the bars for clarity.
     -   `set xlabel ...` Adds the axis labels. Similar for `ylabel` and `title`.
     -   `plot '-' using 3:xtic(1)`: Use stdin data to Plot the columns 3 on the y axis (`cumulative_sum`) and the first column in the x-axis (`column_1`).
 -   Lastly, use the `tr` command line tool to remove a `^L` That appeared at the start of the output and was bothering me too much.
 
-While there are a many other ways to wrangle tables such as via pandas or polars in Python, I find duckdb to be a powerful tool for exploratory analyses and data wrangling (often from within Python). It is flexible enough to be used by itself, within another language such as Python or directly on the command line. I have also shown that when used as a Command Line Interface (CLI) duckdb synergises with other tools for data visualisation on the comfort(?) of the terminal.
+While there are a many other ways to wrangle tables such as via pandas or polars in Python, I find duckdb to be a powerful tool for exploratory analyses and data wrangling (often from within Python). It is flexible enough to be used by itself, via bindings in another language, or directly on the command line. Lastly, I showed that when used as a Command Line Interface (CLI) duckdb synergises with other tools for data visualisation from the comfort(?) of the terminal.
