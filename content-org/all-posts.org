@@ -8,7 +8,7 @@ CLOSED: [2025-10-23 Thu 15:21]
 :EXPORT_FILE_NAME: emacs_dired_do_shell_duckdb
 :END:
 
-I use =dired-do-shell= command in Emacs to run CLI commands from within its file manager [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][dired]]. This workflow makes it easy to perform batch operations on files that would be annoying otherwise. The trouble arose when trying to use the =duckdb= CLI to print the schema of a parquet file, as the notation for wildcards in emacs (=*= and =?=) conflicts with duckdb's usage of the former. Thus running the following after =M-x dired-do-shell= (bound to =!= in =dired=) did not work:
+I use =dired-do-shell= command in Emacs to run CLI commands from within its file manager [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][dired]]. This workflow makes it easy to perform batch operations on files that would be annoying otherwise. The trouble arose when trying to use the =duckdb= CLI to print the schema of a parquet file, as the notation for wildcards in emacs (=*= and =?=) conflicts with duckdb's usage of the former. Thus running the following after =M-x dired-do-shell= (bound to =!= in =dired-mode=) did not work:
 
 #+begin_src shell :eval never
 duckdb -c "DESCRIBE * FROM read_parquet('?')"
