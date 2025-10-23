@@ -1,5 +1,32 @@
 #+hugo_base_dir: ../
+#+PROPERTY: logging nil
 #+toc: headlines 1
+
+* DONE Use dired-do-shell to get the parquet schema from emacs :@til:emacs:dired:duckdb:
+CLOSED: [2025-10-23 Thu 15:21]
+:PROPERTIES:
+:EXPORT_FILE_NAME: emacs_dired_do_shell_duckdb
+:END:
+
+I use =dired-do-shell= command in Emacs to run CLI commands from within its file manager [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html][dired]]. This workflow makes it easy to perform batch operations on files that would be annoying otherwise. The trouble arose when trying to use the =duckdb= CLI to print the schema of a parquet file, as the notation for wildcards in emacs (=*= and =?=) conflicts with duckdb's usage of the former. Thus running the following after =M-x dired-do-shell= (bound to =!= in =dired=) did not work:
+
+#+begin_src shell :eval never
+duckdb -c "DESCRIBE * FROM read_parquet('?')"
+#+end_src
+
+I am trying to get Emacs to substitute =?= for the selected file(s) in dired and retain =*= as a normal duckdb wildcard (for which it means "get all columns"), but Emacs interprets the star as a wildcard and not the question mark. Thus Emacs yapped about it:
+
+#+begin_quote
+dired-do-shell-command: You can not combine ‘*’ and ‘?’ substitution marks
+#+end_quote
+
+The trick is that we need to surround =?= with backquotes (=`=), otherwise the spaces will be in the file name that =read_parquet= ingests. To fix the "naked star" problem (which Emacs will try to substitute) we can envelop it with the =COLUMNS()= command, and the lack of spaces around =*= will prevent Emacs from substituting its value. Thus the following command in the Emacs command line does the trick:
+
+#+begin_src shell :eval never
+  duckdb -c "DESCRIBE COLUMNS(*) FROM read_parquet('`?`')"
+#+end_src
+
+Which is a bit verbose but I can easily reuse from my command history to explore the schemas or parquets without leaving the dired buffer.
 
 * DONE Calculate the cumulative sum of a column using DuckDB :@script:duckdb:datascience:gnuplot:dataviz:terminal_viz:
 CLOSED: [2025-10-22 Wed 20:34]
