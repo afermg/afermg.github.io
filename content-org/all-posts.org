@@ -2,7 +2,7 @@
 #+PROPERTY: logging nil
 #+toc: headlines 1
 
-* DONE Use dired-do-shell to get the parquet schema from emacs :@til:emacs:dired:duckdb:
+* DONE Use dired-do-shell to explore the parquet schema from Emacs :@til:emacs:dired:duckdb:
 CLOSED: [2025-10-23 Thu 15:21]
 :PROPERTIES:
 :EXPORT_FILE_NAME: emacs_dired_do_shell_duckdb

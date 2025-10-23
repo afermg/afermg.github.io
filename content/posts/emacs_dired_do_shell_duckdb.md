@@ -1,5 +1,5 @@
 +++
-title = "Use dired-do-shell to get the parquet schema from emacs"
+title = "Use dired-do-shell to explore the parquet schema from Emacs"
 author = ["Alán F. Muñoz"]
 date = 2025-10-23T15:21:00-04:00
 tags = ["emacs", "dired", "duckdb"]
