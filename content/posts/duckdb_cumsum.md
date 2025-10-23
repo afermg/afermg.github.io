@@ -1,7 +1,8 @@
 +++
 title = "Calculate the cumulative sum of a column using DuckDB"
 author = ["Alán F. Muñoz"]
-tags = ["duckdb", "datascience", "gnuplot", "dataviz", "terminal-plot"]
+date = 2025-10-22T20:34:00-04:00
+tags = ["duckdb", "datascience", "gnuplot", "dataviz", "terminal-viz"]
 categories = ["script"]
 draft = false
 +++
@@ -11,7 +12,7 @@ Duckdb, the (tabular) data exploration tool I use supports window operations. I 
 Let us generate a toy dataset where we want to calculate the sum of one column relative to the order of another one.
 
 ```duckdb
-create or replace table seed as select setseed(0.1); -- seeding for reproducibility,  creating a table to hide output
+CREATE OR REPLACE TABLE seed AS SELECT SETSEED(0.1); -- seeding for reproducibility,  creating a table to hide output
 
 -- Create a mock dataset with two integer columns
 CREATE OR REPLACE TABLE my_table AS
@@ -25,8 +26,7 @@ SELECT * FROM my_table;
 COPY my_table TO my_table.csv;
 ```
 
-<div class="results">
-
+```text
 ┌──────────┬──────────┐
 │ column_1 │ column_2 │
 │  int64   │  int32   │
@@ -44,8 +44,7 @@ COPY my_table TO my_table.csv;
 ├──────────┴──────────┤
 │ 10 rows   2 columns │
 └─────────────────────┘
-
-</div>
+```
 
 If we wanted to calculate the distribution of the cumulative sum of the table we could use the `OVER` clause to perform the sum of `column_2` in the order defined by `column_1`.
 
@@ -53,8 +52,7 @@ If we wanted to calculate the distribution of the cumulative sum of the table we
 SELECT *, sum(column_2) OVER (ORDER by column_1) AS cumulative_sum FROM my_table
 ```
 
-<div class="results">
-
+```text
 ┌──────────┬──────────┬────────────────┐
 │ column_1 │ column_2 │ cumulative_sum │
 │  int64   │  int32   │     int128     │
@@ -72,8 +70,7 @@ SELECT *, sum(column_2) OVER (ORDER by column_1) AS cumulative_sum FROM my_table
 ├──────────┴──────────┴────────────────┤
 │ 10 rows                    3 columns │
 └──────────────────────────────────────┘
-
-</div>
+```
 
 The cumulative sum can be pretty handy to get a general notion of a distribution. As a bonus tip, I'll show how to use duckdb in a one-liner to plot the data
  directly in a terminal by using [gnuplot](https://gnuplotting.org/).
