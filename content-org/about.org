@@ -7,7 +7,7 @@ I am a computational biologist with software engineering chops working at the in
 
 Currently I have a postdoc role at the Carpenter-Singh Lab, in the Broad Institute of MIT and Harvard.
 
-Outside work, I enjoy multi-day hikes, bikepacking trips and, more recently, I got into board games (especially worker placement/engine building such as [[https://boardgamegeek.com/boardgame/266192/wingspan][Wingspan]] or [[https://boardgamegeek.com/boardgame/196340/yokohama][Yokohama]]).
+Outside work, I enjoy multi-day hikes, bikepacking trips and, more recently, I got into board games (especially worker placement/engine building ones such as [[https://boardgamegeek.com/boardgame/196340/yokohama][Yokohama]] or [[https://boardgamegeek.com/boardgame/266192/wingspan][Wingspan]]).
 
 * Current projects
 - [[https://github.com/afermg/cp_measure][cp_measure]]: Featurise objects from images and masks (microscopy or otherwise).
