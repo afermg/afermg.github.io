@@ -1,7 +1,7 @@
     
 baseURL = "https://afermg.github.io/"
 languageCode = "en-uk"
-title = "Alán F. Muñoz's website"
+title = "Quasimorphic: Alán F. Muñoz's blog"
 
 [outputs]
 home = ["HTML", "JSON", "RSS"]
