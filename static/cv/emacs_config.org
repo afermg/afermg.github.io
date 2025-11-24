@@ -111,7 +111,7 @@
     (progn
       (org-publish-project "publish-pdf-cv" 'force)
       ;; (shell-command "mv ./latex.d pub/pdf/.; mv -f resume* *.sty ./pub/pdf/latex.d/.; mv ./pub/pdf/latex.d/resume*.org .")
-      (shell-command "rm resume.tex; mv resume.* pub/pdf/; mv pub/pdf/resume.org .")
+      (shell-command "rm cv.tex; mv cv.* pub/pdf/; mv pub/pdf/cv.org .")
       ))
 #+END_SRC
 
