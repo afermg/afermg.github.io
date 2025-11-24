@@ -1,3 +1,5 @@
 #+TITLE: Website generator
 
 This repository uses ox-hugo to generate my personal website, including blog posts.
+
+This repository also keeps my Resume/CV updated.
