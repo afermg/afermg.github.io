@@ -42,7 +42,9 @@ publish: pdf
 	@(cd pub/pdf && tar czvf /tmp/org-cv-publish.tar.gz .)
 	@rm -r pub
 	@git checkout gh-pages
+	@git reset --hard 00bb1df1f82ee94739398d1faf37ef7d912d8164
 	@tar xzvf /tmp/org-cv-publish.tar.gz
+# This uses the fact that our site is deployed using the gh-pages site.
 	@if [ -n "`git status --porcelain`" ]; then git add cv.pdf; git commit -m "update cv.pdf" && git push --set-upstream origin gh-pages --force; fi
 	@git checkout main
 	@echo "NOTICE: PDF documentation published"
