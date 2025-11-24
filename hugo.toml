@@ -16,7 +16,7 @@ home = ["HTML", "JSON", "RSS"]
 [menu]
 main = [
   {identifier = "About", name = "About", url = "/about/"},
-  {identifier = "CV", name = "CV", url = "/cv/cv.pdf"},
+  {identifier = "CV", name = "CV", url = "https://raw.githubusercontent.com/afermg/afermg.github.io/refs/heads/gh-pages/static/cv/cv.pdf"},
   {identifier = "Categories", name = "Categories", url = "/categories/"},
   {identifier = "Posts", name = "Posts", url = "/posts/"},
   {identifier = "RSS", name = "RSS", url = "index.xml"},
