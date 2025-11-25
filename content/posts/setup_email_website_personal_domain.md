@@ -2,10 +2,12 @@
 title = "Set up email hosting and a personal website on personal domain"
 author = ["Alán F. Muñoz"]
 date = 2025-11-24T19:38:00-05:00
+tags = ["email", "dns", "hosting", "smallweb", "github", "pages"]
+categories = ["howto"]
 draft = false
 +++
 
-At some point I was struggling to get access to my Gmail account. Since I usually block unwanted scripts from running on my computer, Google likes to flag my Gmail login attempts as suspicious activity. This would be fine if it didn't also make one of my only alternative identification methods an SMS. If I were to lose my phone or number I could be locked out of my account. Most accounts I have assume I have access to this email, thus a good chunk of modern life requires me accessing it, the prospect of becoming unable to log in seems quite realistic.. [This](https://www.migadu.com/blog/gmail/) post (by an email-hosting company) builds a case against Gmail ground of privacy. It was at last time to get my own domain and control over my email. I also started this blog this year and it is pleasing to give it a nice `.com` home.
+At some point I was struggling to get access to my Gmail account. Since I usually block unwanted scripts from running on my computer, Google likes to flag my Gmail login attempts as suspicious activity. This would be fine if it didn't also make one of my only alternative identification methods an SMS. If I were to lose my phone or number I could be locked out of my account. Most accounts I have assume I have access to this email, thus a good chunk of modern life requires me accessing it, the prospect of becoming unable to log in seems quite realistic. [This](https://www.migadu.com/blog/gmail/) post (by an email-hosting company) builds a case against Gmail ground of privacy. It was at last time to get my own domain and control over my email. I also started this blog this year and it is pleasing to give it a nice `.com` home.
 
 
 ## 'Yer a domain, Harry {#yer-a-domain-harry}
