@@ -19,8 +19,7 @@ Buy a domain from a domain provider. Common options are CloudFare, GoDaddy and N
 
 Doing some research (mostly HackerNews and Reddit comments) I narrowed down options to either [Migadu](https://migadu.com/) and [MXroute](https://mxroute.com/). `Migadu` had a free trial, so  I gave it a shot, but in the end I went for `MXroute` due to a promo they had at the time.
 
-Make an account account. In the case of `mxroute`, you have to pay at this point.
-  Once you have access to your email account you have to link it to your domain.
+Make an email account. On Migadu it should be straightforward. In the case of `MXroute`, you have to pay at this point. the URL for management should be `<SERVER>.mxrouting.net:2222`, were `<SERVER>` is in the confirmation email. Once you have access to your email hosting server you can to link it to your domain.
 
 
 ### Link email service to domain {#link-email-service-to-domain}
@@ -37,12 +36,23 @@ The first step once you have an account is to add DNS (Domain Name Service) reco
 
 #### MXroute {#mxroute}
 
-Mostly follow the [instructions](https://gist.github.com/afermg/69df5d99ddc7e1201b471aa6eb564e51) sent upon registration, but it is basically the same as Migadu but without the import/export convenience.
+Mostly follow the [instructions](https://gist.github.com/afermg/69df5d99ddc7e1201b471aa6eb564e51) sent upon registration, but it is basically the same as Migadu but without the import/export convenience. For instance, one of the MX records (with different fields separated by commas) is `MX, <domain.com>, <server>.mxrouting.net`. The ones I had to copy over from the email were:
+
+-   TXT records: `spf1` and `DKIM1`.
+-   MX records: `<SERVER>.mxrouting.net` and `<SERVER>-relay.mxrouting.net`
+
+    Copy them on Cloudfare, specifically on DNS records:
+
+<!--listend-->
+
+```text
+Cloudfare's domain home -> DNS Records -> Add record
+```
 
 
-### Test that it worked {#test-that-it-worked}
+### Test that is working {#test-that-is-working}
 
--   Log-in to webmail.migadu.com/mxroute's email
+-   Log-in to yor account on `webmail.migadu.com` or `<SERVER>.mxrouting.net/roundcube`
 -   Create an account for your first user
 -   Send an mail to yourself to validate that it works.
 
@@ -51,21 +61,25 @@ Mostly follow the [instructions](https://gist.github.com/afermg/69df5d99ddc7e120
 
 To access my email from my phone's Thunderbird App I had to set a subdomain. Only `MXroute` required this.
 
--   Add `mail.<domain.com>` subdomain on CloudFare
--   Point to this website on mxroute's mail admin site
+-   From the Control panel provided by `MXroute` the verification key.
+    ```text
+    <SERVER>.mxrouting.net -> (sidebar) Account manager -> DNS record
+    ```
+    And add it as a TXT record on CloudFare.
+-   Add `mail.<domain.com>`  and/or `webmail.<domain.com>` subdomain(s) on CloudFare
 
 
 ## Link Github Pages website to domain {#link-github-pages-website-to-domain}
 
-If we have one, we can also link our website to the domain. Some companies like to use `blog.<domain.com>` for blogs and keep `<domain.com>` for their landing page, but since I am almost certainly a person I skipped the subdomain approach. In my case I am using Github to host my website:
+If we have one, we can also link our website to the domain. Some companies like to use `blog.<domain.com>` for blogs and keep `<domain.com>` for their landing page, but since I am almost certainly a person I skipped the subdomain approach (and used the so-called apex domain). In my case I am using Github to host my website, so I followed their [instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site):
 
 1.  Go to DNS records
     ```text
     Cloudfare's domain home -> DNS Records -> Add record
     ```
-2.  Add `A` records to CloudFare
-3.  Add `CNAME, www, <user>.github.io` record. This step wasn't specified on the Github docs but I found it to be necessary for some reason. More power to you if you don't need it
-4.  Add cloudfare rules to redirect https.
+2.  Add `A` records to CloudFare (e.g., `A,<domain.com>,<185.ipv4.github.address>`).
+3.  Add `CNAME,www,<user>.github.io` record. This step wasn't specified on the Github docs but I found it to be necessary for some reason. More power to you if you don't need it
+4.  Add cloudfare rules to redirect https
     ```text
     Cloudfare's domain home -> Cloudfare rules -> Templates -> Redirect http to HTTPS -> Deploy
     ```
