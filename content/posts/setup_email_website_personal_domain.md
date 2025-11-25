@@ -54,7 +54,7 @@ Cloudfare's domain home -> DNS Records -> Add record
 
 -   Log-in to yor account on `webmail.migadu.com` or `<SERVER>.mxrouting.net/roundcube`
 -   Create an account for your first user
--   Send an mail to yourself to validate that it works.
+-   Send an mail to yourself to validate that it works
 
 
 ### Optional: Set subdomain for server access {#optional-set-subdomain-for-server-access}
