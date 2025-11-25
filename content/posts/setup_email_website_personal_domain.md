@@ -29,16 +29,16 @@ The first step once you have an account is to add DNS (Domain Name Service) reco
 
 #### Migadu {#migadu}
 
--   Export the BIND records into a file and download it.
+-   Export the BIND records into a file and download it
 -   Load this file, add them CloudFare DNS records
--   If the `DKMS` and `ARC` keys fail, make sure to untoggle the `proxy` switch on their records.
+-   If the `DKMS` and `ARC` keys fail, make sure to untoggle the `proxy` switch on their records
 
 
 #### MXroute {#mxroute}
 
 Mostly follow the [instructions](https://gist.github.com/afermg/69df5d99ddc7e1201b471aa6eb564e51) sent upon registration, but it is basically the same as Migadu but without the import/export convenience. For instance, one of the MX records (with different fields separated by commas) is `MX, <domain.com>, <server>.mxrouting.net`. The ones I had to copy over from the email were:
 
--   TXT records: `spf1` and `DKIM1`.
+-   TXT records: `spf1` and `DKIM1`
 -   MX records: `<SERVER>.mxrouting.net` and `<SERVER>-relay.mxrouting.net`
 
     Copy them on Cloudfare, specifically on DNS records:
@@ -61,11 +61,11 @@ Cloudfare's domain home -> DNS Records -> Add record
 
 To access my email from my phone's Thunderbird App I had to set a subdomain. Only `MXroute` required this.
 
--   From the Control panel provided by `MXroute` the verification key.
+-   From the Control panel provided by `MXroute` the verification key
     ```text
     <SERVER>.mxrouting.net -> (sidebar) Account manager -> DNS record
     ```
-    And add it as a TXT record on CloudFare.
+    And add it as a TXT record on CloudFare
 -   Add `mail.<domain.com>`  and/or `webmail.<domain.com>` subdomain(s) on CloudFare
 
 
@@ -77,8 +77,8 @@ If we have one, we can also link our website to the domain. Some companies like 
     ```text
     Cloudfare's domain home -> DNS Records -> Add record
     ```
-2.  Add `A` records to CloudFare (e.g., `A,<domain.com>,<185.ipv4.github.address>`).
-3.  Add `CNAME,www,<user>.github.io` record. This step wasn't specified on the Github docs but I found it to be necessary for some reason. More power to you if you don't need it
+2.  Add `A` records to CloudFare (e.g., `A,<domain.com>,<185.ipv4.github.address>`)
+3.  Add `CNAME,www,<user>.github.io` record. This step wasn't specified on the Github docs but I found it to be necessary for some reason.it
 4.  Add cloudfare rules to redirect https
     ```text
     Cloudfare's domain home -> Cloudfare rules -> Templates -> Redirect http to HTTPS -> Deploy
