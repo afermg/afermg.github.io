@@ -228,7 +228,7 @@ Mostly follow the [[https://gist.github.com/afermg/69df5d99ddc7e1201b471aa6eb564
 **** Test that is working
 - Log-in to yor account on =webmail.migadu.com= or =<SERVER>.mxrouting.net/roundcube=
 - Create an account for your first user
-- Send an mail to yourself to validate that it works.
+- Send an mail to yourself to validate that it works
 **** Optional: Set subdomain for server access
 To access my email from my phone's Thunderbird App I had to set a subdomain. Only =MXroute= required this.
 - From the Control panel provided by =MXroute= the verification key
