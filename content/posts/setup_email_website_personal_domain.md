@@ -50,7 +50,7 @@ Cloudfare's domain home -> DNS Records -> Add record
 ```
 
 
-### Test that is working {#test-that-is-working}
+### Test the setup {#test-the-setup}
 
 -   Log-in to yor account on `webmail.migadu.com` or `<SERVER>.mxrouting.net/roundcube`
 -   Create an account for your first user
@@ -92,4 +92,4 @@ If we have one, we can also link our website to the domain. Some companies like 
 
 ## Conclusions {#conclusions}
 
-I like that I have control over my email, and I could even give my family and friends their personal emails (if I had any who actually wanted that). The first time I did all this it took me around three hours, mostly because Github could not find my DNS records. Since I have my domain now I can probably do more fun stuff, such as self-hosting tools to share with friends and family.
+I like that I have control over my email, and I could even give my family and friends their personal emails (if any of them actually wants one). The first time I did all this it took me around three hours, mostly because Github could not find my DNS records. Since I have my domain now I can probably do more fun stuff, such as self-hosting tools to share with friends and family.
