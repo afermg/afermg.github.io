@@ -1,6 +1,253 @@
 #+hugo_base_dir: ../
-#+PROPERTY: logging nil
 #+toc: headlines 1
+
+* Not exported                                                     :noexport:
+** A portable approach to distribute image-based results
+*** Introducion
+A common challenge when we produce scientific results is making them available to others. There are multiple ways of doing this, sorted based on effort it takes to produce:
+- No data is available.
+- Data is available on a public repository
+- Data and code are available, but code needs an environment to be reproduced.
+- Data and code are available and packed together, and the code is available
+- A portal for data exploration is available (but this needs to be hosted and maintained).
+  
+*** Problems
+- In the case of biology, many
+- The usual problems of deploying
+- 
+  
+*** Solution
+**** Tool chain
+  - parquet
+  - Datasette lite
+  - Python to generate results
+**** Solution
+
+** Using OpenCV on Python to overlay fluorescence and bright field images
+- I usually want to present a dye in live cell painting on top of bright field
+  - Bright field shown as black and white
+  - Fluorescence as one of the RGB colours
+** Beamer presentations with animations via org-mode
+- I have had to present videos of cells
+- I produce everything using org-mode->LaTeX (Beamer) -> PDF
+  #+begin_example LaTeX
+  \animategraphics
+  #+end_example
+- MacOS's preview does not produce animation
+ - Adobe Acrobat: 500Mb
+ - Okular:
+   - One must activate forms
+   
+** They eat sugar, don't they?
+A post about how drug discovery research overlooks metabolism.
+** Hive parquets on duckdb                      :@script:duckdb:datascience:
+- Problem: Tables that match other tables, some nested
+- Solution: Produce parquets in a hive partitions and map them using their key columns/nested directory
+
+  This gets us the best of both worlds, the speed and out of memory computation of duckdb without the need of unnecessary row-vs-row comparisons (via JOIN)
+** MAP type in DuckDB                           :@script:duckdb:datascience:
+- Useful as a faster replacement to expensive JOIN 
+** DuckDB vs polars
+
+I have found Duckdb to be generally more performant than polars when used end-to-end (with no intermediate conversion to Python objects). That said, there are certain cases where I have found myself in the need of using polars.
+
+UDF vs lambda in polars.
+*** Operations where DuckDB struggles but Polars makes it easy
+- Renaming columns dynamically
+- Selecting columns based on data type
+- Partition datasets: Converting one data frame into multiple ones based on a condition.
+- Exclusion columns by id: We want all columns except for a few, and we want to select these by a numerical index.
+- Concatenation (TABLE UNION)
+- Loading parquet files by list (instead of by wildcard)
+- Conversion to parquet can be tricky
+  
+** Sequence of problems and solutions:
+1. Inconsistent folder structures for assays and batches.
+   Generated a dictionary that defines the necessary parameters for each combination of assay and batch.
+1. No available CellProfiler measurements
+   Developed cp_measure to obtain the features from within python
+2. Cellpose was unfriendly to multithreading
+3. Dependency frailty across a multitude of tools
+   Developed Nahual to transfer parameters and data across Python environments.
+4. Aggregate data
+   Duckdb to create databases and access them immediately
+5. Run quality controls
+   Marimo notebooks
+   
+** Setting up atuin in a new computer using nix
+- What is atuin
+- Why it was giving trouble
+- You need to use the base64.
+  
+** Agenix secrets via flakes
+- Make note of the steps and what I actually copied
+
+** Nixifying DINOv2 for fine-tuning :nix:deeplearning:python:awk:@post:noexport:
+:PROPERTIES:
+:EXPORT_FILE_NAME: nixifying-dinov2-for-fine-tuning
+:END:
+*** Getting inference working
+*** Getting training working
+- reusing microbiology's fixes
+
+** Duckdb for the MBTA public dataset :duckdb:datascience:@workflow:opendata:
+:PROPERTIES:
+:header-args:duckdb: :session test_session :db test.duckdb :exports both
+:EXPORT_FILE_NAME: duckdb-exploration-mbta
+:END:
+
+To showcase the real-life usefulness of [[https://duckdb.org/][Duckdb]] (and SQL-adjacent Domain Specific Languages in general) I decided to use the public [[https://mbta-massdot.opendata.arcgis.com/][datasets]] made available the Massachusets Bay Transport Authority (MBTA). I have lived in Boston for a couple of years and wanted to test if my intuition of the busy lines and stations lined up with their data.
+
+There are multiple available (tabular) datasets:
+- Ridership by Trip, Route line and stop
+- Montly ridership by month
+- Gated station entries
+- Passenger surveys
+
+#+BEGIN_SRC duckdb :session test_session :db test.duckdb :exports both
+  INSTALL httpfs;
+  LOAD httpfs;
+
+  CREATE OR REPLACE TABLE monthly_ridership AS (SELECT * FROM read_csv('https://hub.arcgis.com/api/v3/datasets/a2d15ddd86b34867a31cd4b8e0a83932_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1'));
+  
+  SELECT column_name, column_type FROM (DESCRIBE monthly_ridership);
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+┌─────────────────────────────────┬──────────────────────────┐
+│           column_name           │       column_type        │
+│             varchar             │         varchar          │
+├─────────────────────────────────┼──────────────────────────┤
+│ service_date                    │ TIMESTAMP WITH TIME ZONE │
+│ mode                            │ VARCHAR                  │
+│ route_or_line                   │ VARCHAR                  │
+│ total_monthly_weekday_ridership │ BIGINT                   │
+│ average_monthly_weekday_ridersh │ BIGINT                   │
+│ countofdates_weekday            │ BIGINT                   │
+│ total_monthly_ridership         │ DOUBLE                   │
+│ average_monthly_ridership       │ BIGINT                   │
+│ countofdates                    │ BIGINT                   │
+│ ObjectId                        │ BIGINT                   │
+├─────────────────────────────────┴──────────────────────────┤
+│ 10 rows                                          2 columns │
+└────────────────────────────────────────────────────────────┘
+#+end_example
+
+  We first loaded the =httpfs= extension to pull the data direectly from their website. I am using a local database but this should also work without writing into file thatnks to the [[https://duckdb.org/docs/stable/connect/overview][in-memory]] database capabilities of duckdb.
+
+  Then we created a new table =montly_ridership= by running a subquery (another valid expression surrounded curly brackets). This will download and save the CSV table into a table in the database (in-memory or into a file that works as a database).
+
+  Lastly, we describe the table and I like to filter out other columns that are not informative. I predominantly care about the column names and data types. Here the ones we care about are either =total_monthly_weekday_ridership= or =average_monthly_weekday_ridership= alongside =route_or_line=.
+
+We will thus group by route or line to see which routes move around the 
+#+BEGIN_SRC duckdb :session test_session :db test.duckdb :exports both
+  SELECT route_or_line, CAST(MEAN(total_monthly_weekday_ridership) AS INTEGER) AS mean_weekly_ridership FROM monthly_ridership GROUP BY route_or_line ORDER BY mean_weekly_ridership DESC;
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+┌───────────────┬───────────────────────┐
+│ route_or_line │ mean_weekly_ridership │
+│    varchar    │         int32         │
+├───────────────┼───────────────────────┤
+│ Bus           │               7395469 │
+│ Red Line      │               5326706 │
+│ Orange Line   │               4410355 │
+│ Green Line    │               3893135 │
+│ Commuter Rail │               2684943 │
+│ Blue Line     │               1392658 │
+│ Silver Line   │                724622 │
+│ The RIDE      │                138221 │
+│ Boat-F1       │                 66248 │
+│ Boat-F3       │                 23922 │
+│ Boat-F4       │                 19975 │
+├───────────────┴───────────────────────┤
+│ 11 rows                     2 columns │
+└───────────────────────────────────────┘
+#+end_example
+
+We can see here all 5 lines of the metro system, in addition to commuter rail, buses, The RIDE (a door-to-door service for folks unable to ride the fixed routes) and a bunch of boat routes that cross the Boston Harbour.
+
+Gated entries give info on specific entrances
+
+#+BEGIN_SRC duckdb :session test_session :db test.duckdb :exports both
+  CREATE OR REPLACE TABLE gated_entries AS (SELECT * FROM read_csv('https://hub.arcgis.com/api/v3/datasets/001c177f07594e7c99f193dde32284c9_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1'));
+  SELECT column_name, column_type FROM (DESCRIBE gated_entries);
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+┌───────────────┬──────────────────────────┐
+│  column_name  │       column_type        │
+│    varchar    │         varchar          │
+├───────────────┼──────────────────────────┤
+│ service_date  │ TIMESTAMP WITH TIME ZONE │
+│ time_period   │ VARCHAR                  │
+│ stop_id       │ VARCHAR                  │
+│ station_name  │ VARCHAR                  │
+│ route_or_line │ VARCHAR                  │
+│ gated_entries │ DOUBLE                   │
+│ ObjectId      │ BIGINT                   │
+└───────────────┴──────────────────────────┘
+#+end_example
+
+#+BEGIN_SRC duckdb :session test_session :db test.duckdb :exports both
+  SELECT station_name,route_or_line,CAST(SUM(gated_entries) AS INT) AS gated_entries FROM gated_entries GROUP BY station_name, route_or_line ORDER BY gated_entries DESC
+#+END_SRC
+* DONE Set up email hosting and a personal website on personal domain
+CLOSED: [2025-11-24 Mon 19:38]
+:PROPERTIES:
+:EXPORT_FILE_NAME: setup_email_website_personal_domain
+:END:
+At some point I was struggling to get access to my Gmail account. Since I usually block unwanted scripts from running on my computer, Google likes to flag my Gmail login attempts as suspicious activity. This would be fine if it didn't also make one of my only alternative identification methods an SMS. If I were to lose my phone or number I could be locked out of my account. Most accounts I have assume I have access to this email, thus a good chunk of modern life requires me accessing it, the prospect of becoming unable to log in seems quite realistic.. [[https://www.migadu.com/blog/gmail/][This]] post (by an email-hosting company) builds a case against Gmail ground of privacy. It was at last time to get my own domain and control over my email. I also started this blog this year and it is pleasing to give it a nice =.com= home.
+
+*** 'Yer a domain, Harry
+Buy a domain from a domain provider. Common options are CloudFare, GoDaddy and NameCheap. I used CloudFare due to mixed comments online about customer service on the others. Also, NameCheap [[https://news.ycombinator.com/item?id=44134152][may]] pre-purchase domains that were looked up on domain search engines. If you are paranoid like me you can use [[https://tracker.debian.org/pkg/whois][whois]] (though it is being [[https://www.icann.org/en/announcements/details/icann-update-launching-rdap-sunsetting-whois-27-01-2025-en][sunset]], I'd suggest looking for an alternative). Once you find a domain name you like and is available just pay for it, you can get it for up to 10-years at a time.
+    
+*** Buy email hosting services and link them to the domain
+Doing some research (mostly HackerNews and Reddit comments) I narrowed down options to either [[https://migadu.com/][Migadu]] and [[https://mxroute.com/][MXroute]]. =Migadu= had a free trial, so  I gave it a shot, but in the end I went for =MXroute= due to a promo they had at the time.
+
+Make an account account. In the case of =mxroute=, you have to pay at this point.
+  Once you have access to your email account you have to link it to your domain.
+**** Link email service to domain
+  The first step once you have an account is to add DNS (Domain Name Service) records to the website. They are instructions stored in servers that provide information about how to handle requests, mostly linking names to IPs.
+***** Migadu
+- Export the BIND records into a file and download it.
+- Load this file, add them CloudFare DNS records
+- If the =DKMS= and =ARC= keys fail, make sure to untoggle the =proxy= switch on their records.
+***** MXroute
+    Mostly follow the [[https://gist.github.com/afermg/69df5d99ddc7e1201b471aa6eb564e51][instructions]] sent upon registration, but it is basically the same as Migadu but without the import/export convenience.
+**** Test that it worked
+- Log-in to webmail.migadu.com/mxroute's email
+- Create an account for your first user
+- Send an mail to yourself to validate that it works.
+**** Optional: Set subdomain for server access
+To access my email from my phone's Thunderbird App I had to set a subdomain. Only =MXroute= required this.
+- Add =mail.<domain.com>= subdomain on CloudFare
+- Point to this website on mxroute's mail admin site
+  
+*** Link Github Pages website to domain
+If we have one, we can also link our website to the domain. Some companies like to use =blog.<domain.com>= for blogs and keep =<domain.com>= for their landing page, but since I am almost certainly a person I skipped the subdomain approach. In my case I am using Github to host my website:
+
+1. Go to DNS records
+    #+begin_example
+   Cloudfare's domain home -> DNS Records -> Add record
+    #+end_example
+2. Add =A= records to CloudFare
+3. Add =CNAME, www, <user>.github.io= record. This step wasn't specified on the Github docs but I found it to be necessary for some reason. More power to you if you don't need it
+4. Add cloudfare rules to redirect https.
+    #+begin_example
+   Cloudfare's domain home -> Cloudfare rules -> Templates -> Redirect http to HTTPS -> Deploy
+    #+end_example
+5. Add custom domain to github pages:
+   #+begin_example
+   Github repo -> settings -> pages on side panel -> Custom domain
+   #+end_example
+6. Also on Github, the =Enforce HTTPS= checkbox, if the rest was properly configured it should work without a hitch
+
+*** Conclusions
+I like that I have control over my email, and I could even give my family and friends their personal emails (if I had any who actually wanted that). The first time I did all this it took me around three hours, mostly because Github could not find my DNS records. Since I have my domain now I can probably do more fun stuff, such as self-hosting tools to share with friends and family.
 
 * DONE Use dired-do-shell to explore the parquet schema from Emacs :@til:emacs:dired:duckdb:
 CLOSED: [2025-10-23 Thu 15:21]
@@ -341,5 +588,4 @@ CLOSED: [2025-07-30 Wed 13:05]
 :END:
 One of the common challenges when analysing large bioimaging datasets is to bring it all together in one place. I usually use tools like [[https://duckdb.org/][DuckDB]] for database querying and [[https://github.com/cytomining/copairs][copairs]] for selecting statistically significant subsets of the data. For one of my recent projects I built a [[https://github.com/marimo-team/marimo][marimo]] interface to explore the result of large-scale (~2TB images, ~2GB feature profiles) image-based profiles, then performs dimensionality reduction of the data, and finally retrieves back the images. This I think is the ideal workflow, one where you can be nimble and pull up the images alongside statistical analyses to be able to interpret the data structure in the biological context. The code is not yet available to the public, but you can find the demo [[https://drive.google.com/file/d/1t2ygATiJ2r0GPkeEwdw6FqHZxoOwQmzW/view][here]]. 
 
-* Not exported                                                     :noexport:
-
+* My ox-hugo setup                                                 :noexport:
