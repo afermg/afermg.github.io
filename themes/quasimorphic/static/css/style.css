@@ -1,59 +1,119 @@
 /* LAYOUT */
-
-body {
-  color: #333;
-  font-size: 125%;
-  line-height: 1.5;
-  max-width: 45rem;
-  padding: 1rem;
-  margin: 0 auto;
+:root {
+    --modus-themes-color-black:       #000000;
+    --modus-themes-color-black-alt:   #1e1e1e;
+    --modus-themes-color-red:         #ff5f59;
+    --modus-themes-color-red-alt:     #ff6b55;
+    --modus-themes-color-green:       #44bc44;
+    --modus-themes-color-green-alt:   #70b900;
+    --modus-themes-color-yellow:      #d0bc00;
+    --modus-themes-color-yellow-alt:  #fec43f;
+    --modus-themes-color-blue:        #2fafff;
+    --modus-themes-color-blue-alt:    #79a8ff;
+    --modus-themes-color-magenta:     #f78fe7;
+    --modus-themes-color-magenta-alt: #b6a0ff;
+    --modus-themes-color-cyan:        #00d3d0;
+    --modus-themes-color-cyan-alt:    #6ae4b9;
+    --modus-themes-color-white-alt:   #989898;
+    --modus-themes-color-white:       #ffffff;
+    --modus-themes-color-red-bg:      #35070f;
+    --modus-themes-color-green-bg:    #172a12;
+    --modus-themes-color-yellow-bg:   #2f270f;
+    --modus-themes-color-blue-bg:     #1f2a43;
+    --modus-themes-color-magenta-bg:  #291230;
+    --modus-themes-color-cyan-bg:     #19323f;
+    --modus-themes-color-calm:        #fbd6f4;
+    --modus-themes-color-cold:        #c6eaff;
+    --modus-themes-color-mild:        #bfebe0;
+    --modus-themes-color-warm:        #f8dec0;
+    --modus-themes-color-bgdim:       #110b11;
+    --modus-themes-color-brandbg:     #121212;
+    --modus-themes-color-brandfg:     #b2a2a2;
+    --modus-themes-color-brandlink:   #c8d4df;
+    --modus-themes-color-basebg:      var(--modus-themes-color-black);
+    --modus-themes-color-basebgalt:   var(--modus-themes-color-black-alt);
+    --modus-themes-color-basefg:      var(--modus-themes-color-white);
+    --modus-themes-color-basefgalt:   var(--modus-themes-color-white-alt);
+    --modus-themes-color-baselinkfg:         var(--modus-themes-color-blue);
+    --modus-themes-color-baselinkfgalt:      var(--modus-themes-color-cyan);
+    --modus-themes-color-baselinkfghover:    var(--modus-themes-color-blue-alt);
+    --modus-themes-color-baselinkfgalthover: var(--modus-themes-color-cyan-alt);
+    --modus-themes-color-inlinecodefg:       var(--modus-themes-color-magenta);
+    --modus-themes-color-inlinecodefgalt:    var(--modus-themes-color-cyan);
+    --modus-themes-color-codeblockbg:        var(--modus-themes-color-bgdim);
+    --modus-themes-color-codeblockfg:        var(--modus-themes-color-basefg)
 }
 
+    body {
+	background-color: var(--modus-themes-color-bgdim);
+	color: var(--modus-themes-color-basefg);
+	font-size: 125%;
+	line-height: 1.5;
+	max-width: 45rem;
+	padding: 1rem;
+	margin: 0 auto;
+    }
+
+a {
+    color: var(--modus-themes-color-baselinkfg);
+    text-decoration: underline; }
+  a:hover, a:focus {
+      background: var(--modus-themes-color-baselinkfghover);
+      color: var(--modus-themes-color-basebg);
+      outline: none;
+      text-decoration: none; }
+  a:visited {
+      color: var(--modus-themes-color-baselinkfgalt); }
+    a:visited:hover, a:visited:focus {
+	background: var(--modus-themes-color-baselinkfgalthover);
+	color: var(--modus-themes-color-baselinkfgalt);
+    }
+
 .content {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 /* NAVIGATION */
 
 .site-nav {
-  display: flex;
+    display: flex;
 }
 
 .site-nav a {
-  display: block;
-  padding: 1rem;
+    display: block;
+    padding: 1rem;
 }
 
 .site-nav .logo {
-  font-weight: bold;
-  padding-left: 0;
+    font-weight: bold;
+    padding-left: 0;
 }
 
 .main-menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 @media screen and (max-width: 48rem) {
-  .site-nav,
+    .site-nav,
   .main-menu {
-    flex-direction: column;
+      flex-direction: column;
   }
 
-  .site-nav a {
-    padding: 0.5rem;
-    padding-left: 0;
-  }
+    .site-nav a {
+	padding: 0.5rem;
+	padding-left: 0;
+    }
 }
 
 /* LISTS */
 
 .post-snippet {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .post-snippet h3 {
-  margin-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
 }
