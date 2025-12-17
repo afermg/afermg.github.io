@@ -63,10 +63,11 @@ a {
       outline: none;
       text-decoration: none; }
   a:visited {
+      background: var(--modus-themes-color-baselinkfgalthover);
       color: var(--modus-themes-color-baselinkfgalt); }
     a:visited:hover, a:visited:focus {
 	background: var(--modus-themes-color-baselinkfgalthover);
-	color: var(--modus-themes-color-baselinkfgalt);
+	color: var(--modus-themes-color-basebg);
     }
 
 .content {
