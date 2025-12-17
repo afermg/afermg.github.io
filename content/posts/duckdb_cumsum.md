@@ -11,8 +11,9 @@ Duckdb, the (tabular) data exploration tool I use supports window operations. I 
 
 Let us generate a toy dataset where we want to calculate the sum of one column relative to the order of another one.
 
-```duckdb
-CREATE OR REPLACE TABLE seed AS SELECT SETSEED(0.1); -- seeding for reproducibility,  creating a table to hide output
+```sql
+ -- seeding for reproducibility,  creating a table to hide output
+CREATE OR REPLACE TABLE seed AS SELECT SETSEED(0.1);
 
 -- Create a mock dataset with two integer columns
 CREATE OR REPLACE TABLE my_table AS
@@ -48,7 +49,7 @@ COPY my_table TO my_table.csv;
 
 If we wanted to calculate the distribution of the cumulative sum of the table we could use the `OVER` clause to perform the sum of `column_2` in the order defined by `column_1`.
 
-```duckdb
+```sql
 SELECT *, sum(column_2) OVER (ORDER by column_1) AS cumulative_sum FROM my_table
 ```
 

@@ -104,7 +104,7 @@ There are multiple available (tabular) datasets:
 - Gated station entries
 - Passenger surveys
 
-#+BEGIN_SRC duckdb :session test_session :db test.duckdb :exports both
+#+begin_src sql :session test_session :db test.duckdb :exports both
   INSTALL httpfs;
   LOAD httpfs;
 
@@ -141,7 +141,7 @@ There are multiple available (tabular) datasets:
   Lastly, we describe the table and I like to filter out other columns that are not informative. I predominantly care about the column names and data types. Here the ones we care about are either =total_monthly_weekday_ridership= or =average_monthly_weekday_ridership= alongside =route_or_line=.
 
 We will thus group by route or line to see which routes move around the 
-#+BEGIN_SRC duckdb :session test_session :db test.duckdb :exports both
+#+begin_src sql :session test_session :db test.duckdb :exports both
   SELECT route_or_line, CAST(MEAN(total_monthly_weekday_ridership) AS INTEGER) AS mean_weekly_ridership FROM monthly_ridership GROUP BY route_or_line ORDER BY mean_weekly_ridership DESC;
 #+END_SRC
 
@@ -171,30 +171,16 @@ We can see here all 5 lines of the metro system, in addition to commuter rail, b
 
 Gated entries give info on specific entrances
 
-#+BEGIN_SRC duckdb :session test_session :db test.duckdb :exports both
+#+begin_src sql :session test_session :db test.duckdb :exports both
   CREATE OR REPLACE TABLE gated_entries AS (SELECT * FROM read_csv('https://hub.arcgis.com/api/v3/datasets/001c177f07594e7c99f193dde32284c9_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1'));
   SELECT column_name, column_type FROM (DESCRIBE gated_entries);
 #+END_SRC
 
-#+RESULTS:
-#+begin_example
-┌───────────────┬──────────────────────────┐
-│  column_name  │       column_type        │
-│    varchar    │         varchar          │
-├───────────────┼──────────────────────────┤
-│ service_date  │ TIMESTAMP WITH TIME ZONE │
-│ time_period   │ VARCHAR                  │
-│ stop_id       │ VARCHAR                  │
-│ station_name  │ VARCHAR                  │
-│ route_or_line │ VARCHAR                  │
-│ gated_entries │ DOUBLE                   │
-│ ObjectId      │ BIGINT                   │
-└───────────────┴──────────────────────────┘
-#+end_example
 
-#+BEGIN_SRC duckdb :session test_session :db test.duckdb :exports both
+#+begin_src sql :session test_session :db test.duckdb :exports both
   SELECT station_name,route_or_line,CAST(SUM(gated_entries) AS INT) AS gated_entries FROM gated_entries GROUP BY station_name, route_or_line ORDER BY gated_entries DESC
 #+END_SRC
+  
 * DONE Set up email hosting and a personal website on personal domain :@howto:email:dns:hosting:smallweb:github:pages:
 CLOSED: [2025-11-24 Mon 19:38]
 :PROPERTIES:
@@ -300,8 +286,9 @@ Duckdb, the (tabular) data exploration tool I use supports window operations. I 
 
 Let us generate a toy dataset where we want to calculate the sum of one column relative to the order of another one.
 
-#+BEGIN_SRC duckdb :session duckdb_cumsum :exports both :results verbatim :wrap example
-  CREATE OR REPLACE TABLE seed AS SELECT SETSEED(0.1); -- seeding for reproducibility,  creating a table to hide output
+#+begin_src sql :session duckdb_cumsum :exports both :results verbatim :wrap example
+   -- seeding for reproducibility,  creating a table to hide output
+  CREATE OR REPLACE TABLE seed AS SELECT SETSEED(0.1);
 
   -- Create a mock dataset with two integer columns
   CREATE OR REPLACE TABLE my_table AS
@@ -338,7 +325,7 @@ Let us generate a toy dataset where we want to calculate the sum of one column r
 
 If we wanted to calculate the distribution of the cumulative sum of the table we could use the =OVER= clause to perform the sum of =column_2= in the order defined by =column_1=.
 
-#+begin_src duckdb :session duckdb_cumsum :exports both :results verbatim :wrap example
+#+begin_src sql :session duckdb_cumsum :exports both :results verbatim :wrap example
 SELECT *, sum(column_2) OVER (ORDER by column_1) AS cumulative_sum FROM my_table
 #+end_src
 
