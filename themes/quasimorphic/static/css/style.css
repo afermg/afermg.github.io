@@ -43,10 +43,25 @@
     --modus-themes-color-codeblockbg:        var(--modus-themes-color-bgdim);
     --modus-themes-color-codeblockfg:        var(--modus-themes-color-basefg)
 }
+@font-face {
+    font-family: "Aporetic Serif";
+    font-style: normal;
+    font-weight: 100 900; /* variable range */
+    font-display: swap;
+    src: local('Aporetic Serif'), url('/fonts/aporetic-serif-normalregularupright.woff2') format('woff2');
+}
+@font-face {
+    font-family: "Aporetic Sans Mono";
+    font-style: normal;
+    font-weight: 100 900; /* variable range */
+    font-display: swap;
+    src: local('Aporetic Sans Mono'), url('/fonts/aporetic-sans-mono-normalregularupright.woff2') format('woff2');
+}
 
     body {
 	background-color: var(--modus-themes-color-bgdim);
 	color: var(--modus-themes-color-basefg);
+	font-family: "Aporetic Serif", Fallback, sans-serif;
 	font-size: 125%;
 	line-height: 1.5;
 	max-width: 45rem;
@@ -72,6 +87,11 @@ a {
 
 .content {
     margin-bottom: 2rem;
+}
+
+.highlight code {
+    font-family: 'Aporetic Sans Mono', 'Fira Code', monospace;
+    font-size: 0.9rem;
 }
 
 /* NAVIGATION */
