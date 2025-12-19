@@ -15,7 +15,7 @@
     --modus-themes-color-cyan:        #00d3d0;
     --modus-themes-color-cyan-alt:    #6ae4b9;
     --modus-themes-color-white-alt:   #989898;
-    --modus-themes-color-white:       #ffffff;
+    --modus-themes-color-white:       #d0d0d0;
     --modus-themes-color-red-bg:      #35070f;
     --modus-themes-color-green-bg:    #172a12;
     --modus-themes-color-yellow-bg:   #2f270f;
@@ -26,7 +26,7 @@
     --modus-themes-color-cold:        #c6eaff;
     --modus-themes-color-mild:        #bfebe0;
     --modus-themes-color-warm:        #f8dec0;
-    --modus-themes-color-bgdim:       #110b11;
+    --modus-themes-color-bgdim:       #181A1B;
     --modus-themes-color-brandbg:     #121212;
     --modus-themes-color-brandfg:     #b2a2a2;
     --modus-themes-color-brandlink:   #c8d4df;
@@ -49,7 +49,7 @@ body {
     color: var(--modus-themes-color-basefg);
     font-family: "Libre Baskerville", serif;
     font-size: 125%;
-    line-height: 1.4;
+    line-height: 1.5;
     max-width: 45rem;
     /* padding: 1rem; */
     margin: 0 auto;
