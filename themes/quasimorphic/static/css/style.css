@@ -145,6 +145,18 @@ dt code {
     src: local('Aporetic Sans Mono'), url('/fonts/aporetic-sans-mono-normalregularupright.woff2') format('woff2');
 }
 
+.post-row {
+    display: grid;
+    grid-template-columns: 7ch 1fr;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.date {
+    font-family: monospace;
+    color: #666;
+}
+
 /* NAVIGATION */
 
 .site-nav {

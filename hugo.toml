@@ -4,8 +4,8 @@ languageCode = "en-uk"
 title = "Alán's blog"
 theme = "quasimorphic"
 
-[outputs]
-home = ["HTML", "JSON", "RSS"]
+# [outputs]
+# home = ["HTML", "JSON", "RSS"]
 
 [markup.goldmark.renderer]
   unsafe = true
