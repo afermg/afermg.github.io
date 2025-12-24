@@ -41,7 +41,7 @@
     --modus-themes-color-inlinecodefg:       var(--modus-themes-color-magenta);
     --modus-themes-color-inlinecodefgalt:    var(--modus-themes-color-cyan);
     --modus-themes-color-codeblockbg:        var(--modus-themes-color-bgdim);
-    --modus-themes-color-codeblockfg:        var(--modus-themes-color-basefg)
+    --modus-themes-color-codeblockfg:        var(--modus-themes-color-basefg);
 }
 
 body {
@@ -182,6 +182,25 @@ dt code {
     }
 }
 
+/* Pagefind */
+.pagefind-ui {
+    /* Change the main text color */
+    --pagefind-ui-text: var(--modus-themes-color-basefg);
+    
+    /* Change the title/link color */
+    --pagefind-ui-primary: var(--modus-themes-color-basefg);
+    
+    /* Change the background of the search results */
+    --pagefind-ui-background: var(--modus-themes-color-basebg);
+    
+    /* Change the color of the "search" text and border */
+    --pagefind-ui-border: var(modus-themes-color-basefgalt);
+    
+}
+/* Remove the thumbnail container entirely */
+.pagefind-ui__result-thumb {
+    display: none !important;
+}
 
 /* NAVIGATION */
 
@@ -194,7 +213,7 @@ dt code {
     padding: 0.7rem;
     background-color: var(--modus-themes-color-black-alt);
     color: var(--modus-themes-color-baselinkfg);
-    text-decoration: underline; }
+}
   a:hover, a:focus {
       background: var(--modus-themes-color-baselinkfghover);
       color: var(--modus-themes-color-basebg);
