@@ -4,8 +4,11 @@ languageCode = "en-uk"
 title = "Alán's blog"
 theme = "quasimorphic"
 
-# [outputs]
-# home = ["HTML", "JSON", "RSS"]
+[outputs]
+home = ['html', 'rss']
+section = ['html', 'rss']
+taxonomy = ['html']
+
 
 [markup.goldmark.renderer]
   unsafe = true
@@ -16,7 +19,7 @@ main = [
   {identifier = "CV", name = "CV", url = "https://raw.githubusercontent.com/afermg/afermg.github.io/refs/heads/gh-pages/static/cv/cv.pdf"},
   {identifier = "Categories", name = "Categories", url = "/categories/"},
   {identifier = "Archive", name = "Archive", url = "/archive/"},
-  # {identifier = "RSS", name = "RSS", url = "index.xml"},
+  {identifier = "RSS", name = "RSS", url = "index.xml"},
   {identifier = "Search", name = "Search", url = "/search/"},
   {identifier = "Source", name = "Source", url = "https://github.com/afermg/afermg.github.io"},
   {identifier = "Tabs", name = "Tags", url = "/tags/"},
@@ -31,22 +34,14 @@ DateFormat = "2006-01-02"
 ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
 env = "production"
-social = true
 socialIcons = [
-  {name = "github", url = "https://github.com/crunchbang"},
+  {name = "github", url = "https://github.com/afermg"},
   {name = "rss", url = "index.xml"},
 ]
-
-# [fuseOpts]
-# distance = 0
-# igNoreLocation = true
-# isCaseSensitive = true
-# keys = ["title", "permalink", "summary", "content"]
-# limit = 10
-# minMatchCharLength = 0
-# shouldSort = true
-# threshold = 0.0
 
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[services.rss]
+  limit = 20  # Limits the feed to the 20 most recent posts

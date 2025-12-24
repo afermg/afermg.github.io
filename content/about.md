@@ -1,3 +1,8 @@
+---
+title: "About"
+sitemap:
+  disable: true
+---
 # About me
 
 I am a computational biologist with software engineering chops working at the interface of ML/DL and biology. I develop computational tools for high throughput biological data and then use them to further my understanding of cell behaviour. I am particularly interested in interpretable AI for mechanistic understanding of biology and its applications on drug discovery, though I also enjoy learning about a wide array of topics in math and the computational/natural sciences.
