@@ -50,9 +50,10 @@ body {
     font-family: "Libre Baskerville", serif;
     font-size: 125%;
     line-height: 1.5;
-    max-width: 45rem;
-    /* padding: 1rem; */
+    /* max-width: 45rem; */
+    max-width: 750px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 a {
@@ -164,8 +165,8 @@ dt code {
 }
 
 .site-nav a {
-    display: flex;
-    padding: 0.5rem;
+    display: block;
+    padding: 0.7rem;
     background-color: var(--modus-themes-color-black-alt);
     
     color: var(--modus-themes-color-baselinkfg);
