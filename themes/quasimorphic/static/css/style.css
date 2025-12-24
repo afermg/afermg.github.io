@@ -193,7 +193,6 @@ dt code {
     display: block;
     padding: 0.7rem;
     background-color: var(--modus-themes-color-black-alt);
-    
     color: var(--modus-themes-color-baselinkfg);
     text-decoration: underline; }
   a:hover, a:focus {
@@ -201,11 +200,11 @@ dt code {
       color: var(--modus-themes-color-basebg);
   }
   a:visited {
-      background: var(--modus-themes-color-baselinkfgalthover);
+      background: var(--modus-themes-color-basebgalt);
       color: var(--modus-themes-color-baselinkfgalt); }
   a:visited:hover, a:visited:focus {
       background: var(--modus-themes-color-baselinkfgalthover);
-      color: var(--modus-themes-color-basebg);
+      color: var(--modus-themes-color-basebgalt);
   }
 
 .site-nav .logo {
