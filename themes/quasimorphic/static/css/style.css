@@ -1,7 +1,7 @@
 /* LAYOUT */
 :root {
     --modus-themes-color-black:       #000000;
-    --modus-themes-color-black-alt:   #1e1e1e;
+    --modus-themes-color-black-alt:   #333333;
     --modus-themes-color-red:         #ff5f59;
     --modus-themes-color-red-alt:     #ff6b55;
     --modus-themes-color-green:       #44bc44;
@@ -154,7 +154,7 @@ dt code {
 
 .date {
     font-family: monospace;
-    color: #666;
+    color: var(--modus-themes-color-white);
 }
 
 /* NAVIGATION */
@@ -164,9 +164,23 @@ dt code {
 }
 
 .site-nav a {
-    display: block;
-    padding: 1rem;
-}
+    display: flex;
+    padding: 0.5rem;
+    background-color: var(--modus-themes-color-black-alt);
+    
+    color: var(--modus-themes-color-baselinkfg);
+    text-decoration: underline; }
+  a:hover, a:focus {
+      background: var(--modus-themes-color-baselinkfghover);
+      color: var(--modus-themes-color-basebg);
+  }
+  a:visited {
+      background: var(--modus-themes-color-baselinkfgalthover);
+      color: var(--modus-themes-color-baselinkfgalt); }
+  a:visited:hover, a:visited:focus {
+      background: var(--modus-themes-color-baselinkfgalthover);
+      color: var(--modus-themes-color-basebg);
+  }
 
 .site-nav .logo {
     font-weight: bold;
