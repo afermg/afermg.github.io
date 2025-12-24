@@ -157,6 +157,31 @@ dt code {
     font-family: monospace;
     color: var(--modus-themes-color-white);
 }
+.post-entry {
+    margin-bottom: 1.5rem; /* Space between different posts */
+}
+
+.post-row {
+    display: grid;
+    grid-template-columns: 7ch 1fr;
+    gap: 1.5rem;
+    align-items: baseline;
+}
+
+.post-summary {
+    margin: 0.2rem 0 0 8rem; /* Aligns summary under the title, skipping the date */
+    font-size: 0.9rem;
+    color: #888; /* Dimmer color for the "first line" */
+    line-height: 1.4;
+}
+
+/* On mobile, stack them instead of trying to maintain the big margin */
+@media (max-width: 600px) {
+    .post-summary {
+	margin-left: 0;
+    }
+}
+
 
 /* NAVIGATION */
 
