@@ -38,6 +38,7 @@ socialIcons = [
   {name = "github", url = "https://github.com/afermg"},
   {name = "rss", url = "index.xml"},
 ]
+author = "Alán F. Muñoz"
 
 [caches]
   [caches.images]
