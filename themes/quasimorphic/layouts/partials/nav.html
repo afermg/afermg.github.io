@@ -1,13 +1,21 @@
 <header class="site-header">
   <nav class="site-nav">
+    <!-- 1. Hamburger Button (Left) -->
+    <button class="menu-toggle" aria-label="Open Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <a class="logo" href="{{ .Site.BaseURL }}">
       {{ .Site.Title }}
     </a>
+
+
+    <!-- Navigation Menu -->
     <ul class="main-menu">
-      {{ range.Site.Menus.main }}
-      <li>
-        <a href="{{ .URL }}">{{ .Name }}</a>
-      </li>
+    <!-- Logo -->
+      {{ range .Site.Menus.main }}
+      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
       {{ end }}
     </ul>
   </nav>
