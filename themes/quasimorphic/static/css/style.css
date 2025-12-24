@@ -216,7 +216,8 @@ dt code {
 
 .site-nav a {
     display: block;
-    padding: 0.4rem;
+    font-family: 'Aporetic Sans Mono', monospace;
+    padding: 10px;
     color: var(--modus-themes-color-basefg);
     text-decoration: none;
 }
