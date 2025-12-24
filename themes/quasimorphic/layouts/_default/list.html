@@ -2,17 +2,32 @@
 
 <h1>{{ .Title }}</h1>
 
-{{ .Content }}
+  {{ if eq .Kind "taxonomy" }}
+    <!-- 1. THE LIST OF TAGS/CATEGORIES (e.g., /tags/) -->
+    <!-- Sorted by most popular first, no dates -->
+    {{ range .Data.Terms.ByCount }}
+        <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+        <span class="date">({{ .Count }})</span> <!-- Using .date class for alignment -->
+    {{ end }}
 
-{{ range.Data.Pages }}
-<article class="post-snippet">
-  <h3>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-  </h3>
-	<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-		{{ .Date.Format "January 2, 2006" }}
-	</time>
-</article>
-{{ end }}
-
+  {{ else }}
+    <!-- 2. THE LIST OF ARTICLES (e.g., /posts/ OR /tags/hugo/) -->
+    {{ range .Pages }}
+      <div class="post-entry">
+        <div class="post-row">
+          <!-- Only show date if we are NOT viewing a tag/category collection -->
+          {{ if not (eq $.Kind "term") }}
+            <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+          {{ end }}
+          
+          <a href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong></a>
+        </div>
+        
+        <!-- The "first line" summary -->
+        <p class="post-summary">
+          {{ .Plain | truncate 150 }}
+        </p>
+      </div>
+    {{ end }}
+  {{ end }}
 {{ partial "footer.html" . }}
