@@ -1,7 +1,27 @@
 {{ partial "header.html" . }}
 
 <h1>{{ .Title }}</h1>
-
 {{ .Content }}
+
+  <!-- Tags -->
+  {{ with .Params.tags }}
+    <div class="tags">
+      Tags:
+      {{ range . }}
+        <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+      {{ end }}
+    </div>
+  {{ end }}
+
+
+  <!-- Categories -->
+  {{ with .Params.categories }}
+    <div class="categories">
+      Categories: 
+      {{ range . }}
+        <a href="{{ "categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+      {{ end }}
+    </div>
+  {{ end }}
 
 {{ partial "footer.html" . }}
