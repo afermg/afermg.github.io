@@ -6,3 +6,23 @@
 
 </body>
 </html>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mainMenu = document.querySelector('.main-menu');
+
+  menuToggle.addEventListener('click', () => {
+    // Toggle the 'active' class to slide the menu
+    mainMenu.classList.toggle('active');
+    
+    // Optional: Transform hamburger into an 'X'
+    menuToggle.classList.toggle('open');
+  });
+
+  // Close menu when clicking a link or outside
+  document.addEventListener('click', (e) => {
+    if (!mainMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+      mainMenu.classList.remove('active');
+    }
+  });
+</script>

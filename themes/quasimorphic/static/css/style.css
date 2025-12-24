@@ -53,17 +53,19 @@ body {
     /* max-width: 45rem; */
     max-width: 750px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 auto;
 }
 
 a {
     color: var(--modus-themes-color-baselinkfg);
-    text-decoration: underline; }
+    text-decoration: underline;
+}
   a:hover, a:focus {
       background: var(--modus-themes-color-baselinkfghover);
       color: var(--modus-themes-color-basebg);
-      outline: none;
-      text-decoration: none; }
+      /* outline: none; */
+      /* text-decoration: none; */
+  }
   a:visited {
       background: var(--modus-themes-color-baselinkfgalthover);
       color: var(--modus-themes-color-baselinkfgalt); }
@@ -206,48 +208,78 @@ dt code {
 
 .site-nav {
     display: flex;
+    flex-direction: row; /* Keeps items in a line */
+    align-items: center;
+    gap: 0px;
+    padding: 0px;
 }
 
 .site-nav a {
     display: block;
-    padding: 0.7rem;
-    background-color: var(--modus-themes-color-black-alt);
-    color: var(--modus-themes-color-baselinkfg);
+    padding: 0.4rem;
+    color: var(--modus-themes-color-basefg);
+    text-decoration: none;
 }
-  a:hover, a:focus {
-      background: var(--modus-themes-color-baselinkfghover);
-      color: var(--modus-themes-color-basebg);
-  }
-  a:visited {
-      background: var(--modus-themes-color-basebgalt);
-      color: var(--modus-themes-color-baselinkfgalt); }
-  a:visited:hover, a:visited:focus {
-      background: var(--modus-themes-color-baselinkfgalthover);
-      color: var(--modus-themes-color-basebgalt);
+
+.site-nav a:hover, a:focus {
+    color: var(--modus-themes-color-basebg);
+      background: var(--modus-themes-color-basefg);
   }
 
-.site-nav .logo {
-    font-weight: bold;
-    padding-left: 0;
+/* .site-nav .logo { */
+/*     font-weight: bold; */
+/*     padding-left: 0; */
+/* } */
+
+
+/* Layout */
+
+/* Hide Hamburger on Desktop */
+.menu-toggle {
+    /* display: flex; */
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    /* cursor: pointer; */
+    padding: 0px;
+    /* z-index: 1001; /\* Keep above sidebar *\/ */
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--modus-themes-color-basefg);
+    transition: 0.3s;
+}
+
+/* Mobile Sidebar */
+@media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+
+    .main-menu {
+	position: fixed;
+	top: 0;
+	left: -250px; /* Hidden off-screen to the left */
+	width: 250px;
+	height: 100vh;
+	background: var(--modus-themes-color-basebgalt);
+	flex-direction: column;
+	padding: 80px 20px;
+	transition: 0.3s ease;
+    }
+
+    /* JavaScript will toggle this class */
+    .main-menu.active {
+	left: 0;
+    }
 }
 
 .main-menu {
     display: flex;
     list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-@media screen and (max-width: 48rem) {
-    .site-nav,
-  .main-menu {
-      flex-direction: column;
-  }
-
-    .site-nav a {
-	padding: 0.5rem;
-	padding-left: 0;
-    }
+    margin: 0px;
+    padding: 0px;
 }
 
 /* LISTS */
