@@ -5,11 +5,13 @@ sitemap:
   disable: true
 ---
 
-I am a computational biologist with software engineering chops working at the interface of ML/DL and biology. I develop computational tools for high throughput biological data and then use them to further my understanding of cell behaviour. I am particularly interested in interpretable AI for mechanistic understanding of biology and its applications on drug discovery, though I also enjoy learning about a wide array of topics in math and the computational/natural sciences.
+Links: [Mail](mailto:alan@quasimorphic.com) - [GitHub](https://github.com/afermg) - [Linkedin](https://www.linkedin.com/in/alanfmunoz) - [GitLab](https://gitlab.com/afer)
+
+My name is Alán Muñoz, I am a computational biologist with software engineering chops working at the interface of ML/DL and biology. I develop computational tools for high throughput biological data and then use them to further my understanding of cell behaviour. I am particularly interested in interpretable AI for mechanistic understanding of biology and its applications on drug discovery, though I also enjoy learning about a wide array of topics in math and the computational/natural sciences.
 
 Currently I have a postdoc role at the Carpenter-Singh Lab, in the Broad Institute of MIT and Harvard.
 
-Outside work, I enjoy multi-day hikes, bikepacking trips and, more recently, I got into board games (especially worker placement/engine building ones such as [Yokohama](https://boardgamegeek.com/boardgame/196340/yokohama) or [Wingspan](https://boardgamegeek.com/boardgame/266192/wingspan)).
+Outside work, I enjoy multi-day hikes, bikepacking trips and, more recently, I got into board games (especially worker placement/engine building ones such as [Dune_Imperium](https://boardgamegeek.com/boardgame/316554/dune-imperium) or [Yokohama](https://boardgamegeek.com/boardgame/196340/yokohama)).
 
 
 # Current projects
