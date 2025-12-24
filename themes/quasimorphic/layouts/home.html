@@ -2,10 +2,15 @@
   
   {{ .Content }}
 <h3> Latest posts </h3>
-  {{ range .Site.RegularPages }}
+  {{ range first 7 .Site.RegularPages }}
     <h4 class="post-row">
       <span class="date">{{ .Date.Format "2006-01-02" }}</span>
       <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
     </h4>
+  <!-- plainify removes HTML tags; truncate keeps it to one clean line -->
+  <p class="post-summary">
+    {{ .Plain | truncate 150 }}
+  </p>
+
   {{ end }}
 {{ end }}

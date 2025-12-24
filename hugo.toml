@@ -15,7 +15,7 @@ main = [
   {identifier = "About", name = "About", url = "/about/"},
   {identifier = "CV", name = "CV", url = "https://raw.githubusercontent.com/afermg/afermg.github.io/refs/heads/gh-pages/static/cv/cv.pdf"},
   {identifier = "Categories", name = "Categories", url = "/categories/"},
-  {identifier = "Archive", name = "Archive", url = "/posts/"},
+  {identifier = "Archive", name = "Archive", url = "/archive/"},
   # {identifier = "RSS", name = "RSS", url = "index.xml"},
   {identifier = "Search", name = "Search", url = "/search/"},
   {identifier = "Source", name = "Source", url = "https://github.com/afermg/afermg.github.io"},
