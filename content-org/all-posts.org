@@ -40,12 +40,12 @@ A common challenge when we produce scientific results is making them available t
    
 ** They eat sugar, don't they?
 A post about how drug discovery research overlooks metabolism.
-** Hive parquets on duckdb                      :@script:duckdb:datascience:
+** Hive parquets on duckdb                      :@script:duckdb:data-science:
 - Problem: Tables that match other tables, some nested
 - Solution: Produce parquets in a hive partitions and map them using their key columns/nested directory
 
   This gets us the best of both worlds, the speed and out of memory computation of duckdb without the need of unnecessary row-vs-row comparisons (via JOIN)
-** MAP type in DuckDB                           :@script:duckdb:datascience:
+** MAP type in DuckDB                           :@script:duckdb:data-science:
 - Useful as a faster replacement to expensive JOIN 
 ** DuckDB vs polars
 
@@ -90,7 +90,7 @@ UDF vs lambda in polars.
 *** Getting training working
 - reusing microbiology's fixes
 
-** Duckdb for the MBTA public dataset :duckdb:datascience:@workflow:opendata:
+** Duckdb for the MBTA public dataset :duckdb:data-science:@workflow:opendata:
 :PROPERTIES:
 :header-args:duckdb: :session test_session :db test.duckdb :exports both
 :EXPORT_FILE_NAME: duckdb-exploration-mbta
@@ -181,7 +181,7 @@ Gated entries give info on specific entrances
   SELECT station_name,route_or_line,CAST(SUM(gated_entries) AS INT) AS gated_entries FROM gated_entries GROUP BY station_name, route_or_line ORDER BY gated_entries DESC
 #+END_SRC
   
-* DONE Set up email hosting and a personal website on personal domain :@howto:email:dns:hosting:smallweb:github:pages:
+* DONE Set up email hosting and a personal website on personal domain :@howto:email:dns:hosting:small-web:github:pages:
 CLOSED: [2025-11-24 Mon 19:38]
 :PROPERTIES:
 :EXPORT_FILE_NAME: setup_email_website_personal_domain
@@ -272,7 +272,7 @@ The trick is that we need to surround =?= with backquotes (=`=), otherwise the s
 
 Which is a bit verbose but I can easily reuse from my command history to explore the schemas or parquets without leaving the dired buffer.
 
-* DONE Calculate the cumulative sum of a column using DuckDB :@script:duckdb:datascience:gnuplot:dataviz:terminal_viz:
+* DONE Calculate the cumulative sum of a column using DuckDB :@script:duckdb:data-science:gnuplot:data-viz:terminal_viz:
 CLOSED: [2025-10-22 Wed 20:34]
 :PROPERTIES:
 :header-args:duckdb: :session duckdb_cumsum :exports both
@@ -520,7 +520,7 @@ Thus the last thing to do is to use `watch` to automatically refresh the status:
 
 The =watch=  flag =-d= highlight the changes over time and =-c= enables intrepreting ANSI colours, in my terminal this makes the changes last stay longer, but YMMV. Finally, =tac= makes sure that the last lines are displayed at the top. I like to run this command somewhere in another terminal or in a `screen` terminal multiplexer. When the number of rows becomes too high it may be useful find a heuristic to remove uninformative lines.
 
-* DONE Update figure numbering                      :@script:awk:textediting:
+* DONE Update figure numbering                      :@script:awk:text-editing:
 CLOSED: [2025-08-14 Thu 15:42]
 :PROPERTIES:
 :EXPORT_FILE_NAME: awk-update-figure-numbering
@@ -547,7 +547,7 @@ awk -v after=4 -v increase_by=1 -f update_figures.awk input_file.md
 
 To edit the file in-place add the =-i= flag.
 
-* DONE Recursive search and replace      :@til:ripgrep:oneliner:textediting:
+* DONE Recursive search and replace      :@til:ripgrep:one-liner:text-editing:
 CLOSED: [2025-08-12 Tue 13:07]
 :PROPERTIES:
 :EXPORT_FILE_NAME: recursive-search-replace
@@ -579,7 +579,7 @@ CLOSED: [2024-11-26 Tue 13:06]
 
   That should make a pull request possible, providing the code review tooling.
   [[https://thib.me/recipe-code-reviews-for-existing-code-with-github][source]]
-* DONE A workflow for bioimaging and data exploration :@post:marimo:dataviz:tools:demo:
+* DONE A workflow for bioimaging and data exploration :@post:marimo:data-viz:tools:demo:
 CLOSED: [2025-07-30 Wed 13:05]
 :PROPERTIES:
 :EXPORT_FILE_NAME: marimo-for-bioimage-exploration

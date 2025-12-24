@@ -3,6 +3,7 @@ baseURL = "https://afermg.github.io/"
 languageCode = "en-uk"
 title = "Alán's blog"
 theme = "quasimorphic"
+titleCaseStyle = "none"
 
 [outputs]
 home = ['html', 'rss']
@@ -22,7 +23,7 @@ main = [
   {identifier = "RSS", name = "RSS", url = "index.xml"},
   {identifier = "Search", name = "Search", url = "/search/"},
   {identifier = "Source", name = "Source", url = "https://github.com/afermg/afermg.github.io"},
-  {identifier = "Tabs", name = "Tags", url = "/tags/"},
+  {identifier = "Tags", name = "Tags", url = "/tags/"},
 ]
 
 [taxonomies]
@@ -30,10 +31,6 @@ tag = 'tags'
 categories = 'categories'
 
 [params]
-DateFormat = "2006-01-02"
-ShowBreadCrumbs = true
-ShowCodeCopyButtons = true
-env = "production"
 socialIcons = [
   {name = "github", url = "https://github.com/afermg"},
   {name = "rss", url = "index.xml"},
