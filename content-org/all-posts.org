@@ -181,7 +181,7 @@ Gated entries give info on specific entrances
   SELECT station_name,route_or_line,CAST(SUM(gated_entries) AS INT) AS gated_entries FROM gated_entries GROUP BY station_name, route_or_line ORDER BY gated_entries DESC
 #+END_SRC
   
-* DONE Set up email hosting and a personal website on personal domain :@howto:email:dns:hosting:small-web:github:pages:
+* DONE Set up email hosting and a personal website on personal domain :@how-to:email:dns:hosting:small-web:github:pages:
 CLOSED: [2025-11-24 Mon 19:38]
 :PROPERTIES:
 :EXPORT_FILE_NAME: setup_email_website_personal_domain
