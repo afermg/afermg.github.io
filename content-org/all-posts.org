@@ -2,6 +2,53 @@
 #+toc: headlines 1
 
 * Not exported                                                     :noexport:
+** Things I wish I knew when I started my PhD
+
+A few people around me recently started their PhDs or are about to, and I was asked for tips. I think they just wanted to be polite, but I decided to write about it because I find Boston surprisingly dull in winter. My experience is a drop in the water, but maybe there is value in the things I wish I knew back when I started. The fact that you enrolled in a PhD programme speaks of your determination and trajectory (also a little bit of your internalized masochism).
+  
+*** Long-term planning
+- Over the course of the next 3.5-6 years you will become the world-expert in a very specific niche of science. This is exciting, but also isolating. 
+- Establish frequent meetings with your advisor early on. This will keep you on track in case you diverge from the marked path, if there is one.
+- Establish goals: If you want to stay in academia you probably want to publish "high-impact" papers in "high-impact" journals. That's fine and all, but it requires a multitude of conditions to align. Your advisor should have the experience to gauge the likelihoods and risks. If you want an academic position in a high-profile institution, be wary of the sacrifices that it conveys.
+  
+*** Opportunities
+- Make best use of summer internships (ideally paid ones). They give you work experience and connections in industry, which may prove useful after you graduate. I never considered this during my PhD and by the time I graduated my options were limited regarding opportunities in industry.
+- Try to go to some conferences and talk about your work. Counterintuitively, the most useful part of the conferences happens outside the main talks; only when you get to know the people whose names you know only from articles you realize they may also be interested in your insights. Exchanging ideas is what science is all about, and talks are one-to-many, while chats during coffee break are many-to-many.
+- Remember you are a student: Enjoy discounted tickets to as much as you can. For example, I got four year of a streaming service using my student account.
+  
+*** Skills
+- Develop your technical skills, even if you don't take classes during your PhD. You have the unique opportunity to delve into a topic or method for months on end.
+  - Initiative: Aim to be proactive, choose projects that interest you and that will develop skills that you want to get.
+  - Writing: I highly recommend watching this lecture: [[https://www.youtube.com/watch?v=vtIzMaLkCaM]["UChicago: The Craft of Writing Effectively"]]: "No one cares what you think. They care what they think. Write to change minds.". Practice writing as much as you can. It is a process to order your thoughts in the end (that is why I write these blogposts, even if no one will read them).
+  - Master your tools: Tools improve our lives and make us more productive. If you are computational, learn those CLIs, IDEs, and whatnot. Not because they make you write faster, but because they free your head to focus on the important problems by making all the dull tasks trivial. Be wary of [[https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/][reverse centaurs]], where you are the assistant to the machines. LLMs can be very useful, but use them consciously.
+- At some point during your PhD, you will realize that you know things. It's hard to say when it happens, but suddenly it will hit you: You are not clueless any more, and you will be confident to defend your arguments
+  
+*** Tools
+On a practical note, tools that I found (and still find) useful.
+- Reading PDFs + Bibliography: [[https://www.zotero.org/][Zotero]] + [[https://retorque.re/zotero-better-bibtex/][BetterBibtex]]. This allows you to keep one or multiple .bib files that you will use for references. It also comes with a pdf reader, and there's an IPad version (if that is more your stile).
+- Markdown: Not really a tool, but writing all your notes in a portable format will make it trivial to move them around when you inevitably change computers or need to access them from elsewhere. Something like [[https://obsidian.md/][obsidian]] should do the trick to keep your notes organized (note: I don't use markdown/obsidian, but people I trust swear for it.
+- LLMs: I don't love them, but I can see their value. Use them to learn, summarize and do menial chores _that you can validate_. I won't tell you not to use agents, but I believe it is more important to know what to work on/build than the number of lines of code or text produced.
+- Search engine: [[https://help.kagi.com/kagi/company/][Kagi]]. I find Google to be mostly useless nowadays, if you can get your lab to pay for a subscription, I highly recommend it as a search engine for articles/blogs/documentation.
+    
+*** Academia is weird
+- Be wary of red flags in your advisor. They will probably have a lot of power on your life, despite what the University's HR department may say. I know of cases where the situation got to the point of lawsuits. 
+- Academia is a very hierarchical system, heavily [[https://gh.bmj.com/content/8/12/e013111][biased]] towards the [[https://en.wikipedia.org/wiki/Global_North_and_Global_South][Global North]]. It's not something I expect will change anytime soon, but it's worth keeping that in mind when facing the challenges a PhD throws at us. Often you are not the failure, there are complex systemic issues that impact most people.
+- Personalities abound. Be judicious about how "Big name" scientists and their currents of thought dominate the ideas that are "worth exploring", and thus worth funding. One recent case of this was the [[https://www.science.org/content/blog-post/fraud-so-much-fraud][myeloid hypothesis]], which has shattered the credibility of twenty years of Alzheimer research.
+- Ask for forgiveness, not for permission. My hot take: Academic institutions can be slow bureaucratic beasts stuck in the past with archaic processes whose reason for existence long gone. Despite what strongly-worded rules may say, there is usually some degree of flexibility. Use your judgement as to when you can skip steps and evaluate the risk/reward, sometimes the worst thing that could happen is an angry email from HR and a form to fill. This is not legal advice.
+
+*** Far from home
+- Make sure to do something outside your PhD. 
+- Being an international person doing a PhD carries additional vulnerabilities and sacrifices relative to nationals. Your immigration status depends on your visa, and if you are far enough from home you will be away when some of your loved ones pass away nor see the young ones grow up. That is something that we don't mention enough, but it is part of the deal of getting to live far away from home. You are not alone, there are many people around you that can empathize with your situation. Try to build a community of people that support each other, because being far from home does not mean you have to be alone.
+- There are many people doing PhDs outside your field (or even discipline). It's a good time to get along with people from completely different fields. Otherwise, you will only end up surrounded by the same opinions of scientists in your field. Cross-pollination (especially between natural and social sciences) will make you a more well-rounded person.
+  
+*** Not finishing
+- Learn to pace yourself. An expression I heard more times than I cared to count was: "A PhD is a marathon, not a sprint". Working every weekend may seem like a necessity but (unless you are performing biological experiments) it is likely to lead to burn-out. Knowing when to stop is an important skill to learn during this time.
+- I was ready to give up until the last few months of my PhD. I know multiple people who either changed programs halfway through or did not finish their PhD altogether. This does not reflect on their quality as researchers or people, as there are a myriad of situations that can lead to someone not being able to graduate.
+
+*** Conclusion
+
+Despite all its issues, I think a PhD can be an enriching experience. We seldom get to get paid to do what we like (even the pay can be downright offensive), or get the guarantee that we will be employed in one place multiple years.  Best of luck, I'm sorry for your loss.
+
 ** A portable approach to distribute image-based results
 *** Introducion
 A common challenge when we produce scientific results is making them available to others. There are multiple ways of doing this, sorted based on effort it takes to produce:
