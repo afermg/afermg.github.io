@@ -10,9 +10,9 @@ BATCH=$(EMACS) --batch --no-init-file					\
   --eval '(org-babel-tangle-file "emacs_config.org")'	              		\
   --eval '(org-babel-load-file   "emacs_config.org")'
 
-files_org  = $(wildcard cv*.org)
+files_org  = $(wildcard cv.org)
 files_pdf  = $(addprefix pub/pdf/,$(files_org:.org=.pdf))
-# files_html = $(addprefix pub/html/,$(files_org:.org=.html))
+files_html = $(addprefix pub/html/,$(files_org:.org=.html))
 
 # all: pdf html
 all: pdf
@@ -42,10 +42,8 @@ publish: pdf
 	@(cd pub/pdf && tar czvf /tmp/org-cv-publish.tar.gz .)
 	@rm -r pub
 	@git checkout gh-pages
-	@git reset --hard 00bb1df1f82ee94739398d1faf37ef7d912d8164
 	@tar xzvf /tmp/org-cv-publish.tar.gz
-# This uses the fact that our site is deployed using the gh-pages site.
-	@if [ -n "`git status --porcelain`" ]; then git add cv.pdf; git commit -m "update cv.pdf" && git push --set-upstream origin gh-pages --force; fi
+	@if [ -n "`git status --porcelain`" ]; then git add cv.pdf; git commit -m "update doc" && git push --set-upstream origin gh-pages --force; fi
 	@git checkout main
 	@echo "NOTICE: PDF documentation published"
 

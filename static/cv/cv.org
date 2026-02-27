@@ -1,6 +1,7 @@
 #+OPTIONS: num:nil \n:t toc:nil ^:nil author:nil date:nil title:nil
 # Based off Jake's resume https://www.overleaf.com/project/6785ed158f47a05524088325
 
+#+LATEX_HEADER: \usepackage{fontawesome5}
 #+LATEX_HEADER: % Adjust margins
 #+LATEX_HEADER: \addtolength{\oddsidemargin}{-0.5in}
 #+LATEX_HEADER: \addtolength{\evensidemargin}{-0.5in}
@@ -16,12 +17,13 @@
 #+LATEX_HEADER: \raggedbottom
 #+LATEX_HEADER: \raggedright
 #+LATEX_HEADER: \setlength{\tabcolsep}{0in}
+#+LATEX_HEADER: \setlist[itemize]{noitemsep, topsep=0pt}
 
 #+BEGIN_EXPORT latex
 \begin{center}
 \textbf{\Large{Alan F. Mu\~noz}}\\
-(857)-919-9011 | \href{https://quasimorphic.com}{Website} |
-\href{mailto:alan@quasimorphic.com}{alan@quasimorphic.com} | \href{https://github.com/afermg}{Github} |
+(857)-919-9011 |
+\href{mailto:alan@quasimorphic.com}{alan@quasimorphic.com} | \href{https://github.com/afermg}{github.com/afermg} |
 \href{https://scholar.google.com/citations?user=au0H13AAAAAJ&hl=en}{Google Scholar}
 \end{center}
 \vspace{-4pt}\color{black}\titlerule 
@@ -33,52 +35,45 @@ Computational biologist with a data analysis and AI/ML skillset. I use computati
 
 * Work Experience
 *\large{Postdoctoral associate}* \hfill /Broad Institute of MIT and Harvard/, Boston MA (2023 -- Present)
-*Interpreting biological impact of drugs in high content imaging*
-Used deep learning via [[https://github.com/HugoHakem/jump_attribution][counterfactuals]] to quantify the effects of chemical compounds on cellular phenotypes.
-Designed, implemented and evaluated [[https://github.com/afermg/aliby][automated]] pipelines for label-free microscopy in collaboration with GSK.
-Identified novel genetic links using statistical (mAP, Deep Learning) methods on images form the JUMP dataset (~100TB).
+*Pharma collaboration: Interpreting biological impact of drugs in high content imaging*
+- Collaborated with GSK to implement a fully [[https://github.com/afermg/aliby][automated]] microscopy processing framework
+- Used deep learning via [[https://github.com/HugoHakem/jump_attribution][counterfactuals]] to quantify the effects of chemical compounds on cellular phenotypes
+- Identified novel genetic links statistical and DL methods on images form the JUMP dataset (~100TB)
 *JUMP-Cell Painting analyses*
-Implemented GPU statistical [[https://github.com/broadinstitute/monorepo/blob/main/libs/jump_rr/][analyses]] to process data from *>20 million images* of drug-affected cell fingerprints.
-Developed [[https://github.com/broadinstitute/monorepo/tree/main/libs/jump_rr#quick-data-access][web]] and programmatic interfaces to explore high-throughput data and microscopy images, and link to databases.
+- Implemented GPU statistical [[https://github.com/broadinstitute/monorepo/blob/main/libs/jump_rr/][analyses]] to process data from *>20 million images* of drug-affected cell fingerprints
+- Developed [[https://github.com/broadinstitute/monorepo/tree/main/libs/jump_rr#quick-data-access][web]] and programmatic interfaces to explore high-throughput microscopy data and integrate external databases
 *Scientific software engineering* 
-*>200x* [[https://github.com/cytomining/copairs/pull/79][Speed-up]] of information retrieval statistical metrics based on mean Average Precision.
-Identified the need of a [[https://github.com/afermg/cp_measure][library]] for interpretable object featurization, created it and it became widely used in the field.
-Pioneered a [[https://github.com/broadinstitute/monorepo][monorepo]]-based approach at the Broad Institute for scientific software development.
-Created WebAssembly [[https://broad.io/crispr_gallery][tools]] for users to query to complement their data with knowledge from imaging.
-Integrated LLMs and RAGs into development workflows and internal databases, developed a personal knowledge management system.
+- *>200x* [[https://github.com/cytomining/copairs/pull/79][Speed-up]] of information retrieval statistical metrics based on mean Average Precision
+- Developed a widely adopted [[https://github.com/afermg/cp_measure][library]] for interpretable object featurization
+- Pioneered a [[https://github.com/broadinstitute/monorepo][monorepo]]-based approach at the Broad Institute for scientific software development
+- Created WebAssembly [[https://broad.io/crispr_gallery][tools]] for users to query to complement their data with knowledge from imaging
+# - Integrated LLMs and RAGs into development workflows and internal databases, developed a personal knowledge management system.
 
 * Education
-*\large{PhD in Quantitative Biology, Biochemistry and Biotechnology}* \hfill /University of Edinburgh/, UK (2018--2022).
+*\large{PhD in Quantitative Biology, Biochemistry and Biotechnology}* \hfill /University of Edinburgh/, UK (2018--2022)
 Thesis: /"Phenotyping single cells of Saccharomyces cerevisiae using an end-to-end analysis of high-content time-lapse microscopy."/
 
 *High throughput microscopy acquisition and analysis* 
-Discovered link betweek cytosolic pH oscillation, acidification and cell division rate in budding yeast
-*15x* increase in analysis throughput of microfluidic time lapse experiments, by developing a Deep Learning framework to segment, track and extract single cell information.
-Designed and performed high throughput microfluidic experiments.
-Developed a mathematical models for resource allocation upon energy constraints and tested them using microscopy and metabolomics data.
-
-# \bigskip
-
+- Discovered link betweek cytosolic pH oscillation, acidification and cell division rate in budding yeast
+- *15x* increase in analysis throughput of microfluidic time lapse experiments, by developing a Deep Learning framework to segment, track and extract single cell information
+- Designed and performed high throughput microfluidic experiments
+# - Developed a mathematical models for resource allocation upon energy constraints and tested them using microscopy and metabolomics data.
 *\large{Bachelor in Genomic Sciences}* \hfill /National Autonomous University of Mexico/, Mexico (2014--2018) 
-*Diffusion-driven antibiotic resistance*: Modelled and tested experimentally the impact of spatial heterogeneity on antibiotic resistance.
-*Phylogenomics*: Identified potential phylogenetic markers on Staphylococcus genomes.
-
-# \medskip
-
-\hfill /Max Planck Institute for Evolutionary Biology/, Germany 2018
-*Host-microbiome neutral model*: Developed and implemented neutral selection models to link host reproduction and death effect on microbial evolution.
-
-\hfill /University of Northern British Columbia/, Canada 2017
-*ML biomarker prediction:* Classified clinical targets from gastric cancer microarrays using multiple ML classifiers.
+- *Diffusion-driven antibiotic resistance*: Modelled and tested experimentally the impact of spatial heterogeneity on antibiotic resistance
+- *Phylogenomics*: Identified potential phylogenetic markers on Staphylococcus genomes
+/Max Planck Institute for Evolutionary Biology/, Germany 2018
+- *Host-microbiome neutral model*: Developed and implemented neutral selection models to link host reproduction and death effect on microbial evolution
+/University of Northern British Columbia/, Canada 2017
+- *ML biomarker prediction:* Classified clinical targets from gastric cancer microarrays using multiple ML classifiers
 
 * Skills
 High-performance implementation of statistical testing frameworks
 Best practices for programming, documentation and technical computing
 Statistical methods for high throughput analyses: average precision frameworks, signal processing, data integration ([[https://github.com/satijalab/seurat][Seurat]], [[https://github.com/satijalab/seurat][Harmony]], Sphering, [[https://github.com/Jfortin1/ComBatHarmonization][COMBAT]])
-10+ years of scientific Python experience: scipy, statsmodels, polars/pandas, duckdb, numpy
+10+ years of scientific Python experience: Scientific Python, statsmodels
 High performance computing: Deep Learning/GPU (JAX, Cupy), Dask
 AI,ML and Deep Learning and Deep Learning: PyTorch, Tensorflow, scikit-learn/scikit-image/scikit-time, RAG methods
-Languages (7+ years of experience): Bash, Julia, SQL, Lisp, R, UNIX tools (e.g., Awk, Sed), Rust(1), Nix(2)
+Languages (10+ years of experience): Bash, Julia, SQL/Duckdb, R, UNIX tools (e.g., Awk, Sed), Rust, Nix
 Additional tech: git, Cloud compute (AWS, GCP), RDKit, REST APIs, Containers (Docker, Podman)
 
 * Awards/Funding
@@ -91,65 +86,67 @@ Additional tech: git, Cloud compute (AWS, GCP), RDKit, REST APIs, Containers (Do
 2016 Mitacs Globalink Research (Canada), scholarship
 
 * Experimental experience
-Fluorescence microscopy and high-content time-lapse imaging.
-Design of microfluidic experiments, pressure and flow control automation.
-Programatic design of bespoke microfluidic devices.
-Development of bespoke tools via 3D programmatic modelling and printing.
-Automation of plate readers for fluorescence readings.
-Culture and yeast transformation.
+Fluorescence microscopy and high-content time-lapse imaging
+Design of microfluidic experiments, pressure and flow control automation
+Programatic design of bespoke microfluidic devices
+Development of bespoke tools via 3D programmatic modelling and printing
+Automation of plate readers for fluorescence readings
+Culture and yeast transformation
 
-* Selected Publications
-*Muñoz, Alán F.*, Tim Treis, Alexandr A. Kalinin, Shatavisha Dasgupta, Fabian Theis, Anne E. Carpenter, and Shantanu Singh. ‘cp_measure: API-First Feature Extraction for Image-Based Profiling Workflows’. ICML CODEML Workshop, 2025.
+* Selected Publications (Google Scholar [[https://scholar.google.com/citations?user=au0H13AAAAAJ&hl=en&authuser=1][\faExternalLink*]])
+- *Muñoz, Alán F.*, et al. ‘cp_measure: API-First Feature Extraction for Image-Based Profiling Workflows’. ICML CODEML Workshop, 2025.
 
-Pietsch, Julian M. J., *Alán F. Muñoz*, Diane-Yayra A. Adjavon, Iseabail Farquhar, Ivan B. N. Clark, and Peter S. Swain. ‘Determining Growth Rates from Bright-Field Images of Budding Cells through Identifying Overlaps’. Elife 12 (2023): e79812.
+- Pietsch, Julian M. J., *Alán F. Muñoz*, et al. ‘Determining Growth Rates from Bright-Field Images of Budding Cells through Identifying Overlaps’. Elife 12 (2023): e79812.
 
-Wongprommoon, Arin, *Alán F. Muñoz*, Diego A. Oyarzún, and Peter S. Swain. ‘Single-Cell Metabolic Oscillations Are Pervasive and May Alleviate a Proteome Constraint’. bioRxiv, 2024, 2024–2011.
+- Wongprommoon, Arin, *Alán F. Muñoz*, et al. ‘Single-Cell Metabolic Oscillations Are Pervasive and May Alleviate a Proteome Constraint’. bioRxiv, 2024, 2024–2011.
 
-Kalinin, Alexandr A., John Arevalo, Erik Serrano, Loan Vulliard, Hillary Tsang, Michael Bornholdt, *Alán F. Muñoz*, et al. ‘A Versatile Information Retrieval Framework for Evaluating Profile Strength and Similarity’. Nature Communications 16, no. 1 (2025): 5181.
+- Kalinin, Alexandr A., ..., *Alán F. Muñoz*, et al. ‘A Versatile Information Retrieval Framework for Evaluating Profile Strength and Similarity’. Nature Communications 16, no. 1 (2025): 5181.
 
-Fuentes-Hernández, Ayari, Anastasia Hernández-Koutoucheva, *Alán F. Muñoz*, Raul Dominguez Palestino, and Rafael Peña-Miller. ‘Diffusion-Driven Enhancement of the Antibiotic Resistance Selection Window’. Journal of the Royal Society Interface 16, no. 158 (2019): 20190363.
-
-Graña-Miraglia, Lucia, César Arreguín-Pérez, Gamaliel López-Leal, *Alan Muñoz*, Angeles Pérez-Oseguera, Estefan Miranda-Miranda, Raquel Cossío-Bayúgar, and Santiago Castillo-Ramírez. ‘Phylogenomics Picks out the Par Excellence Markers for Species Phylogeny in the Genus Staphylococcus’. PeerJ 6 (2018): e5839.
+# - Fuentes-Hernández, Ayari, Anastasia Hernández-Koutoucheva, *Alán F. Muñoz*, Raul Dominguez Palestino, and Rafael Peña-Miller. ‘Diffusion-Driven Enhancement of the Antibiotic Resistance Selection Window’. Journal of the Royal Society Interface 16, no. 158 (2019): 20190363.
 
 * Mentorship
-2024 MSc, Broad Institute, On Deep learning methods for biological interpretability of High Content Imaging.
-2021 MSc student, University of Edinburgh, On mathematical modelling of resource allocation in cells.
+2024 MSc, Broad Institute, On Deep learning methods for biological interpretability of High Content Imaging
+2021 MSc student, University of Edinburgh, On mathematical modelling of resource allocation in cells
 2021 MSc student, University of Edinburgh. On analysis of fluorescence signals and colocalisation in budding yeast.
 
-* Events
-** Talks
+# * Events
+* Selected Talks
 2024/10 I2K 2024: From Images to Knowledge (Human Technopole, Milan, Italy)
-2024/09 Society of Biomolecular Imaging and Informatics (Broad Institute, Boston, US)
+# 2024/09 Society of Biomolecular Imaging and Informatics (Broad Institute, Boston, US)
 2024/05 Cell Circuits and Epigenomics Seminar Series (Broad Institute, Boston, US)
 2022/10/31 NextGenBUG (University of Edinburgh, Edinburgh, UK)
-2021/04 Second-year symposium, School of Biological Sciences, University of Edinburgh (virtual)
-2018-2022 6 meetings: Marie Curie International Training Network (MCTN) meetings (as part of the MCTN - Syncrop)
-** Organiser/Panelist
-2024/09 *Organiser*: Broad Institute + Cyotadata JUMP Hackathon (Broad Institute, Boston, US)
-2024/07 *Panelist*: Hackathon for Multimodal Data Integration (Broad Institute, Boston, US)
-2024/06 *Panelist*: BroadHacks Data Integration Panel (Broad Institute, Boston, US)
-** Posters
-2025/07 ICML 2025, CODEML Workshop (Vancouver, Canada)
-2025/04 Software Engineering retreat, Broad Institute (Boston, US)
-2024/02 Society for Laboratory Automation and Screening (SLAS) 2024 (Boston, US)
-2023/12 American Society of Cell Biology (ASCB) 2023 (Boston, US)
-2019/11 EMBO Science communication meeting (Heidelberg, Germany)
-2019/04 EMBO Whole-cell Modelling School (Centre for Genomic Regulation, Barcelona, Spain)
-2017/05 1st Latin American Workshop and Conference in Systems Biology (CINVESTAV, Mexico City, Mexico)
-** Other events
-2023/10 Society of Biomolecular Imaging and Informatics (SBI2) 2023. (Boston)
-2016/10 Mathematical Biology Autumn School (Centre for Mathematics UNAM, Morelia, Mexico)
-2016/08 International Summer Symposium  on Systems Biology (National Institute of Genomic Medicine, Mexico City, Mexico).
-2017/08 Sex, Genes and Behaviour Workshop (Center for Genomic Sciences UNAM)
-2017/01 Bioathematics: A Multidisciplinary Endeavor Congress (Mathematics Institute of Juriquilla Campus UNAM, Queretaro, Mexico).
-2015/11: Evolution and Genomics Symposium (Centre for Genomic Sciences UNAM, Morelos, Mexico).
-2015/06 “From Cells to Stars”: Image Analysis Workshop (National Institute of Astronomy UNAM, Puebla, Mexico).
+# 2021/04 Second-year symposium, School of Biological Sciences, University of Edinburgh (virtual)
+# 2018-2022 6 meetings: Marie Curie International Training Network (MCTN) meetings (as part of the MCTN - Syncrop)
+# ** Organiser/Panelist
+# 2024/09 *Organiser*: Broad Institute + Cyotadata JUMP Hackathon (Broad Institute, Boston, US)
+# 2024/07 *Panelist*: Hackathon for Multimodal Data Integration (Broad Institute, Boston, US)
+# 2024/06 *Panelist*: BroadHacks Data Integration Panel (Broad Institute, Boston, US)
+# ** Posters
+# 2025/07 ICML 2025, CODEML Workshop (Vancouver, Canada)
+# 2025/04 Software Engineering retreat, Broad Institute (Boston, US)
+# 2024/02 Society for Laboratory Automation and Screening (SLAS) 2024 (Boston, US)
+# 2023/12 American Society of Cell Biology (ASCB) 2023 (Boston, US)
+# 2019/11 EMBO Science communication meeting (Heidelberg, Germany)
+# 2019/04 EMBO Whole-cell Modelling School (Centre for Genomic Regulation, Barcelona, Spain)
+# 2017/05 1st Latin American Workshop and Conference in Systems Biology (CINVESTAV, Mexico City, Mexico)
+# ** Other events
+# 2023/10 Society of Biomolecular Imaging and Informatics (SBI2) 2023. (Boston)
+# 2016/10 Mathematical Biology Autumn School (Centre for Mathematics UNAM, Morelia, Mexico)
+# 2016/08 International Summer Symposium  on Systems Biology (National Institute of Genomic Medicine, Mexico City, Mexico).
+# 2017/08 Sex, Genes and Behaviour Workshop (Center for Genomic Sciences UNAM)
+# 2017/01 Bioathematics: A Multidisciplinary Endeavor Congress (Mathematics Institute of Juriquilla Campus UNAM, Queretaro, Mexico).
+# 2015/11: Evolution and Genomics Symposium (Centre for Genomic Sciences UNAM, Morelos, Mexico).
+# 2015/06 “From Cells to Stars”: Image Analysis Workshop (National Institute of Astronomy UNAM, Puebla, Mexico).
 
-* Teaching
-Introduction to Genomics (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2016).
-Linear Algebra (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
-Systems Biology (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
-Introduction to Genomics (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
-* Prizes
-Best Poster (1st Latin American Workshop and Conference in Systems Biology, 2017)
-Bronze Medal in the International Genetically Engineered Machine Competition 2016 (Boston, 2016)
+# * Teaching
+# Introduction to Genomics (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2016).
+# Linear Algebra (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
+# Systems Biology (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
+# Introduction to Genomics (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
+# * Prizes
+# Best Poster (1st Latin American Workshop and Conference in Systems Biology, 2017)
+# Bronze Medal in the International Genetically Engineered Machine Competition 2016 (Boston, 2016)
+# * Languages
+# Spanish: Native Speaker
+# English: C1 (IELTS)
+# French: 3 years experience.

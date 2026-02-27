@@ -110,7 +110,7 @@
   (defun org-publish-pdf ()
     (progn
       (org-publish-project "publish-pdf-cv" 'force)
-      ;; (shell-command "mv ./latex.d pub/pdf/.; mv -f resume* *.sty ./pub/pdf/latex.d/.; mv ./pub/pdf/latex.d/resume*.org .")
+      ;; (shell-command "mv ./latex.d pub/pdf/.; mv -f cv* *.sty ./pub/pdf/latex.d/.; mv ./pub/pdf/latex.d/cv*.org .")
       (shell-command "rm cv.tex; mv cv.* pub/pdf/; mv pub/pdf/cv.org .")
       ))
 #+END_SRC
