@@ -41,7 +41,7 @@ Computational biologist with a data analysis and AI/ML skillset. I use computati
 - Identified novel genetic links statistical and DL methods on images form the JUMP dataset (~100TB)
 *JUMP-Cell Painting analyses*
 - Implemented GPU statistical [[https://github.com/broadinstitute/monorepo/blob/main/libs/jump_rr/][analyses]] to process data from *>20 million images* of drug-affected cell fingerprints
-- Developed [[https://github.com/broadinstitute/monorepo/tree/main/libs/jump_rr#quick-data-access][web]] and programmatic interfaces to explore high-throughput microscopy data and integrate external databases
+- Developed [[https://github.com/broadinstitute/monorepo/tree/main/libs/jump_rr#quick-data-access][web]] and programmatic interfaces integrating high-throughput microscopy data with external databases
 *Scientific software engineering* 
 - *>200x* [[https://github.com/cytomining/copairs/pull/79][Speed-up]] of information retrieval statistical metrics based on mean Average Precision
 - Developed a widely adopted [[https://github.com/afermg/cp_measure][library]] for interpretable object featurization
