@@ -22,8 +22,7 @@
 #+BEGIN_EXPORT latex
 \begin{center}
 \textbf{\Large{Alan F. Mu\~noz}}\\
-(857)-919-9011 |
-\href{mailto:alan@quasimorphic.com}{alan@quasimorphic.com} | \href{https://github.com/afermg}{github.com/afermg} |
+(857)-919-9011 | \href{quasimorpic.com}{quasimorphic.com} | \href{mailto:alan@quasimorphic.com}{alan@quasimorphic.com} | \href{https://github.com/afermg}{github.com/afermg} |
 \href{https://scholar.google.com/citations?user=au0H13AAAAAJ&hl=en}{Google Scholar}
 \end{center}
 \vspace{-4pt}\color{black}\titlerule 
