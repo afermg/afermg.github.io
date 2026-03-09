@@ -29,7 +29,7 @@
 \smallskip
 #+END_EXPORT
 
-Computational biologist who identifies the blockers of biological discovery at scale and builds compact tools to remove them. At the Broad Institute, I work across drug discovery, data science, software engineering and image-based profiling: defining which problems matter, designing computational solutions, and evaluating whether the biology improves. I'm Open to AI tools where they accelerate work, but I'm deliberate about where humans remain essential.
+Computational biologist who identifies the blockers of biological discovery at scale and builds compact tools to remove them. At the Broad Institute, I work across drug discovery, data science, engineering and image-based profiling: I define which problems matter, design solutions, and evaluate their impact in our biological understanding. I use AI tools where they accelerate work, but I leverage my technical profficiency where a deeper understanding of the problems is crucial.
 
 * Work Experience
 
@@ -37,9 +37,9 @@ Computational biologist who identifies the blockers of biological discovery at s
 
 - *Led a GSK-funded collaboration* on high-content imaging, defining the project scope and designing an end-to-end automated processing framework built on [[https://github.com/afermg/aliby][ALIBY]] that eliminates manual steps from image acquisition through feature extraction and evaluation — a foundational shift toward fully automated profiling
 
-- *Built JUMP-lite* to make large-scale Cell Painting data accessible for biological discovery. Processed >20 million images (~100 TB) from the JUMP dataset using GPU-accelerated infrastructure and demonstrated that 98% lossy compression preserves biological signal, producing a curated 100 GB benchmark usable by groups without specialized compute (under review)
+- *Built JUMP-lite* to democratize large-scale Cell Painting data for biological discovery. Processed >40 million images (~100 TB) from using GPU-accelerated infrastructure and showed that 98% lossy compression preserves biological signal, producing a curated 100 GB benchmark usable by groups without specialized compute (under review)
 
-- *Built [[https://github.com/afermg/cp_measure][cp_measure]]* to address a key bottleneck in image-based profiling: computational biologists were locked into GUI-based workflows for morphological feature extraction. Exposes CellProfiler's measurement engine as a programmatic API, now adopted across the Cell Painting community and integrated into spatial transcriptomics workflows via Squidpy (ICML 2025)
+- *Built [[https://github.com/afermg/cp_measure][cp_measure]]* to address a key bottleneck in image-based profiling: computational biologists were locked into GUI-based workflows for morphological feature extraction. Exposes CellProfiler's measurement engine as an API, now adopted across the community and integrated into spatial transcriptomics workflows via Squidpy (ICML 2025)
 
 - *Built the [[https://broadinstitute.github.io/jump_hub][JUMP Hub]]*, bridging the gap between the JUMP dataset's scale and researchers' ability to use it — tutorials, interactive data browsers, notebooks, and programmatic access tools that let biologists explore millions of profiling measurements without specialized infrastructure
 
@@ -47,7 +47,7 @@ Computational biologist who identifies the blockers of biological discovery at s
 
 - *Accelerated [[https://github.com/cytomining/copairs][copairs]]* with a 200× speedup of mean Average Precision computation to evaluate information retrieval at full JUMP scale (Kalinin et al., /Nature Communications/ 2025)
 
-- *Built [[https://github.com/afermg/nahual][Nahual]]*, a framework for deploying and systematically benchmarking heterogeneous deep learning models in isolated, reproducible environments, enabling rigorous comparison of representation methods across the JUMP-lite dataset
+- *Built [[https://github.com/afermg/nahual][Nahual]]*, a framework to systematically benchmark heterogeneous DL models in isolated, reproducible environments, enabling rigorous comparison of representation methods across the JUMP-lite dataset
 
 * Education
 
@@ -56,11 +56,11 @@ Computational biologist who identifies the blockers of biological discovery at s
 /Thesis: "Phenotyping single cells of Saccharomyces cerevisiae using an end-to-end analysis of high-content time-lapse microscopy."/
 
 - Discovered a link between cytosolic pH oscillation, acidification, and cell division rate in budding yeast, revealing pervasive metabolic oscillations at the single-cell level
-- Developed a deep learning framework (segmentation, tracking, single-cell extraction) that increased analysis throughput by 15×; this became the foundation for [[https://github.com/afermg/aliby][ALIBY]], later extended for the Broad's automated profiling pipelines
+- Developed the [[https://github.com/afermg/aliby][ALIBY]] framework (segmentation, tracking, single-cell extraction) that fully automated time series analysis, increasing throughput by 15×, later extended for the Broad's automated profiling pipelines
 
 *\large{Bachelor in Genomic Sciences}* \hfill /National Autonomous University of Mexico/ (2014–2018)
 
-Modelled and experimentally validated diffusion-driven antibiotic resistance; identified potential phylogenetic markers in *Staphylococcus* genomes.
+Modelled and experimentally validated diffusion-driven antibiotic resistance; identified potential phylogenetic markers in /Staphylococcus/ genomes.
 
 ** Research Internships
 
@@ -69,10 +69,10 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 
 * Skills
 
-- *Systems & reproducibility:* Nix/NixOS, containers (Docker, Podman), monorepo design, cloud (AWS, GCP)
+- *Systems & reproducibility:* Nix/NixOS, containers (Docker, Podman), monorepo design, cloud (AWS, GCP), CI/CD
 - *Scientific computing:* GPU programming (JAX, CuPy), Dask, high-performance statistical testing, Nextflow
 - *Languages (10+ years):* Python (scientific stack), Bash, Julia, SQL/DuckDB, R, Rust, Nix
-- *Data & analysis:* mAP/information retrieval frameworks, signal processing, batch correction (Harmony, Sphering, COMBAT), RDKit
+- *Data & analysis:* mAP/information retrieval frameworks, signal processing, batch correction methods
 - *Deep learning:* PyTorch, TensorFlow, scikit-learn/scikit-image, ML devops
 - *Wet lab:* Fluorescence microscopy, high-content time-lapse imaging, microfluidic device design, yeast experimental protocols
 
@@ -95,16 +95,16 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
   *Key contributor. Built the 200× faster mAP implementation enabling evaluation at JUMP scale.*
 
 - Pietsch, J.M.J., *Muñoz, A.F.*, et al. "Determining Growth Rates from Bright-Field Images of Budding Cells through Identifying Overlaps." /eLife/ 12: e79812 (2023).
-  *Key contributor. Built an ML tracking system for automated growth rate estimation from bright-field time-lapse microscopy.*
+  *Key contributor. Built an ML tracking system for growth rate estimation from bright-field time-lapse microscopy.*
 
 - Wongprommoon, A., *Muñoz, A.F.*, et al. "Single-Cell Metabolic Oscillations Are Pervasive and May Alleviate a Proteome Constraint." /bioRxiv/, 2024.
-  *Key contributor. Developed the image processing framework to identify single-cell metabolic oscillations in budding yeast.*
+  *Key contributor. Developed the image processing framework to identify single-cell metabolic oscillations.*
 
 * Mentorship
 
-- *2024* — MSc supervisor, Broad Institute: Deep learning methods for biological interpretability of high-content imaging
-- *2021* — MSc supervisor, University of Edinburgh: Mathematical modelling of resource allocation in cells
-- *2021* — MSc supervisor, University of Edinburgh: Analysis of fluorescence signals and colocalisation in budding yeast
+- *2024* — MSc supervisor, Broad Institute: DL methods for biological interpretability of high-content imaging
+- *2021* — MSc supervisor, U. of Edinburgh: Mathematical modelling of resource allocation in cells
+- *2021* — MSc supervisor, U. of Edinburgh: Analysis of fluorescence signals and colocalisation in budding yeast
 
 * Selected Talks
 
