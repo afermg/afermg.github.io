@@ -1,7 +1,5 @@
 #+OPTIONS: num:nil \n:t toc:nil ^:nil author:nil date:nil title:nil
-# Based off Jake's resume https://www.overleaf.com/project/6785ed158f47a05524088325
 
-#+LATEX_HEADER: \usepackage{fontawesome5}
 #+LATEX_HEADER: % Adjust margins
 #+LATEX_HEADER: \addtolength{\oddsidemargin}{-0.5in}
 #+LATEX_HEADER: \addtolength{\evensidemargin}{-0.5in}
@@ -21,70 +19,62 @@
 
 #+BEGIN_EXPORT latex
 \begin{center}
-\textbf{\Large{Alan F. Mu\~noz}}\\
-(857)-919-9011 | \href{quasimorpic.com}{quasimorphic.com} | \href{mailto:alan@quasimorphic.com}{alan@quasimorphic.com} | \href{https://github.com/afermg}{github.com/afermg} |
-\href{https://scholar.google.com/citations?user=au0H13AAAAAJ&hl=en}{Google Scholar}
+\textbf{\Large{Alán F. Muñoz}}\\
+(857)-919-9011 |
+\href{mailto:alan@quasimorphic.com}{alan@quasimorphic.com} | \href{https://github.com/afermg}{github.com/afermg} |
+\href{https://scholar.google.com/citations?user=au0H13AAAAAJ}{Google Scholar}
 \end{center}
 \vspace{-4pt}\color{black}\titlerule 
 
 \smallskip
 #+END_EXPORT
 
-Computational biologist and scientific software engineer building infrastructure for large-scale image-based profiling and drug discovery. I design reproducible systems — from deep learning model deployment to statistical evaluation — that make terabyte-scale biological data tractable. I care deeply about software craft: modular architecture, principled API design, and thorough code review that keeps codebases maintainable as they scale. I adopt AI-assisted development tools where they accelerate work, while recognizing that the core engineering challenges — scoping the right problem, designing the right abstractions, and defining what success looks like — remain human responsibilities. At the Broad Institute, I architect pipelines processing 100+ TB datasets, build frameworks for training and deploying diverse deep learning models in reproducible environments, and develop open-source tools adopted across the image-based profiling community.
+Computational biologist who identifies the blockers of biological discovery at scale and builds compact tools to remove them. At the Broad Institute, I work across drug discovery, data science, software engineering and image-based profiling: defining which problems matter, designing computational solutions, and evaluating whether the biology improves. I'm Open to AI tools where they accelerate work, but I'm deliberate about where humans remain essential.
 
 * Work Experience
 
-** Postdoctoral Associate — Broad Institute of MIT and Harvard, Boston MA (2023–Present)
+*\large{Postdoctoral Associate}* \hfill /Broad Institute of MIT and Harvard/, Boston MA (2023–Present)
 
-- *Led a GSK-funded collaboration** on high-content imaging, defining the project scope and designing an end-to-end automated microscopy processing framework built on [[https://github.com/afermg/aliby][ALIBY]] that eliminates manual steps from image acquisition through feature extraction and evaluation — establishing a path toward fully automated profiling
+- *Led a GSK-funded collaboration* on high-content imaging, defining the project scope and designing an end-to-end automated processing framework built on [[https://github.com/afermg/aliby][ALIBY]] that eliminates manual steps from image acquisition through feature extraction and evaluation — a foundational shift toward fully automated profiling
 
-- *Architected GPU-accelerated scientific infrastructure* to process morphological profiles from >20 million images (~100 TB) in the JUMP Cell Painting dataset. Demonstrated that 98% lossy JPEG XL compression preserves biological signal, creating JUMP-lite — a curated 100 GB benchmark enabling research groups without specialized infrastructure to work with large-scale Cell Painting data (ECCV 2026, under review)
+- *Built JUMP-lite* to make large-scale Cell Painting data accessible for biological discovery. Processed >20 million images (~100 TB) from the JUMP dataset using GPU-accelerated infrastructure and demonstrated that 98% lossy compression preserves biological signal, producing a curated 100 GB benchmark usable by groups without specialized compute (under review)
 
-- *Built* [[https://github.com/afermg/nahual][Nahual]], a Nix-based framework for deploying and benchmarking heterogeneous deep learning models (MorphEM, OpenPhenom, SubCELL, DINOv2, Cellpose) via inter-process communication. Each model runs in an isolated, fully reproducible Nix environment, enabling systematic comparison of representation methods without dependency conflicts and supporting the benchmarking reported in the JUMP-lite analysis
+- *Built [[https://github.com/afermg/cp_measure][cp_measure]]* to address a key bottleneck in image-based profiling: computational biologists were locked into GUI-based workflows for morphological feature extraction. Exposes CellProfiler's measurement engine as a programmatic API, now adopted across the Cell Painting community and integrated into spatial transcriptomics workflows via Squidpy (ICML 2025)
 
-- *Achieved a 200× speedup* of Average Precision computation in the [[https://github.com/cytomining/copairs][copairs]] framework by replacing the pair-matching logic with DuckDB-based relational joins, eliminating the prior bottleneck in sample-pair enumeration and enabling information retrieval evaluation at the full scale of the JUMP dataset (Kalinin et al., /Nature Communications/ 2025; [[https://github.com/cytomining/copairs/pull/79][PR #79]])
+- *Built the [[https://broadinstitute.github.io/jump_hub][JUMP Hub]]*, bridging the gap between the JUMP dataset's scale and researchers' ability to use it — tutorials, interactive data browsers, notebooks, and programmatic access tools that let biologists explore millions of profiling measurements without specialized infrastructure
 
-- *Created* [[https://github.com/afermg/cp_measure][cp_measure]], a modular Python library that extracts CellProfiler's core measurement engine into an API-first tool for programmatic feature extraction — freeing computational biologists from the GUI and enabling seamless integration with the scientific Python ecosystem. Adopted by labs across the image-based profiling community and integrated into spatial transcriptomics workflows via Squidpy (ICML 2025)
+- *Led development of deep learning counterfactual methods* to interpret how chemical compounds alter cellular morphology, enabling biologists to identify drug effects from visual phenotypes (mentoring an MSc intern)
 
-- *Built the [[https://broadinstitute.github.io/jump_hub][JUMP Hub]]*, a comprehensive ecosystem of tools, tutorials, and interactive interfaces for exploring the JUMP dataset. Designed lightweight data interfaces using Parquet files and Datasette Lite, enabling researchers to interactively query millions of rows of profiling data without specialized infrastructure. Created notebooks, interactive browsable tables, and programmatic access libraries
+- *Accelerated [[https://github.com/cytomining/copairs][copairs]]* with a 200× speedup of mean Average Precision computation to evaluate information retrieval at full JUMP scale (Kalinin et al., /Nature Communications/ 2025)
 
-- *Pioneered a [[https://github.com/broadinstitute/monorepo][monorepo-based approach]]* for the Carpenter-Singh Lab's scientific software, unifying metadata translators, image retrieval tools, interactive data browsers, and feature extraction libraries under shared infrastructure — accelerating iteration and ensuring consistency across projects
-
-- *Serves as an architectural steward* across the lab's open-source ecosystem, providing deep code review that shapes API design and long-term maintainability. Examples include restructuring a core statistical function in copairs ([[https://github.com/cytomining/copairs/pull/116][#116]]) to use composition over parameter accumulation, and driving a 9× reduction in code complexity for a data deposit pipeline by advocating for bash over overengineered Python ([[https://github.com/broadinstitute/monorepo/pull/95][#95]])
-
-- *Led development of deep learning counterfactual methods* to interpret how chemical perturbations alter cellular morphology, enabling biologists to identify which visual phenotypes drive drug effects (work led through mentorship of an MSc intern)
+- *Built [[https://github.com/afermg/nahual][Nahual]]*, a framework for deploying and systematically benchmarking heterogeneous deep learning models in isolated, reproducible environments, enabling rigorous comparison of representation methods across the JUMP-lite dataset
 
 * Education
 
-*** PhD in Quantitative Biology — University of Edinburgh \hfill UK (2018–2022)
+*\large{PhD in Quantitative Biology}* \hfill /University of Edinburgh/, UK (2018–2022)
 
 /Thesis: "Phenotyping single cells of Saccharomyces cerevisiae using an end-to-end analysis of high-content time-lapse microscopy."/
 
 - Discovered a link between cytosolic pH oscillation, acidification, and cell division rate in budding yeast, revealing pervasive metabolic oscillations at the single-cell level
-- Developed a deep learning framework (segmentation, tracking, single-cell extraction) that increased analysis throughput of microfluidic time-lapse experiments by 15×; released as [[https://github.com/afermg/aliby][ALIBY]], later extended for the Broad's automated profiling pipelines
+- Developed a deep learning framework (segmentation, tracking, single-cell extraction) that increased analysis throughput by 15×; this became the foundation for [[https://github.com/afermg/aliby][ALIBY]], later extended for the Broad's automated profiling pipelines
 
-*** Bachelor in Genomic Sciences — National Autonomous University of Mexico \hfill Mexico (2014–2018)
+*\large{Bachelor in Genomic Sciences}* \hfill /National Autonomous University of Mexico/ (2014–2018)
 
-Modelled and experimentally validated diffusion-driven antibiotic resistance; identified potential phylogenetic markers in /Staphylococcus/ genomes.
+Modelled and experimentally validated diffusion-driven antibiotic resistance; identified potential phylogenetic markers in *Staphylococcus* genomes.
 
-*** Research Internships
+** Research Internships
 
-- *Max Planck Institute for Evolutionary Biology, Germany (2018):* Developed neutral selection models linking host reproduction and death to microbial evolution
-- *University of Northern British Columbia, Canada (2017):* Classified clinical targets from gastric cancer microarrays using multiple ML classifiers
+- *Max Planck Institute for Evolutionary Biology, Germany (2018):* Neutral selection models linking host reproduction to microbial evolution
+- *University of Northern British Columbia, Canada (2017):* Clinical target classification from gastric cancer microarrays
 
 * Skills
 
-*Systems & reproducibility:* Nix/NixOS, containers (Docker, Podman), monorepo design, cloud (AWS, GCP), inter-process communication (pynng)
-
-*Scientific computing:* GPU programming (JAX, CuPy), Dask, high-performance statistical testing, Nextflow
-
-*Languages:* Python (10+ years; scientific stack, statsmodels), Bash, Julia, SQL/DuckDB, R, UNIX tools (Awk, Sed), Rust, Nix
-
-*Data & analysis:* information retrieval frameworks, signal processing, high-dimensional biological data analysis, data integration, cheminformatics
-
-*Deep learning:* PyTorch, TensorFlow, scikit-learn/scikit-image, model deployment at scale
-
-*Wet lab:* Fluorescence microscopy, high-content time-lapse imaging, microfluidic device design and automation, programmatic 3D modelling and printing, yeast culture and transformation
+- *Systems & reproducibility:* Nix/NixOS, containers (Docker, Podman), monorepo design, cloud (AWS, GCP)
+- *Scientific computing:* GPU programming (JAX, CuPy), Dask, high-performance statistical testing, Nextflow
+- *Languages (10+ years):* Python (scientific stack), Bash, Julia, SQL/DuckDB, R, Rust, Nix
+- *Data & analysis:* mAP/information retrieval frameworks, signal processing, batch correction (Harmony, Sphering, COMBAT), RDKit
+- *Deep learning:* PyTorch, TensorFlow, scikit-learn/scikit-image, ML devops
+- *Wet lab:* Fluorescence microscopy, high-content time-lapse imaging, microfluidic device design, yeast experimental protocols
 
 * Awards & Funding
 
@@ -96,21 +86,19 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 - *2017* — National Autonomous University of Mexico, International scholarship
 - *2016* — Mitacs Globalink Research (Canada), scholarship
 
------
-
-* Selected Publications  (Google Scholar [[https://scholar.google.com/citations?user=au0H13AAAAAJ&hl=en&authuser=1][\faExternalLink*]])
+* Selected Publications ([[https://scholar.google.com/citations?user=au0H13AAAAAJ][Google Scholar]])
 
 - *Muñoz, A.F.*, et al. "cp_measure: API-First Feature Extraction for Image-Based Profiling Workflows." /ICML CODEML Workshop/, 2025.
-  /Led development. Modular Python library extracting CellProfiler's measurement engine for programmatic, scalable feature extraction across imaging modalities including spatial transcriptomics./
+  *Led development. Modular library extracting CellProfiler's measurement engine for programmatic, scalable feature extraction across imaging modalities including spatial transcriptomics.*
 
 - Kalinin, A.A., …, *Muñoz, A.F.*, et al. "A Versatile Information Retrieval Framework for Evaluating Profile Strength and Similarity." /Nature Communications/ 16, 5181 (2025).
-  /Key contributor. Built the 200× faster mAP implementation enabling information retrieval evaluation at the full scale of the JUMP dataset./
+  *Key contributor. Built the 200× faster mAP implementation enabling evaluation at JUMP scale.*
 
 - Pietsch, J.M.J., *Muñoz, A.F.*, et al. "Determining Growth Rates from Bright-Field Images of Budding Cells through Identifying Overlaps." /eLife/ 12: e79812 (2023).
-  /Co-first author. Deep learning framework for automated growth rate estimation from bright-field time-lapse microscopy./
+  *Key contributor. Built an ML tracking system for automated growth rate estimation from bright-field time-lapse microscopy.*
 
 - Wongprommoon, A., *Muñoz, A.F.*, et al. "Single-Cell Metabolic Oscillations Are Pervasive and May Alleviate a Proteome Constraint." /bioRxiv/, 2024.
-  /Co-first author. Discovery of pervasive single-cell metabolic oscillations in budding yeast linked to proteome allocation./
+  *Key contributor. Developed the image processing framework to identify single-cell metabolic oscillations in budding yeast.*
 
 * Mentorship
 
@@ -123,40 +111,3 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 - *2024/10* — I2K 2024: From Images to Knowledge (Human Technopole, Milan, Italy)
 - *2024/05* — Cell Circuits and Epigenomics Seminar Series (Broad Institute, Boston, US)
 - *2022/10* — NextGenBUG (University of Edinburgh, Edinburgh, UK)
-
-# 2024/09 Society of Biomolecular Imaging and Informatics (Broad Institute, Boston, US)
-# 2021/04 Second-year symposium, School of Biological Sciences, University of Edinburgh (virtual)
-# 2018-2022 6 meetings: Marie Curie International Training Network (MCTN) meetings (as part of the MCTN - Syncrop)
-# ** Organiser/Panelist
-# 2024/09 *Organiser*: Broad Institute + Cyotadata JUMP Hackathon (Broad Institute, Boston, US)
-# 2024/07 *Panelist*: Hackathon for Multimodal Data Integration (Broad Institute, Boston, US)
-# 2024/06 *Panelist*: BroadHacks Data Integration Panel (Broad Institute, Boston, US)
-# ** Posters
-# 2025/07 ICML 2025, CODEML Workshop (Vancouver, Canada)
-# 2025/04 Software Engineering retreat, Broad Institute (Boston, US)
-# 2024/02 Society for Laboratory Automation and Screening (SLAS) 2024 (Boston, US)
-# 2023/12 American Society of Cell Biology (ASCB) 2023 (Boston, US)
-# 2019/11 EMBO Science communication meeting (Heidelberg, Germany)
-# 2019/04 EMBO Whole-cell Modelling School (Centre for Genomic Regulation, Barcelona, Spain)
-# 2017/05 1st Latin American Workshop and Conference in Systems Biology (CINVESTAV, Mexico City, Mexico)
-# ** Other events
-# 2023/10 Society of Biomolecular Imaging and Informatics (SBI2) 2023. (Boston)
-# 2016/10 Mathematical Biology Autumn School (Centre for Mathematics UNAM, Morelia, Mexico)
-# 2016/08 International Summer Symposium  on Systems Biology (National Institute of Genomic Medicine, Mexico City, Mexico).
-# 2017/08 Sex, Genes and Behaviour Workshop (Center for Genomic Sciences UNAM)
-# 2017/01 Bioathematics: A Multidisciplinary Endeavor Congress (Mathematics Institute of Juriquilla Campus UNAM, Queretaro, Mexico).
-# 2015/11: Evolution and Genomics Symposium (Centre for Genomic Sciences UNAM, Morelos, Mexico).
-# 2015/06 “From Cells to Stars”: Image Analysis Workshop (National Institute of Astronomy UNAM, Puebla, Mexico).
-
-# * Teaching
-# Introduction to Genomics (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2016).
-# Linear Algebra (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
-# Systems Biology (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
-# Introduction to Genomics (Teaching assistant, Undergraduate Program in Genomic Sciences, UNAM, 2017).
-# * Prizes
-# Best Poster (1st Latin American Workshop and Conference in Systems Biology, 2017)
-# Bronze Medal in the International Genetically Engineered Machine Competition 2016 (Boston, 2016)
-# * Languages
-# Spanish: Native Speaker
-# English: C1 (IELTS)
-# French: 3 years experience.
