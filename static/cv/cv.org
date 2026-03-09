@@ -29,7 +29,7 @@
 \smallskip
 #+END_EXPORT
 
-Computational biologist who identifies the bottlenecks of biological discovery at scale and builds compact tools to remove them. At the Broad Institute, I work across drug discovery, data science, engineering and image-based profiling: I define which problems matter, design solutions, and evaluate their impact n our biological understanding. I use AI tools where they accelerate work, but I rely on my technical proficiency and judgement where problems require it.
+Computational biologist who identifies the bottlenecks of biological discovery at scale and builds compact tools to remove them. At the Broad Institute, I work across drug discovery, data science, engineering and image-based profiling: I define which problems matter, design solutions, and evaluate their impact in our biological understanding.
 
 * Work Experience
 
