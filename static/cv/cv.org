@@ -35,25 +35,25 @@ Computational biologist who identifies the bottlenecks of biological discovery a
 
 *\large{Postdoctoral Associate}* \hfill /Broad Institute of MIT and Harvard/, Boston MA (2023–Present)
 
-- *Led a GSK-funded collaboration* on high-content imaging, defining the project scope and designing an end-to-end automated processing framework built on [[https://github.com/afermg/aliby][ALIBY]] that eliminates manual steps from image acquisition through feature extraction and evaluation — a foundational shift toward fully automated profiling
+- *Led a GSK-funded collaboration* on high-content imaging, which involves 8 biologists and data scientists, I defined the project scope and designed an end-to-end automated processing framework built on [[https://github.com/afermg/aliby][previous work]], streamlining steps from image acquisition through feature extraction and evaluation — a foundational shift toward fully automated profiling
 
 - *Built JUMP-lite* to democratize large-scale Cell Painting data for biological discovery. Processed >40 million images (~100 TB) from using GPU-accelerated infrastructure and showed that 98% lossy compression preserves biological signal, producing a curated 100 GB benchmark usable by groups without specialized compute (under review)
 
-- *Built [[https://github.com/afermg/cp_measure][cp_measure]]* to address a key bottleneck in image-based profiling: computational biologists were locked into GUI-based workflows for morphological feature extraction. Exposes CellProfiler's measurement engine as an API, now adopted across the community and integrated into spatial transcriptomics workflows via Squidpy (ICML 2025)
+- *Engineered [[https://github.com/afermg/cp_measure][cp_measure]]* to address a key bottleneck in image-based profiling: computational biologists lacked programmatic access to morphological feature extraction, limiting automated processing, I exposed CellProfiler's measurement engine as an open source library, now adopted across the community and integrated into spatial transcriptomics workflows via Squidpy (ICML 2025)
 
-- *Built the [[https://broadinstitute.github.io/jump_hub][JUMP Hub]]*, bridging the gap between the JUMP dataset's scale and researchers' ability to use it — tutorials, interactive data browsers, notebooks, and programmatic access tools that let biologists explore millions of profiling measurements without specialized infrastructure
+- *Created the [[https://broadinstitute.github.io/jump_hub][JUMP Hub]]*, bridging the gap between the JUMP dataset's scale and researchers' ability to use it — tutorials, interactive data browsers, notebooks, and programmatic access tools that let biologists explore millions of profiling measurements without specialized infrastructure
 
 - *Led development of deep learning counterfactual methods* to interpret how chemical compounds alter cellular morphology, enabling biologists to identify drug effects from visual phenotypes (mentoring an MSc intern)
 
-- *Accelerated [[https://github.com/cytomining/copairs][copairs]]* with a 200× speedup of mean Average Precision computation to evaluate information retrieval at full JUMP scale (Kalinin et al., /Nature Communications/ 2025)
+- *Accelerated [[https://github.com/cytomining/copairs][copairs]]* with a 200× speedup of mean Average Precision computation to evaluate information retrieval, reducing processing time from hours to seconds (Kalinin et al., /Nature Communications/ 2025)
 
-- *Built [[https://github.com/afermg/nahual][Nahual]]*, a framework to systematically benchmark heterogeneous DL models in isolated, reproducible environments, enabling rigorous comparison of representation methods across the JUMP-lite dataset
+- *Designed [[https://github.com/afermg/nahual][Nahual]]*, a framework to systematically benchmark heterogeneous DL models in isolated, reproducible environments, enabling rigorous comparison of representation methods across the JUMP-lite dataset
 
 * Education
 
 *\large{PhD in Quantitative Biology}* \hfill /University of Edinburgh/, UK (2018–2022)
 
-/Thesis: "Phenotyping single cells of Saccharomyces cerevisiae using an end-to-end analysis of high-content time-lapse microscopy."/
+/Thesis: "Phenotyping single cells of Saccharomyces cerevisiae using an end-to-end analysis of high-content time-lapse microscopy./"
 
 - Discovered a link between cytosolic pH oscillation, acidification, and cell division rate in budding yeast, revealing pervasive metabolic oscillations at the single-cell level
 - Developed the [[https://github.com/afermg/aliby][ALIBY]] framework (segmentation, tracking, single-cell extraction) that fully automated time series analysis, increasing throughput by 15×, later extended for the Broad's automated profiling pipelines
@@ -62,19 +62,10 @@ Computational biologist who identifies the bottlenecks of biological discovery a
 
 Modelled and experimentally validated diffusion-driven antibiotic resistance; identified potential phylogenetic markers in /Staphylococcus/ genomes.
 
-** Research Internships
+*\large{Research Internships}*
 
-- *Max Planck Institute for Evolutionary Biology, Germany (2018):* Neutral selection models linking host reproduction to microbial evolution
-- *University of Northern British Columbia, Canada (2017):* Clinical target classification from gastric cancer microarrays
-
-* Skills
-
-- *Systems & reproducibility:* Nix/NixOS, containers (Docker, Podman), monorepo design, cloud (AWS, GCP), CI/CD
-- *Scientific computing:* GPU programming (JAX, CuPy), Dask, high-performance statistical testing, Nextflow
-- *Languages (10+ years):* Python (scientific stack), Bash, Julia, SQL/DuckDB, R, Rust, Nix
-- *Data & analysis:* mAP/information retrieval frameworks, signal processing, batch correction methods
-- *Deep learning:* PyTorch, TensorFlow, scikit-learn/scikit-image, ML devops
-- *Wet lab:* Fluorescence microscopy, high-content time-lapse imaging, microfluidic device design, yeast experimental protocols
+- *Max Planck Institute for Evolutionary Biology, Germany* (2018): Neutral selection models linking host reproduction to microbial evolution
+- *University of Northern British Columbia, Canada* (2017): Clinical target classification from gastric cancer microarrays
 
 * Awards & Funding
 
@@ -100,14 +91,23 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 - Wongprommoon, A., *Muñoz, A.F.*, et al. "Single-Cell Metabolic Oscillations Are Pervasive and May Alleviate a Proteome Constraint." /bioRxiv/, 2024.
   *Key contributor. Developed the image processing framework to identify single-cell metabolic oscillations.*
 
+* Skills
+
+- *Systems & reproducibility:* Nix/NixOS, containers (Docker, Podman), monorepo design, cloud (AWS, GCP), CI/CD
+- *Scientific computing:* GPU programming (JAX, CuPy), Dask, high-performance statistical testing, Nextflow
+- *Languages (10+ years):* Python (scientific stack), Bash, Julia, SQL/DuckDB, R, Rust, Nix
+- *Data & analysis:* mAP/information retrieval frameworks, signal processing, batch correction methods
+- *Deep learning:* PyTorch, TensorFlow, scikit-learn/scikit-image, ML devops
+- *Wet lab:* Fluorescence microscopy, high-content time-lapse imaging, microfluidic device design, yeast experimental protocols
+
 * Mentorship
 
-- *2024* — MSc supervisor, Broad Institute: DL methods for biological interpretability of high-content imaging
-- *2021* — MSc supervisor, U. of Edinburgh: Mathematical modelling of resource allocation in cells
-- *2021* — MSc supervisor, U. of Edinburgh: Analysis of fluorescence signals and colocalisation in budding yeast
+- *2024* — MSc supervisor, Broad Institute: DL methods for biological interpretability of high-content imaging; weekly check-in and design of decisions for training data and training of models. Resulted in a retreat poster at the Broad Institute.
+- *2021* — MSc supervisor, U. of Edinburgh: Mathematical modelling of resource allocation in cells; weekly check-ins and discussions on math models, models, resulted in an /MSc Thesis/.
+- *2021* — MSc supervisor, U. of Edinburgh: Analysis of fluorescence signals and colocalisation in budding yeast; weekly check-ins, resulted in an /MSc Thesis/.
 
 * Selected Talks
 
-- *2024/10* — I2K 2024: From Images to Knowledge (Human Technopole, Milan, Italy)
+- *2024/10* — Flash Talk: JUMP-Hub, I2K 2024: From Images to Knowledge (Human Technopole, Milan, Italy)
 - *2024/05* — Cell Circuits and Epigenomics Seminar Series (Broad Institute, Boston, US)
 - *2022/10* — NextGenBUG (University of Edinburgh, Edinburgh, UK)
