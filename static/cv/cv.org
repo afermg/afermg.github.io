@@ -96,7 +96,7 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 - *Systems & reproducibility:* Nix/NixOS, containers (Docker, Podman), monorepo design, cloud (AWS, GCP), CI/CD
 - *Scientific computing:* GPU programming (JAX, CuPy), Dask, high-performance statistical testing, Nextflow
 - *Languages (10+ years):* Python (scientific stack), Bash, Julia, SQL/DuckDB, R, Rust, Nix
-- *Data & analysis:* mAP/information retrieval frameworks, signal processing, batch correction methods
+- *Data & analysis:* signal processing, batch correction methods
 - *Deep learning:* PyTorch, TensorFlow, scikit-learn/scikit-image, ML devops
 - *Wet lab:* Fluorescence microscopy, high-content time-lapse imaging, microfluidic device design, yeast experimental protocols
 
