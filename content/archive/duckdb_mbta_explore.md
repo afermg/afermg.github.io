@@ -1,5 +1,5 @@
 +++
-title = "Duckdb for the MBTA public dataset :duckdb:data-science:@workflow:opendata:"
+title = "Duckdb for the MBTA public dataset :@workflow:duckdb:data-science:opendata:"
 author = ["Alán F. Muñoz"]
 date = 2026-04-12T12:40:00-04:00
 draft = false
