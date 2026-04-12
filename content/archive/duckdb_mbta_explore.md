@@ -222,8 +222,10 @@ LIMIT 10;
 Indeed all the stations under 530 days recorded are part of the [Green Line extension](https://en.wikipedia.org/wiki/Green_Line_Extension), opened in 2022. We know that they were running at the time this dataset was collected, so it is a bit surprising that they have the most missing data (even if less than 10%). I am curious about the stations that people use the most. Let's look at the top 10 stations with the most gated entries.
 
 ```sql
-.maxrows 12
-SELECT station_name,route_or_line,CAST(SUM(gated_entries) AS INT) AS gated_entries FROM gated_entries GROUP BY station_name, route_or_line ORDER BY gated_entries DESC;
+SELECT station_name, route_or_line, CAST(SUM(gated_entries) AS INT) AS gated_entries
+FROM gated_entries
+GROUP BY station_name, route_or_line
+ORDER BY gated_entries DESC;
 ```
 
 ```text
@@ -240,14 +242,13 @@ SELECT station_name,route_or_line,CAST(SUM(gated_entries) AS INT) AS gated_entri
 │      ·            │    ·          │           ·   │
 │      ·            │    ·          │           ·   │
 │      ·            │    ·          │           ·   │
-│ Suffolk Downs     │ Blue Line     │        259318 │
 │ Government Center │ Blue Line     │        258449 │
 │ Union Square      │ Green Line    │        186641 │
 │ Ball Square       │ Green Line    │        174971 │
 │ Magoun Square     │ Green Line    │        154011 │
 │ East Somerville   │ Green Line    │         92067 │
 ├───────────────────┴───────────────┴───────────────┤
-│ 78 rows (12 shown)                      3 columns │
+│ 78 rows (11 shown)                      3 columns │
 └───────────────────────────────────────────────────┘
 ```
 
