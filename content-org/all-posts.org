@@ -1,4 +1,5 @@
 #+hugo_base_dir: ../
+#+hugo_section: archive
 #+toc: headlines 1
 
 * Not exported                                                     :noexport:
@@ -140,8 +141,8 @@ UDF vs lambda in polars.
 * DONE Duckdb for the MBTA public dataset :duckdb:data-science:@workflow:opendata:
 CLOSED: [2026-04-12 Sun 12:40]
 :PROPERTIES:
-:header-args:duckdb: :session test_session :db test.duckdb :exports both
-:EXPORT_FILE_NAME: duckdb-exploration-mbta
+:header-args:sql: :session mbta_explore :db mbta_explore.duckdb :exports both :eval never-export :tangle mbta_explore.sql
+:EXPORT_FILE_NAME: duckdb_mbta_explore
 :ID:       5b2d527f-5b51-4b03-ab3c-28dae0e0fb76
 :CREATED:  [2026-04-12 Sun 09:49]
 :END:
@@ -157,9 +158,9 @@ There are multiple available (tabular) datasets:
 - Gated station entries
 - Passenger surveys
 
-#+begin_src sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql
+#+begin_src sql
   .maxrows 11
-  
+
   INSTALL httpfs;
   LOAD httpfs;
 
@@ -197,7 +198,7 @@ There are multiple available (tabular) datasets:
   Lastly, we describe the table and I like to filter out other columns that are not informative. I predominantly care about the column names and data types. Here the ones we care about are either =total_monthly_weekday_ridership= or =average_monthly_weekday_ridership= alongside =route_or_line=.
 
 We will thus group by route or line to see the average ridership per route.
-#+begin_src sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql
+#+begin_src sql
   SELECT route_or_line, CAST(MEAN(total_monthly_weekday_ridership) AS INTEGER) AS mean_monthly_weekday_ridership FROM monthly_ridership GROUP BY route_or_line ORDER BY mean_monthly_weekday_ridership DESC;
 #+END_SRC
 
@@ -227,7 +228,7 @@ We can see here all 5 lines of the metro system, in addition to commuter rail, b
 
 Gated entries give info on specific entrances. We first fetch the table and print the schema.
 
-#+begin_src sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql
+#+begin_src sql
   CREATE OR REPLACE TABLE gated_entries AS (SELECT * FROM read_csv('https://hub.arcgis.com/api/v3/datasets/001c177f07594e7c99f193dde32284c9_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1'));
   SELECT column_name, column_type FROM (DESCRIBE gated_entries);
 #+END_SRC
@@ -250,7 +251,7 @@ Gated entries give info on specific entrances. We first fetch the table and prin
 
 The schema makes sense in general, we care the most about =station_name=, =route_or_line= and =gated_entries=. Before aggregating, it is worth checking the time span the data covers.
 
-#+begin_src sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql :wrap example
+#+begin_src sql :wrap example
   SELECT MIN(service_date) AS start_date, MAX(service_date) AS end_date FROM gated_entries;
 #+END_SRC
 
@@ -266,7 +267,7 @@ The schema makes sense in general, we care the most about =station_name=, =route
 
 So the dataset covers about a year and a half, from August 2024 to February 2026. We can perform "quality control" to check if there are stations with very few records.
 
-#+begin_src sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql
+#+begin_src sql
   SELECT days_recorded,
   COUNT(*) AS num_stations,
   FIRST(route_or_line) AS example_line
@@ -288,9 +289,9 @@ So the dataset covers about a year and a half, from August 2024 to February 2026
 ├───────────────┼──────────────┼──────────────┤
 │           553 │           26 │ Red Line     │
 │           552 │            3 │ Orange Line  │
-│           551 │            4 │ Blue Line    │
-│           550 │            2 │ Red Line     │
-│           549 │            4 │ Green Line   │
+│           551 │            4 │ Orange Line  │
+│           550 │            2 │ Blue Line    │
+│           549 │            4 │ Orange Line  │
 │           548 │            3 │ Blue Line    │
 │            ·  │            · │     ·        │
 │            ·  │            · │     ·        │
@@ -307,7 +308,7 @@ So the dataset covers about a year and a half, from August 2024 to February 2026
 
 My first impression is that the Green Line has fewer records than the others. If you have lived in Boston this should make sense, since part of the Green Line runs like a tram/light rail, I would thus expect the logistics of data collection to be trickier in above-ground stations. 
 
-#+begin_src sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql
+#+begin_src sql
   SELECT route_or_line, ROUND(AVG(days_recorded),1) AS avg_days_per_station
   FROM (
     SELECT route_or_line, station_name, COUNT(DISTINCT service_date) AS days_recorded
@@ -335,7 +336,7 @@ My first impression is that the Green Line has fewer records than the others. If
 
 Are the stations above ground the ones with fewer records?
 
-#+begin_src sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql
+#+begin_src sql
   SELECT station_name, COUNT(DISTINCT service_date) AS days_recorded
   FROM gated_entries
   WHERE route_or_line = 'Green Line'
@@ -352,8 +353,8 @@ Are the stations above ground the ones with fewer records?
 ├─────────────────┼───────────────┤
 │ Union Square    │           512 │
 │ Magoun Square   │           518 │
-│ Medford/Tufts   │           523 │
 │ Ball Square     │           523 │
+│ Medford/Tufts   │           523 │
 │ East Somerville │           523 │
 │ Gilman Square   │           526 │
 │ Copley          │           536 │
@@ -367,7 +368,7 @@ Are the stations above ground the ones with fewer records?
 
 Indeed all the stations under 530 days recorded are part of the [[https://en.wikipedia.org/wiki/Green_Line_Extension][Green Line extension]], opened in 2022. We know that they were running at the time this dataset was collected, so it is a bit surprising that they have the most missing data (even if less than 10%). I am curious about the stations that people use the most. Let's look at the top 10 stations with the most gated entries. 
 
-#+begin_src sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql
+#+begin_src sql
   .maxrows 12
   SELECT station_name,route_or_line,CAST(SUM(gated_entries) AS INT) AS gated_entries FROM gated_entries GROUP BY station_name, route_or_line ORDER BY gated_entries DESC;
 #+END_SRC
@@ -402,7 +403,7 @@ There are two issues with naive aggregation: First, some stations are part of mu
 
 We thus adjust our query to make these changes: Aggregate data from different lines and normalize it by the number of days recorded for each station.
 
-#+BEGIN_SRC sql :session test_session :db test.duckdb :exports both :tangle duckdb_mbta.sql
+#+BEGIN_SRC sql
   SELECT
     station_name,
     LIST(DISTINCT route_or_line) AS lines,
@@ -418,10 +419,10 @@ We thus adjust our query to make these changes: Aggregate data from different li
 │   station_name    │           lines           │ avg_daily_entries │
 │      varchar      │         varchar[]         │       int32       │
 ├───────────────────┼───────────────────────────┼───────────────────┤
-│ North Station     │ [Green Line, Orange Line] │             11315 │
-│ South Station     │ [Silver Line, Red Line]   │             10342 │
+│ North Station     │ [Orange Line, Green Line] │             11315 │
+│ South Station     │ [Red Line, Silver Line]   │             10342 │
 │ Harvard           │ [Red Line]                │              9691 │
-│ Downtown Crossing │ [Orange Line, Red Line]   │              9492 │
+│ Downtown Crossing │ [Red Line, Orange Line]   │              9492 │
 │ Back Bay          │ [Orange Line]             │              8774 │
 │ Park Street       │ [Green Line, Red Line]    │              8017 │
 │      ·            │      ·                    │                ·  │
