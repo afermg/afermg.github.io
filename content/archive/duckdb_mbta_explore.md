@@ -1,7 +1,9 @@
 +++
-title = "Duckdb for the MBTA public dataset :@workflow:duckdb:data-science:opendata:"
+title = "Exploring the MBTA public dataset using DuckDB"
 author = ["Alán F. Muñoz"]
 date = 2026-04-12T12:40:00-04:00
+tags = ["duckdb", "datascience", "opendata"]
+categories = ["workflow"]
 draft = false
 +++
 

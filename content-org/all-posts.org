@@ -138,7 +138,7 @@ UDF vs lambda in polars.
 *** Getting training working
 - reusing microbiology's fixes
 
-* DONE Duckdb for the MBTA public dataset :@workflow:duckdb:data-science:opendata:
+* DONE Exploring the MBTA public dataset using DuckDB :@workflow:duckdb:datascience:opendata:
 CLOSED: [2026-04-12 Sun 12:40]
 :PROPERTIES:
 :header-args:sql: :session mbta_explore :db mbta_explore.duckdb :exports both :eval never-export :tangle mbta_explore.sql
