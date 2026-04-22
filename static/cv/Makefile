@@ -38,7 +38,7 @@ pub/pdf/%.pdf: %.org
 # 	@echo "NOTICE: HTML documentation published"
 
 publish: pdf
-#	@find pub -name *.*~ | xargs rm -f
+	@find pub -name *.*~ | xargs rm -f
 	@(cd pub/pdf && tar czvf /tmp/org-cv-publish.tar.gz .)
 	@rm -r pub
 	@git checkout gh-pages
