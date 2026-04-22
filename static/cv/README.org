@@ -6,3 +6,5 @@ Provided you have nix this should be all you need.
 #+begin_src shell
 nix develop . --command bash -c "make publish"
 #+end_src
+* How does it work?
+The Makefile uses an isolated emacs instance to publish the PDF to pub/cv.pdf. It is them moved to this folder. The Makefile then pushes it to gh-pages, from where it is linked on my website.
