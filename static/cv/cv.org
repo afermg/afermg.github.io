@@ -22,7 +22,8 @@
 \textbf{\Large{Alán F. Muñoz}}\\
 (857)-919-9011 |
 \href{mailto:alan@quasimorphic.com}{alan@quasimorphic.com} | \href{https://github.com/afermg}{github.com/afermg} |
-\href{https://scholar.google.com/citations?user=au0H13AAAAAJ}{Google Scholar}
+\href{https://scholar.google.com/citations?user=au0H13AAAAAJ}{Google Scholar} |
+\href{https://www.linkedin.com/in/alanfmunoz}{Linkedin}
 \end{center}
 \vspace{-4pt}\color{black}\titlerule 
 
