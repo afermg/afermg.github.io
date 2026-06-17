@@ -15,4 +15,4 @@ As it happens, earlier today I had a discussion with a colleague about the trade
 
 Disclaimer: I don't mean to make fun of anyone. Tech illiteracy is a real issue, we should build tools that are accessible and easy to learn. That said: Dear prospective landlord, if you are reading this, I think you would like me as a tenant because I have an unnatural skill to keep Nigerian princes at bay.
 
-Update: Turns out it is possible to receive FaceTime on an Android phone, but it requires the Chrome browser as of 2026.
+Update: Turns out it is possible to receive FaceTime on an Android phone, but it requires the Google Chrome as of 2026.
