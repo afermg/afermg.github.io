@@ -3,6 +3,109 @@
 #+toc: headlines 1
 
 * Not exported                                                     :noexport:
+** How we leverage agentic workflows (JX)
+*** Background
+**** The challenges we face
+- Reproducibility. Biology already faces experimental reproducibility [TODO add citation]. 
+- When testing prototypes is easy, knowing what is worth building acquires more importance.
+  
+**** Background in Computer science
+# Literate programming
+Literate programming is a method where we combine a programming language with the documentation [https://dl.acm.org/doi/abs/10.1145/3313831.3376729]. This contrasts with library-based development in which code dominates the length, with documentation being a second-class citizen. Its most iconic representative are Jupyter Notebooks [https://escholarship.org/uc/item/08b3d4s2]. The documentation in literate notebooks often explains the "why" something is done, instead of the "what". When applied to a specific domain such as biology, documentation can explain the scientific questions, whereas the code represents the practical implementation as to how to answer those questions. The explanation and the practical aspects are complementary.
+
+Modern computational scientific notebooks use live programming environments, defined as systems for dynamic languages where there is responsive and continuous feedback about how edits affect program execution [https://dl.acm.org/doi/abs/10.1145/1297105.1297073]. The most common example is notebook REPLs (Read-Evaluate-Print-Loop).
+
+# TODO probably unnecessary
+If we were to dive deeper, image based (or residential) programming, self-contained worlds where code and data persist in a single file [https://arxiv.org/abs/2110.08993].  Under this paradigm we are supporting a living system, not just prototyping an idea [      https://www.patrickdomanico.com/bpm/2026/06/16/inventing-the-future-one-lisp-machine-at-a-time/
+]. Its most common representative is SmallTalk, one of the most influential languages [https://dl.acm.org/doi/pdf/10.1145/234286.1057828].
+
+The current standard for data science workflows are Jupyter notebooks. While they have been a boon to disseminate analyses, the way they work leaves a lot to be desired [https://www.microsoft.com/en-us/research/wp-content/uploads/2020/03/chi20c-sub8173-cam-i16.pdf
+]: Limited reproducibility. Some formats solve a few of these problems, such as org-babel for multi-language reproducible notebooks [https://dl.acm.org/doi/abs/10.1145/2723872.2723881], but not one notebook format has become standard.
+
+More recently, a new generation of notebooks has been released independently for multiple languages: Observable for javascript, Pluto for Julia, Clerk for Clojure and Marimo for Python [https://www.nature.com/articles/d41586-021-01174-w]. A shared feature across these is their reactivity: Changing the state of one of the parts of the code propagates to the downstream dependents. This ensures that an the code blocks and their outputs are consistent and the notebook is reproducible for all practical purposes.
+
+Another important component of data science is the interactive exploration of data. These allow for the data scientist practicioners to get a sense of how their data looks, information that then they use to ask follow-up questions and develop new analyses.  The idea is not new, Racket, a domain-specific language builder, has multiple libraries that enable the combination of interactive components and code [https://users.cs.northwestern.edu/~robby/pubs/papers/sfp2010-bff.pdf, https://arxiv.org/pdf/2010.12695]. it also  In industry "Business Intelligence" solutions are the norm, in academia some popular ones are Streamlit "apps" https://link.springer.com/book/10.1007/978-1-4842-8111-6. The Jupyter notebook extension interactive widgets [https://users.cs.northwestern.edu/~robby/pubs/papers/sfp2010-bff.pdf] adds this functionality too. Each of these solutions is specific to their language and domain, thus anywidget was developed as a specification for web-based widgets, to work universally [https://joss.theoj.org/papers/10.21105/joss.06939.pdf].
+
+The last relevant component are agentic tools, while not necessary for reproducibility, they greatly accelerate the feedback loop by removing the cognitive debt of data wrangling and plotting, leaving only the keys decisions. These can be seen as inheritors of no-code tools with the very limited scope of (1) building small tools, (2) leverage existing libraries and/or (3) enable rapid visualisation that help interpreting results. This would replace apps like streamlit, but some hybrid version such as marimo pair is available, combining multiple tools into a very versatile notebook-app hybrid.
+https://bauplanlabs.github.io/SAO-workshop/papers/45.pdf
+
+*** In recent years a set of tools enabled fast iteration
+Composable notebooks where each notebooks solves a well-curated problem, is documented by a domain expert, and 
+- Marimo: Reproducible . More than the reactive component, a useful seems to be 
+- uv: Fast Python dependency management
+- DuckDB: Fast datababase querying (with plotting add-on)
+- Nix: The largest repository of reproducible environments (for tools outside Python)
+- Marimo + marimo-pair + anywidget: Create custom interfaces to explore, interact and annotate data
+  Executing the code of generated code via live programming can streamline certain tasks [https://dl.acm.org/doi/full/10.1145/3613904.3642495 ]
+*** Discussion
+A combination of literate programming and reproducible and efficient tools can accelerate the pace at which experts push their domain.
+Why, not how must be encoded. This, at least currently, cannot be done by the LLMS [TODO cite Djikstra]. An expert is required at this step.
+It is unclear if the CLI tools, MCP servers or REPLs are the best way forward, or if there is one interface that is then "best", whatever that means.
+Expert-driven iterative adjustments (in-context learning) to 
+Mention  Djijkstra's "On the foolishness" [https://link.springer.com/content/pdf/10.1007/BFb0014656.pdf]
+Right now, there is not silver bullet. Experts are still needed to guide the loop.
+- Do we care more about reproducbility or composability? (as per Johan's comment)
+  
+**** When should we build a library vs notebooks?
+
+*** Acknowledgements
+- Trevor from Marimo
+
+
+** Things I have vibe coded
+- Convert the Acadia hiking from a reddit comment itinerary into a KBL route readable on my phone's Organic Maps.
+- Flat hunting
+- Implementing board games in tabletop-simulator
+  
+** Training an LLM to find ads in my RSS
+*** Overall pipeline
+- Pull audio from RSS
+- Transcribe and add annotaitons it using qwen
+- Convert the audio into a 2D array through spectograms
+- Use the annotations to find the ads using a CNN
+- Export in ONNX format to 
+  
+*** My overall idea
+Large models are very powerful but very expensive, a small embeddable mode 
+*** CNNs to process audio
+- spectograms
+*** A curation TUI to quickly annotate suspicious text sections
+** Nixifying overleaf and deploying my own instance
+*** Use case
+- Collaborating with other members of my team in a common document with automated latex export
+- Backing up
+*** Challenges
+- Originally the deployment method was used via dockers
+- Loads of moving parts
+*** Building
+- Based it off existing work on it https://github.com/Adega318/nix-overleaf
+- Remove all the container-based components (docker/podman) and favour pure-nix flavours
+- Deal w
+*** Deployment
+
+  
+** Agentic workflows on the day-to-day
+*** Marimo-pair
+**** The good
+**** The bad
+- Frequent server restarts make working in different notebooks concurrently a bad experience
+- New tasks for a different notebooks trigger a new server deployment
+- Guardrails are finnicky
+- Long-lasting processes
+**** The ugly
+
+** My emacs workflow
+[[https://github.com/afermg/nix-configs/blob/8a78c62dd9c037af469a55eaa89ac71a85f963c8/modules/shared/config/emacs/config.org][My current emacs config]]
+
+*** org-mode
+**** babel notebooks (duckdb)
+*** RSS: elfeed
+*** File management: dired/dirvish
+*** meow for modal editing
+*** Coding
+**** LSP/python
+
+  
 ** Things I wish I knew when I started my PhD
 
 A few people around me recently started their PhDs or are about to, and I was asked for tips. I think they just wanted to be polite, but I decided to write about it because I find Boston surprisingly dull in winter. My experience is a drop in the water, but maybe there is value in the things I wish I knew back when I started. The fact that you enrolled in a PhD programme speaks of your determination and trajectory (also a little bit of your internalized masochism).
@@ -21,7 +124,7 @@ A few people around me recently started their PhDs or are about to, and I was as
 - Develop your technical skills, even if you don't take classes during your PhD. You have the unique opportunity to delve into a topic or method for months on end.
   - Initiative: Aim to be proactive, choose projects that interest you and that will develop skills that you want to get.
   - Writing: I highly recommend watching this lecture: [[https://www.youtube.com/watch?v=vtIzMaLkCaM]["UChicago: The Craft of Writing Effectively"]]: "No one cares what you think. They care what they think. Write to change minds.". Practice writing as much as you can. It is a process to order your thoughts in the end (that is why I write these blogposts, even if no one will read them).
-  - Master your tools: Tools improve our lives and make us more productive. If you are computational, learn those CLIs, IDEs, and whatnot. Not because they make you write faster, but because they free your head to focus on the important problems by making all the dull tasks trivial. Be wary of [[https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/][reverse centaurs]], where you are the assistant to the machines. LLMs can be very useful, but use them consciously.
+  - Master your tools: Tools improve our lives and make us more productive. If you are computational, learn those CLIs, IDEs, and whatnot. Not because they make you write faster, but because they free your head to focus on the important problems by making all the dull tasks trivial. Be wary of [[https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/][reverse centaurs]], where you are the assistant to the machines. LLMs can be very useful, but use them judiciously.
 - At some point during your PhD, you will realize that you know things. It's hard to say when it happens, but suddenly it will hit you: You are not clueless any more, and you will be confident to defend your arguments
   
 *** Tools
@@ -46,9 +149,9 @@ On a practical note, tools that I found (and still find) useful.
 - Learn to pace yourself. An expression I heard more times than I cared to count was: "A PhD is a marathon, not a sprint". Working every weekend may seem like a necessity but (unless you are performing biological experiments) it is likely to lead to burn-out. Knowing when to stop is an important skill to learn during this time.
 - I was ready to give up until the last few months of my PhD. I know multiple people who either changed programs halfway through or did not finish their PhD altogether. This does not reflect on their quality as researchers or people, as there are a myriad of situations that can lead to someone not being able to graduate.
 
-*** Conclusion
+*** To wrap up
 
-Despite all its issues, I think a PhD can be an enriching experience. We seldom get to get paid to do what we like (even the pay can be downright offensive), or get the guarantee that we will be employed in one place multiple years.  Best of luck, I'm sorry for your loss.
+Despite all its issues, I think a PhD can be an enriching experience. We seldom get to get paid to do what we like (even the pay can be downright offensive), or get the guarantee that we will be employed in one place multiple years. Best of luck, I'm sorry for your loss.
 
 ** A portable approach to distribute image-based results
 *** Introducion
@@ -130,6 +233,64 @@ UDF vs lambda in polars.
 ** Agenix secrets via flakes
 - Make note of the steps and what I actually copied
 
+** Favourite places in Mexico City (Cdmx)
+Every once in a while I get asked for recommendations on Mexico City.
+
+I've never lived there but I have spent enough time there while living close by. This is more on my list of favourite places, they won't be anything extraordinary but they match to my taste. Most are public-transport friendly. I'll avoid a couple of things because I think it is good to leave the locals with some spaces that are just theirs, and it would be hard to navigate there without speaking spanish. Google maps + the subway should get you covered for most these suggestions, but you can always take a taxi -- or a lift/uber if you don't speak spanish and are concerned.
+
+Don't try to do too much, the city is massive (both in size and people) and it takes forever to move to far away places. I added approximate pronunciations because I'm nice and I'm being considerate to the pepole you will encounter ;).
+
+*** Art
+- I love the [[https://maps.app.goo.gl/oB31dsSB36JPPZos8][National Art Museum]], not only the exhibitions (they may still have Leonora Carrington, she's a must), but the building itself is gorgeous.
+- [[https://maps.app.goo.gl/hUH3jnUzYQzM6LXz7][National Museum of Popular Art]]. This is both Art and Culture. One of my favourites, you can see the diverse ranges of artistic expression of Mexican cultures. Tons of [[https://en.wikipedia.org/wiki/Alebrije][alebrijes]] as well.
+- [[https://maps.app.goo.gl/ZtRWzGyyu7W5hLAHA][Franz Mayer Museum]]. Nice middle-sized museum adjacent to Alameda Central
+- [[https://maps.app.goo.gl/tycUj1oUPgc1Kqir6][Bellas Artes Museum]]. One of the big art museums in cdmx, right between Zocalo and the monument to the revolution
+  
+*** Culture
+- [[https://maps.app.goo.gl/avh7GMHASt1Ujujh7][Teotihuacan]] (Te-o-tee-wa-CAN) Pyramids. Take a bus from the north station to the pyramids. This will likely be a day-trip. There is a restaurant close by called "La Gruta" which is inside a cavernous formation (it's less sketchy than it sounds).
+- Coyoacan (Caw-yaw-a-CAN). One of the oldest districts of cdmx. Nice to be around. Frida Kahlo and Diego Rivera used to be here. I'm not a fan of Kahlo's blue house museum but it may be worth if you're into art. FYI Trotsky was almost assassinated here (they got them elsewhere in Cdmx)
+- La Condesa/Polanco. Nice areas, but they are too gentrified for my taste. Folks from the US love it though.
+  
+*** History
+- [[https://maps.app.goo.gl/DfseptRDAS8g584V8][Chapultepec]] (Cha-pool-te-PEC) Park and Castle (4-5 hours). The only royal palace (despite the name) in North America inhabited by monarchs.
+- [[https://maps.app.goo.gl/1zemBUVFMrJPJ99P6][Antropology and History Museum]] (INAH). (Half-to-whole day). In my biased opinion the best museum for prehispanic culture and history ini the world. It cannot be finished in one day but you should be able to get a good overview of prehispanic.
+- Walk from [[https://maps.app.goo.gl/kCgmqqPYNPYNq7mD9][Zocalo]] to the monument of revolution, You'll pass by the Bellas Artes palace (Now a museum and concert hall). This is the main historical corridor of the city, always crowded but crowd-watching is nice.
+- Templo mayor. Temple rediscovered in the 70s. They hold really amazing prehispanic pieces.
+- [[https://maps.app.goo.gl/QKynkBbqpHZw3bM58][Museum of Memory and Tolerance]]. Not the cup of tea for many people, they have exhibit's on worlds genocides. It was very impactful when I went there a decade ago. Fun fact: They offered Trump a free ticket at some point a decade ago.
+- [[https://maps.app.goo.gl/mA93PWnPbjdH5Xsu9][Trotsky's home museum]]. This is where he lived and was killed.
+  
+*** Shopping
+Pretty much all the souvenirs you want you can find in [[https://maps.app.goo.gl/fnzjbVWiC1EKKDb59][Mercado la Ciudadela]]. The last couple of times I have been I've seen more internationals. Bring cash!
+Coyoacan's market also has some stuff, but there is more volume and variety in Ciudadela.
+You may also find interesting things in the museums, especially the culture ones.
+
+*** Food
+Not even gonna recommend many places. It is one of the food capitals of the world, most places are very good. Beware if you are not used to spices, some meals may be too heavy for your stomach.
+- Tacos al pastor. The essential cdmx taco. Pretty much anywhere is good, but you may want to go a restaurant if your tummy is a coward.
+- Tacos de canasta. Everyman's taco. Go to [[https://maps.app.goo.gl/VCtaor9aVSery8a86][los especiales]] by el Zocalo.
+- Pulque (Try multiple flavours, but also the natural i.e., with no fruit mixed-in). My place is [[https://maps.app.goo.gl/hMcR4cVo3qZDU9dMA][la paloma azul]] but it may be awkward unless you speak spanish.
+- Churrería el Moro. Curros and chocolate. Simple but effective.
+- Mezcales (maybe agave azul in Coyoacan? expensive but good)
+  - If you find them in any menu, try these:
+    - Sotol: Mezcal-like beverage from Chihuahua
+    - Bacanora: Mezcal from the West Sierra Madre in Sonora
+
+- Tamal(es). You may not find them all but these are all really good flavours
+  - Mole
+  - Pollo en salsa verde
+  - Rajas con queso
+  - Sweet
+  - Elote (Yes, more corn)
+- Quesadillas de huitlacoche (corn smut quesadilla)
+- Quesadillas de flor de calabaza (Zucchini flower quesadilla)
+  
+**** Feeling adventurous?
+- Escamoles (Ant egs, caviar-like)
+- Chapulines (Grasshoppers). Yum spicy+sour+cruncy snack. I'll die on this hill.
+- Gusano de maguey: Maguey worm. The thing from mezcal. Served in a platter. Good but a bit fatty.
+
+
+  
 ** Nixifying DINOv2 for fine-tuning :nix:deeplearning:python:awk:@post:noexport:
 :PROPERTIES:
 :EXPORT_FILE_NAME: nixifying-dinov2-for-fine-tuning
