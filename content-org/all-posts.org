@@ -3,55 +3,85 @@
 #+toc: headlines 1
 
 * Not exported                                                     :noexport:
-** How we leverage agentic workflows (JX)
+** JX, or how to stop worrying and embrace the agents.
 *** Background
 **** The challenges we face
-- Reproducibility. Biology already faces experimental reproducibility [TODO add citation]. 
-- When testing prototypes is easy, knowing what is worth building acquires more importance.
-  
-**** Background in Computer science
-# Literate programming
-Literate programming is a method where we combine a programming language with the documentation [https://dl.acm.org/doi/abs/10.1145/3313831.3376729]. This contrasts with library-based development in which code dominates the length, with documentation being a second-class citizen. Its most iconic representative are Jupyter Notebooks [https://escholarship.org/uc/item/08b3d4s2]. The documentation in literate notebooks often explains the "why" something is done, instead of the "what". When applied to a specific domain such as biology, documentation can explain the scientific questions, whereas the code represents the practical implementation as to how to answer those questions. The explanation and the practical aspects are complementary.
+- Reproducibility. Biology already faces an experimental reproducibility crisis [TODO: add citation]. Computational analyses introduce another layer that we must make reproducible.
+- Prioritization. When prototypes are easy to generate, deciding what is worth building becomes more important.
 
-Modern computational scientific notebooks use live programming environments, defined as systems for dynamic languages where there is responsive and continuous feedback about how edits affect program execution [https://dl.acm.org/doi/abs/10.1145/1297105.1297073]. The most common example is notebook REPLs (Read-Evaluate-Print-Loop).
+**** Literate and live programming
+Literate programming combines source code with prose documentation ([[https://dl.acm.org/doi/abs/10.1145/3313831.3376729][research on documentation in computational notebooks]]). Unlike library-centered development, where code is primary and documentation is often a second-class concern, literate notebooks treat explanation and implementation as complementary. The most familiar contemporary example is the [[https://escholarship.org/uc/item/08b3d4s2][Jupyter notebook]]. In a domain such as biology, the prose can explain the scientific question and why an analysis is being performed, while the code records how to answer that question.
 
-# TODO probably unnecessary
-If we were to dive deeper, image based (or residential) programming, self-contained worlds where code and data persist in a single file [https://arxiv.org/abs/2110.08993].  Under this paradigm we are supporting a living system, not just prototyping an idea [      https://www.patrickdomanico.com/bpm/2026/06/16/inventing-the-future-one-lisp-machine-at-a-time/
-]. Its most common representative is SmallTalk, one of the most influential languages [https://dl.acm.org/doi/pdf/10.1145/234286.1057828].
+Modern computational notebooks also draw from [[https://dl.acm.org/doi/abs/10.1145/1297105.1297073][live programming]]: systems for dynamic languages that provide responsive, continuous feedback about how edits affect execution. A common form is the notebook REPL (read-evaluate-print loop).
 
-The current standard for data science workflows are Jupyter notebooks. While they have been a boon to disseminate analyses, the way they work leaves a lot to be desired [https://www.microsoft.com/en-us/research/wp-content/uploads/2020/03/chi20c-sub8173-cam-i16.pdf
-]: Limited reproducibility. Some formats solve a few of these problems, such as org-babel for multi-language reproducible notebooks [https://dl.acm.org/doi/abs/10.1145/2723872.2723881], but not one notebook format has become standard.
+# TODO: Decide whether image-based programming is too far in the weeds.
+Going deeper, image-based (or "residential") programming treats code and data as parts of a persistent, self-contained world ([[https://arxiv.org/abs/2110.08993][an overview of image-based programming]]). Under this paradigm, we support a living system rather than merely prototype an idea ([[https://www.patrickdomanico.com/bpm/2026/06/16/inventing-the-future-one-lisp-machine-at-a-time/][Inventing the Future, One Lisp Machine at a Time]]). Its best-known representative is [[https://dl.acm.org/doi/pdf/10.1145/234286.1057828][Smalltalk]], one of the most influential programming languages.
 
-More recently, a new generation of notebooks has been released independently for multiple languages: Observable for javascript, Pluto for Julia, Clerk for Clojure and Marimo for Python [https://www.nature.com/articles/d41586-021-01174-w]. A shared feature across these is their reactivity: Changing the state of one of the parts of the code propagates to the downstream dependents. This ensures that an the code blocks and their outputs are consistent and the notebook is reproducible for all practical purposes.
+Jupyter notebooks are the current standard interface for data-science workflows. Although they have been a boon for sharing analyses, their flexible execution model can make notebook state difficult to reproduce ([[https://www.microsoft.com/en-us/research/wp-content/uploads/2020/03/chi20c-sub8173-cam-i16.pdf][a study of pain points in computational notebooks]]). Other formats address parts of the problem; for example, [[https://dl.acm.org/doi/abs/10.1145/2723872.2723881][Org Babel supports multilingual, reproducible notebooks]]. Nevertheless, no single notebook format has become a universal standard.
 
-Another important component of data science is the interactive exploration of data. These allow for the data scientist practicioners to get a sense of how their data looks, information that then they use to ask follow-up questions and develop new analyses.  The idea is not new, Racket, a domain-specific language builder, has multiple libraries that enable the combination of interactive components and code [https://users.cs.northwestern.edu/~robby/pubs/papers/sfp2010-bff.pdf, https://arxiv.org/pdf/2010.12695]. it also  In industry "Business Intelligence" solutions are the norm, in academia some popular ones are Streamlit "apps" https://link.springer.com/book/10.1007/978-1-4842-8111-6. The Jupyter notebook extension interactive widgets [https://users.cs.northwestern.edu/~robby/pubs/papers/sfp2010-bff.pdf] adds this functionality too. Each of these solutions is specific to their language and domain, thus anywidget was developed as a specification for web-based widgets, to work universally [https://joss.theoj.org/papers/10.21105/joss.06939.pdf].
+More recently, a new generation of [[https://www.nature.com/articles/d41586-021-01174-w][reactive notebooks]] has emerged across several languages: Observable for JavaScript, Pluto for Julia, Clerk for Clojure, and marimo for Python. Their shared feature is reactivity: changing one part of the code automatically updates its downstream dependents. This keeps code and outputs consistent and improves practical reproducibility.
 
-The last relevant component are agentic tools, while not necessary for reproducibility, they greatly accelerate the feedback loop by removing the cognitive debt of data wrangling and plotting, leaving only the keys decisions. These can be seen as inheritors of no-code tools with the very limited scope of (1) building small tools, (2) leverage existing libraries and/or (3) enable rapid visualisation that help interpreting results. This would replace apps like streamlit, but some hybrid version such as marimo pair is available, combining multiple tools into a very versatile notebook-app hybrid.
-https://bauplanlabs.github.io/SAO-workshop/papers/45.pdf
+Interactive exploration is equally important in data science. It helps practitioners build intuition about their data, which they can then use to ask follow-up questions and develop new analyses. The idea is not new: Racket, a language for building domain-specific languages, has libraries that combine code with interactive components ([[https://users.cs.northwestern.edu/~robby/pubs/papers/sfp2010-bff.pdf][an early system]], [[https://arxiv.org/pdf/2010.12695][and later work]]). Business-intelligence systems fill this role in industry; in academia, popular examples include [[https://link.springer.com/book/10.1007/978-1-4842-8111-6][Streamlit apps]] and [[https://users.cs.northwestern.edu/~robby/pubs/papers/sfp2010-bff.pdf][interactive widgets for Jupyter notebooks]]. Because these solutions are often specific to a language or domain, [[https://joss.theoj.org/papers/10.21105/joss.06939.pdf][AnyWidget]] was developed as a specification for portable, web-based widgets.
 
-*** In recent years a set of tools enabled fast iteration
-Composable notebooks where each notebooks solves a well-curated problem, is documented by a domain expert, and 
-- Marimo: Reproducible . More than the reactive component, a useful seems to be 
-- uv: Fast Python dependency management
-- DuckDB: Fast datababase querying (with plotting add-on)
-- Nix: The largest repository of reproducible environments (for tools outside Python)
-- Marimo + marimo-pair + anywidget: Create custom interfaces to explore, interact and annotate data
-  Executing the code of generated code via live programming can streamline certain tasks [https://dl.acm.org/doi/full/10.1145/3613904.3642495 ]
+Agentic tools, although not required for reproducibility, can shorten the feedback loop by handling routine data wrangling and plotting, leaving experts to make the key decisions. In this role, they inherit a narrow slice of no-code tooling: (1) building small tools, (2) leveraging existing libraries, and (3) creating rapid visualizations that help experts interpret results. They can serve some of the same needs as apps such as Streamlit, while hybrid systems such as [[https://github.com/marimo-team/marimo-pair][marimo-pair]] combine agents with a reproducible notebook-app environment. Related work on agentic data-science workflows is described in [[https://bauplanlabs.github.io/SAO-workshop/papers/45.pdf][this workshop paper]].
+
+**** Modern tools
+In recent years, the Python and data-science ecosystems have improved substantially in packaging, interactivity, and high-performance analytical tooling. Chief among these changes are =uv=, a fast Python package and project manager; =marimo=, a reactive Python notebook that supports the AnyWidget standard for expert-driven exploration; and =DuckDB=, a high-performance analytical database. Together, these tools reduce many of the usual bottlenecks in data-processing pipelines.
+
+Executing agent-generated code inside a live-programming environment can also streamline some tasks in agentic workflows ([[https://dl.acm.org/doi/full/10.1145/3613904.3642495][research on live programming with generated code]]).
+
+# TODO: Consider HyperCard as an example of exploring notebooks nonlinearly.
+
+**** What is JX?
+We propose JX as a method for solving research problems by building a catalog of reusable tools shaped through interactive development. Agentic workflows accelerate data-processing and plotting steps. Rather than prematurely building a library—which requires tests, documentation, and carefully designed interfaces—we solve each problem through literate programming. The expert biologist articulates the biological question and guides the solution, while marimo (or another reproducible, reactive notebook) ensures that the resulting artifact remains reproducible and that useful components can be extracted and reused.
+
+In this workflow, each notebook solves a well-curated problem and is documented by a domain expert. Each notebook tells its own story; collectively, the notebooks form a general knowledge base for interrogating the JUMP dataset.
+
+- The left-hand extreme is simply running an opaque workflow.
+- The right-hand extreme is an unstructured collection of scripts.
+- JX breaks problems into smaller, reusable components (for example, for retrieval-augmented generation).
+- Interactivity is central: how quickly can expert steering enter the feedback loop?
+
+# TODO: How do we evaluate JX scientifically? Could we compare performance on a set of tasks with and without an expert in the loop, and estimate the time required?
+# TODO: Add Figure 1: a diagram of the expert, learner, and marimo as validator.
+# TODO: Add Figure 2: compare one-shot model attempts with a human-plus-agent workflow. This may be difficult to quantify; do we need it?
+
+*** Results
+We demonstrate this approach through JUMP-eXplore, using the JUMP Cell Painting dataset—specifically, the JUMP Hub and its existing vignettes—as a substrate for building more complex analyses.
+
+For use cases similar to ours, we also release a set of tools for initializing and composing notebooks based on our experience with the JX approach.
+
 *** Discussion
-A combination of literate programming and reproducible and efficient tools can accelerate the pace at which experts push their domain.
-Why, not how must be encoded. This, at least currently, cannot be done by the LLMS [TODO cite Djikstra]. An expert is required at this step.
-It is unclear if the CLI tools, MCP servers or REPLs are the best way forward, or if there is one interface that is then "best", whatever that means.
-Expert-driven iterative adjustments (in-context learning) to 
-Mention  Djijkstra's "On the foolishness" [https://link.springer.com/content/pdf/10.1007/BFb0014656.pdf]
-Right now, there is not silver bullet. Experts are still needed to guide the loop.
-- Do we care more about reproducbility or composability? (as per Johan's comment)
-  
-**** When should we build a library vs notebooks?
+A combination of literate programming, reproducible environments, and efficient tooling can accelerate the pace at which experts advance their domains.
+
+The /why/, not only the /how/, must be encoded. At least today, LLMs cannot reliably supply this context; an expert must guide this step. See also [[https://link.springer.com/content/pdf/10.1007/BFb0014656.pdf][Dijkstra's “On the Foolishness of Natural Language Programming”]].
+
+It remains unclear whether CLI tools, MCP servers, or REPLs are the best interface—or whether any single interface can be considered "best." There is currently no silver bullet; experts are still needed to guide the loop.
+
+- Why not use an MCP server?
+- Expert-driven iterative adjustments provide in-context learning during the workflow.
+- The artifact must remain interpretable by humans so that they can easily spot gaps in agentic workflows.
+- We need to decide whether reproducibility or composability matters more (per Johan's comment).
+- This pattern may generalize to other fields and types of analysis.
+
+**** When should we build a library rather than notebooks?
+The JX approach does not preclude libraries. JX is the top layer, built on existing, documented libraries. When a function extracted from a notebook is both repeated across analyses and stable enough to support a clear interface, it should be promoted to a library and supplied with tests and documentation.
+
+**** Current limitations
+***** Marimo-pair
+- Communication between marimo-pair and agents is not yet optimized.
+- Marimo-pair currently targets Claude-specific workflows rather than the more standard =AGENTS.md= convention.
+- Marimo's limited introspectability increases the cost and time required to complete a task.
+
+***** Future work
+- [[https://github.com/mahimaarora/retrieval-playground/tree/main/retrieval_playground/tutorial][Retrieval Playground tutorial]]
+- [[https://arxiv.org/pdf/2503.02435][Related work (arXiv:2503.02435)]]
+- [[https://github.com/shntnu/rlm-compile][rlm-compile]]
+- [[https://github.com/mahimaarora/retrieval-playground/blob/main/retrieval_playground/tutorial/4_Evaluation.ipynb][Retrieval Playground evaluation tutorial]]
+- [[https://arxiv.org/pdf/2512.24601][Related work (arXiv:2512.24601)]]
 
 *** Acknowledgements
-- Trevor from Marimo
-
-
+- Trevor from marimo.
 ** Things I have vibe coded
 - Convert the Acadia hiking from a reddit comment itinerary into a KBL route readable on my phone's Organic Maps.
 - Flat hunting
