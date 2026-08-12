@@ -38,14 +38,9 @@ pub/pdf/%.pdf: %.org
 # 	@echo "NOTICE: HTML documentation published"
 
 publish: pdf
-	@find pub -name *.*~ | xargs rm -f
-	@(cd pub/pdf && tar czvf /tmp/org-cv-publish.tar.gz .)
-	@rm -r pub
-	@git checkout gh-pages
-	@tar xzvf /tmp/org-cv-publish.tar.gz
-	@if [ -n "`git status --porcelain`" ]; then git add resume.pdf; git commit -m "update doc" && git push --set-upstream origin gh-pages --force; fi
-	@git checkout main
-	@echo "NOTICE: PDF documentation published"
+	@cp pub/pdf/cv.pdf cv.pdf
+	@rm -rf pub
+	@echo "NOTICE: CV PDF generated at static/cv/cv.pdf. Push to main to publish via GitHub Pages."
 
 
 clean:
