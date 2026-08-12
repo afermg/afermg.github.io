@@ -53,6 +53,17 @@ jobs:
               with:
                   submodules: recursive
                   fetch-depth: 0
+            - name: Install Nix
+              uses: cachix/install-nix-action@v31
+              with:
+                  github_access_token: ${{ secrets.GITHUB_TOKEN }}
+                  extra_nix_config: |
+                      experimental-features = nix-command flakes
+            - name: Build CV PDF
+              run: |
+                  nix develop ./static/cv --command make -C static/cv pdf
+                  cp static/cv/pub/pdf/cv.pdf static/cv/cv.pdf
+                  rm -rf static/cv/pub
             - name: Setup Pages
               id: pages
               uses: actions/configure-pages@v5
