@@ -80,17 +80,28 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 
 * Selected Publications ([[https://scholar.google.com/citations?user=au0H13AAAAAJ][Google Scholar]])
 
+- *Muñoz, A.F.*, Fredin Haslum, J., Shen, R., Carpenter, A.E., and Singh, S. "[[https://arxiv.org/pdf/2608.07632][JUMP-lite: Compact, reproducible benchmarking of cell representations]]." /arXiv preprint arXiv:2608.07632/, 2026.
+  *Designed, led and executed the project.*
+
 - *Muñoz, A.F.*, et al. "cp_measure: API-First Feature Extraction for Image-Based Profiling Workflows." /ICML CODEML Workshop/, 2025.
   *Led development. Modular library extracting CellProfiler's measurement engine for programmatic, scalable feature extraction across imaging modalities including spatial transcriptomics.*
 
 - Kalinin, A.A., …, *Muñoz, A.F.*, et al. "A Versatile Information Retrieval Framework for Evaluating Profile Strength and Similarity." /Nature Communications/ 16, 5181 (2025).
   *Key contributor. Built the 200× faster mAP implementation enabling evaluation at JUMP scale.*
 
-- Pietsch, J.M.J., *Muñoz, A.F.*, et al. "Determining Growth Rates from Bright-Field Images of Budding Cells through Identifying Overlaps." /eLife/ 12: e79812 (2023).
-  *Key contributor. Built an ML tracking system for growth rate estimation from bright-field time-lapse microscopy.*
-
 - Wongprommoon, A., *Muñoz, A.F.*, et al. "Single-Cell Metabolic Oscillations Are Pervasive and May Alleviate a Proteome Constraint." /bioRxiv/, 2024.
   *Key contributor. Developed the image processing framework to identify single-cell metabolic oscillations.*
+
+- Pietsch, J.M.J., *Muñoz, A.F.*, et al. "Determining Growth Rates from Bright-Field Images of Budding Cells through Identifying Overlaps." /eLife/ 12: e79812 (2023).
+  *Key contributor. Built an ML tracking system for growth rate estimation from bright-field time-lapse microscopy.*
+  
+- Chandrasekaran, S.N., Eric Alix, John Arevalo, Adriana Borowa, Patrick J. Byrne, William G. Charles, Zitong S. Chen, Beth A. Cimini, Boxiong Deng, *Muñoz et A.F.*, et al. "Morphological map of under-and overexpression of genes in human cells." /Nature Methods/ 22, no. 8 (2025): 1742--1752.
+
+- Sivagurunathan, S., Patrick Byrne, *Muñoz, A.F.*, John Arevalo, Anne E. Carpenter, Shantanu Singh, Maria Kost-Alimova, and Beth A. Cimini. "Alternate dyes for image-based profiling assays." /SLAS Discovery/ (2025): 100268.
+
+- Fuentes-Hernández, A., Anastasia Hernández-Koutoucheva, *Muñoz, A.F.*, Raul Dominguez Palestino, and Rafael Peña-Miller. "Diffusion-Driven Enhancement of the Antibiotic Resistance Selection Window." /Journal of the Royal Society Interface/ 16, no. 158 (2019): 20190363.
+  
+- Graña-Miraglia, L., César Arreguín-Pérez, Gamaliel López-Leal, *Muñoz, A.F.*, et al. "Phylogenomics Picks out the Par Excellence Markers for Species Phylogeny in the Genus Staphylococcus." /PeerJ/ 6 (2018): e5839.
 
 * Skills
 
