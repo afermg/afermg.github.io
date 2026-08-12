@@ -81,7 +81,7 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 * Selected Publications ([[https://scholar.google.com/citations?user=au0H13AAAAAJ][Google Scholar]])
 
 - *Muñoz, A.F.*, Fredin Haslum, J., Shen, R., Carpenter, A.E., and Singh, S. "[[https://arxiv.org/pdf/2608.07632][JUMP-lite: Compact, reproducible benchmarking of cell representations]]." /arXiv preprint arXiv:2608.07632/, 2026.
-  *Designed, led and executed the project.*
+  *Led the project from conception through design, implementation, and analysis.*
 
 - *Muñoz, A.F.*, et al. "cp_measure: API-First Feature Extraction for Image-Based Profiling Workflows." /ICML CODEML Workshop/, 2025.
   *Led development. Modular library extracting CellProfiler's measurement engine for programmatic, scalable feature extraction across imaging modalities including spatial transcriptomics.*
