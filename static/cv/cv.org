@@ -51,9 +51,10 @@ Computational biologist who identifies the bottlenecks of biological discovery a
 
 * Education
 
-*\large{PhD in Quantitative Biology}* \hfill /University of Edinburgh/, UK (2018–2022)
+*\large{PhD in Quantitative Biology, Biochemistry and Biotechnology}*
+/University of Edinburgh/, UK \hfill (2018–2023)
 
-/Thesis: "Phenotyping single cells of Saccharomyces cerevisiae using an end-to-end analysis of high-content time-lapse microscopy./"
+/Thesis: "Phenotyping single cells of Saccharomyces cerevisiae using an end-to-end analysis of high-content time-lapse microscopy."/
 
 - Discovered a link between cytosolic pH oscillation, acidification, and cell division rate in budding yeast, revealing pervasive metabolic oscillations at the single-cell level
 - Developed the [[https://github.com/afermg/aliby][ALIBY]] framework (segmentation, tracking, single-cell extraction) that fully automated time series analysis, increasing throughput by 15×, later extended for the Broad's automated profiling pipelines
