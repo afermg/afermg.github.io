@@ -29,11 +29,17 @@
 \smallskip
 #+END_EXPORT
 
-Computational biologist who identifies the bottlenecks of biological discovery at scale and builds compact tools to remove them. At the Broad Institute, I work across drug discovery, data science, engineering and image-based profiling: I define which problems matter, design solutions, and evaluate their impact in our biological understanding.
+Computational biologist who identifies the bottlenecks of biological discovery at scale and builds compact tools to remove them. As a Research Scientist at Purdue University, I work across drug discovery, data science, engineering and image-based profiling: I define which problems matter, design solutions, and evaluate their impact in our biological understanding.
 
 * Work Experience
 
-*\large{Postdoctoral Associate}* \hfill /Broad Institute of MIT and Harvard/, Boston MA (2023–Present)
+*\large{Research Scientist}* \hfill /Purdue University/ (September 2026–Present)
+
+Department of Biological Sciences, College of Science
+
+*\large{Visiting Scientist}* \hfill /Broad Institute of MIT and Harvard/ (September 2026–Present)
+
+*\large{Postdoctoral Associate}* \hfill /Broad Institute of MIT and Harvard/, Boston MA (2023–September 2026)
 
 - *Led a GSK-funded collaboration* on high-content imaging, which involves 8 biologists and data scientists, I defined the project scope and designed an end-to-end automated processing framework built on [[https://github.com/afermg/aliby][previous work]], streamlining steps from image acquisition through feature extraction and evaluation — a foundational shift toward fully automated profiling
 
@@ -70,6 +76,7 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 
 * Awards & Funding
 
+- *2026* — [[https://events.faseb.org/event/organelle-cross-talk/awards][Chiesi Young Investigator Speaker Award]], FASEB Science Research Conference: Organelle Cross-Talk in Cellular Homeostasis (Melbourne, FL, USA).
 - *2025* — Funding from GSK for deep learning methods for imaging
 - *2023* — Funding from GSK for a joint collaboration on high throughput imaging
 - *2018* — Marie Curie Early Stage Researcher (Europe's Horizon 2020) fellowship
