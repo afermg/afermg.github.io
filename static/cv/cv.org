@@ -127,6 +127,7 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 
 * Selected Talks
 
+- *2026/10/21* — Invited talk: [[https://events.faseb.org/event/organelle-cross-talk/agenda][Uncovering biological relationships through morphological profiling: The JUMP-Cell Painting dataset and tools]], FASEB Science Research Conference: Organelle Cross-Talk in Cellular Homeostasis (Melbourne, FL, USA)
 - *2024/10* — Flash Talk: JUMP-Hub, I2K 2024: From Images to Knowledge (Human Technopole, Milan, Italy)
 - *2024/05* — Cell Circuits and Epigenomics Seminar Series (Broad Institute, Boston, US)
 - *2022/10* — NextGenBUG (University of Edinburgh, Edinburgh, UK)
