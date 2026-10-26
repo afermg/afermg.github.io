@@ -76,7 +76,7 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 
 * Awards & Funding
 
-- *2026* — [[https://events.faseb.org/event/organelle-cross-talk/awards][Chiesi Young Investigator Speaker Award]], FASEB Science Research Conference: Organelle Cross-Talk in Cellular Homeostasis (Melbourne, FL, USA).
+- *2026* — Chiesi Young Investigator Speaker Award, FASEB Science Research Conference: Organelle Cross-Talk in Cellular Homeostasis (Melbourne, FL, USA).
 - *2025* — Funding from GSK for deep learning methods for imaging
 - *2023* — Funding from GSK for a joint collaboration on high throughput imaging
 - *2018* — Marie Curie Early Stage Researcher (Europe's Horizon 2020) fellowship
