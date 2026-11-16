@@ -12,6 +12,8 @@
 #+LATEX_HEADER: \titleformat{\section}{
 #+LATEX_HEADER: \vspace{-4pt}\scshape\raggedright\large
 #+LATEX_HEADER: }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+#+LATEX_HEADER: \titlespacing*{\section}{0pt}{2ex}{2.3ex}
+#+LATEX_HEADER: \linespread{0.93}
 #+LATEX_HEADER: \raggedbottom
 #+LATEX_HEADER: \raggedright
 #+LATEX_HEADER: \setlength{\tabcolsep}{0in}
@@ -109,8 +111,6 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 - Sivagurunathan, S., Patrick Byrne, *Muñoz, A.F.*, John Arevalo, Anne E. Carpenter, Shantanu Singh, Maria Kost-Alimova, and Beth A. Cimini. "[[https://doi.org/10.1016/j.slasd.2025.100268][Alternate dyes for image-based profiling assays]]." /SLAS Discovery/ (2025): 100268.
 
 - Fuentes-Hernández, A., Anastasia Hernández-Koutoucheva, *Muñoz, A.F.*, Raul Dominguez Palestino, and Rafael Peña-Miller. "[[https://doi.org/10.1098/rsif.2019.0363][Diffusion-Driven Enhancement of the Antibiotic Resistance Selection Window]]." /Journal of the Royal Society Interface/ 16, no. 158 (2019): 20190363.
-  
-- Graña-Miraglia, L., César Arreguín-Pérez, Gamaliel López-Leal, *Muñoz, A.F.*, et al. "[[https://doi.org/10.7717/peerj.5839][Phylogenomics Picks out the Par Excellence Markers for Species Phylogeny in the Genus Staphylococcus]]." /PeerJ/ 6 (2018): e5839.
 
 * Skills
 
