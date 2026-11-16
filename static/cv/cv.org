@@ -90,6 +90,8 @@ Modelled and experimentally validated diffusion-driven antibiotic resistance; id
 - *Muñoz, A.F.*, Fredin Haslum, J., Shen, R., Carpenter, A.E., and Singh, S. "[[https://arxiv.org/pdf/2608.07632][JUMP-lite: Compact, reproducible benchmarking of cell representations]]." Accepted at the /IEEE/CVF Winter Conference on Applications of Computer Vision (WACV 2027)/.
   *Led the project from conception through design, implementation, and analysis.*
 
+- Chandrasekaran, S.N., Seal, S., …, *Muñoz, A.F.*, et al. "[[https://www.biorxiv.org/content/10.1101/2023.03.23.534023v4][JUMP Cell Painting chemical dataset: Morphological map of 115,796 compounds in human cells]]." /bioRxiv/, 2026 (version 4).
+
 - *Muñoz, A.F.*, et al. "[[https://arxiv.org/pdf/2507.01163][cp_measure: API-First Feature Extraction for Image-Based Profiling Workflows]]." /ICML CODEML Workshop/, 2025.
   *Led development. Modular library extracting CellProfiler's measurement engine for programmatic, scalable feature extraction across imaging modalities including spatial transcriptomics.*
 
