@@ -130,6 +130,185 @@ UDF vs lambda in polars.
 ** Agenix secrets via flakes
 - Make note of the steps and what I actually copied
 
+** TODO Compression as a baseline for image-based profiling :@post:compression:baselines:cellpainting:jump:noexport:
+:PROPERTIES:
+:EXPORT_FILE_NAME: compression-baseline-image-profiling
+:END:
+
+LLM Disclaimer: I used it to try out my ideas on microscopy data and find typos, all text is human-written.
+
+Keep reading if: You are interested in how we measure the baseline for learned tasks in biological imaging (or bioML in general).
+
+This year I've been going deeper into the mapping between data compression and deep learning, inspired by this blogpost showing that [[https://nathan.rs/posts/gzip-lm/][gzip can be user as a language model]]. It seems also to be another angle of [[https://scottaaronson.blog/?p=762][complexity]] increasing as entropy does, to then decrease again once entropy dominates a system. I'd like to apply it to my work, understanding biology from (primarily) microscopy data.
+
+In our recent [[https://arxiv.org/pdf/2608.07632][work]], we compared different available cell representations that convert images into embeddings. To do so we came up with baselines to help us know when models are learning something non-trivial. At the time we came up with two simple baselines: First, the number of cells. A colleague showed is a surprisingly informative way of [[https://www.nature.com/articles/s41467-026-68725-5][predicting]] certain assays. Our other baseline is a randomised vision transformer; in practice this is a random projection of the images into a vector. It turned out to be less informative than cell count, but it provides a floor relative to cell count.
+
+By bringing back ideas from information theory, I wondered if we can come up with an even better and simpler baseline than cell count. After all, cell count requires segmentation, and I'd rather use simpler, faster and more portable solutions. The goal is to perform similarly or better than cell count without segmentation.
+
+*** Bits-per-pixel: gzip vs JPEG-XL
+For my JUMP-lite work, we already using JPEG-XL, a lossless and lossy compression codec, so we can reuse it. For context, we are using Cell Painting images (images of cells  across 5 fluorescence channels showing different organelles). In this case, lossless image compression predicts each pixel using its neighbours, and must may in extra bits for unexpected pixel values, the currency of choice to compare images and compression methods is bits per pixel (bbp).
+
+It is also considerably simpler to calculate than via segmentation. Here is an example of three images showing its JPEG-XL bits per pixel (effort 1, meaning the fastest lossless compression):
+
+#+caption: Information content of microscopy images
+#+attr_html: :width 100%
+[[https://zenodo.org/records/24550088/files/compression-baseline_example-images.png]]
+# PREVIEW (local copy for Emacs; delete these two lines before publishing)
+[[file:../../../../../work/scratch/amunoz/ideas-compression-baseline/zenodo/upload/compression-baseline_example-images.png]]
+
+The background yields little information because it is highly compressible, whereas images filled with cells (i.e., high confluence) contain a lot of information and are thus harder to compress. The bits per pixel seem to be an indication of the number of cells. In JUMP-lite, the Spearman correlation between JPEG-XL bpp and cell count is 0.65. Interestingly enough, it seems to correlate more with average intensity (Pearson 0.99).
+
+Thease measurements are within the same plate (i.e., groups of ~2k images, there are 551 of them in JUMP-lite). If we combine images of different plates (0.35-0.83 vs 0.97-0.99, respectively) and across all of JUMP-lite (-0.29, 0.89). We found ourselves a [[https://en.wikipedia.org/wiki/Simpson%27s_paradox][Simpson paradox]], where a trend disappears when we combine groups of data. We thus need to normalise the data using the DMSO plates (i.e., calculate the per-pixel z-score). Once we use z-scores instead of raw pixels the Spearman correlation for cell count goes increases to 0.45-0.64. The one for intensity remains at 0.98. It's worth noting that the Mito channel produces the least correlation intensity correlation.
+
+The biggest takeaway so far is that information content seems to be heavily correlated to intensity, and thus should also account for intensity for baselines. Our goal goes beyond information content, we aim to compare it to biological information.
+
+# How do we measure biological signal?
+We will reuse JUMP-lite benchmarks for biological signal: Phenotypic activity (PA) and Phenotypic Consistency (PC) using our [[https://www.nature.com/articles/s41467-025-60306-2][mAP framework]]. At a high level, PA measures our capacity to differentiate perturbed cells (e..g, we added a chemical) relative to negative controls (no chemical added); PC requires annotations, and in this case it measures how well we can group perturbations that have the same genetic targets (i.e., if two drugs target the same pathway, such as inhsibiting mitochondrial activity, different cells in the same way should look similar to each other).
+
+In simpler terms: PA asks "Do unhappy cells look different from happy cells?". To explain PC I would like to quote Anna Karennina's starting sentence: "All happy families resemble one another, each unhappy family is unhappy in its own way" . I propose an addendum: "Unless the source of unhapiness is the same, then families should indeed be similar". Namely: "If your source of unhappiness is common across two cell populations, these cell populations should look similar".
+# Baseline 1. One number per channel
+
+Let's see how  well these basic numbers fare in real data:
+
+- Bits/px per site and channel; compare with cell count (the usual "trivial" baseline).
+- [result] Correlation with cell count, site vs well level; per-plate DMSO normalization is essential.
+- [result] Phenotypic activity: bpp vs cell count (~23.5% vs ~22.5% prelim) and heavy overlap of hits.
+
+# #+caption: Per-well bits/px vs cell count across JUMP-lite (both robust-z-scored against DMSO per plate).
+# #+attr_html: :width 100%
+# [[https://zenodo.org/records/24550088/files/compression-baseline_bpp-vs-cellcount.png]]
+# PREVIEW (local copy for Emacs; delete these two lines before publishing)
+# [[file:../../../../../work/scratch/amunoz/ideas-compression-baseline/zenodo/upload/compression-baseline_bpp-vs-cellcount.png]]
+
+#+caption: Spearman correlation of bits/px (JPEG-XL lossless, effort 1).
+| Metric     | Normalisation | Spearman vs bbp |
+|------------+---------------+----------|
+| cell count | raw           |    -0.29 |
+| cell count | z-score       |     0.59 |
+| intensity  | raw           |     0.89 |
+| intensity  | z-score       |     0.98 |
+
+#+caption: Phenotypic activity (mean nAP) with and without the per-plate z-score; best normalization adds whitening. The regressions are fitted per plate.
+| features (#)                         | no normalization | z-score | best normalization |
+|--------------------------------------+------------------+---------+--------------------|
+| cell count (2)                       |            0.220 |   0.208 |              0.220 |
+| mean intensity (5)                   |            0.002 |   0.179 |              0.296 |
+| bits/px (5)                          |           -0.004 |   0.164 |              0.291 |
+| bits/px − cell count (5)             |            0.224 |   0.129 |              0.248 |
+| bits/px − cell count − intensity (5) |            0.104 |   0.071 |              0.104 |
+
+#+caption: Retrieval on JUMP-lite with one number per channel (mean nAP). Best normalization per row.
+| baseline (#features)                 | activity | consistency |
+|--------------------------------------+----------+-------------|
+| random                               |   -0.056 |      -0.001 |
+| cell count (2)                       |    0.220 |       0.011 |
+| mean intensity (5)                   |    0.296 |       0.012 |
+| bits/px (5)                          |    0.291 |       0.013 |
+| bits/px − cell count (5)             |    0.248 |       0.008 |
+| bits/px − cell count − intensity (5) |    0.104 |       0.005 |
+
+The random baseline is a random vector. Intensity and bpp have good PA scores, but cell count beats them both on consistency. A model that only beats cell count can still be just calculating image complexity.
+
+*** Baseline 2: a compression profile (embedding)
+Given that obtaining these measurements is fast even on CPU, can we sample them a bunch of times to capture a bit more of information? We thus generate embeddings for 
+- Multi-scale bpp (texture spectrum), tile statistics, cross-channel conditional C(A|B) (co-localization).
+- Same normalization and metrics (mAP via copairs) as CellProfiler/MAE profiles.
+- [result] Head-to-head: cell count / compression profile / profile minus count+intensity / CellProfiler / MAE.
+- [result] PCA loadings: are the top components just count and brightness?
+
+#+caption: Retrieval on JUMP-lite with the compression profile (mean nAP). Best normalization per row.
+| profile                     | activity | consistency |
+|-----------------------------+----------+-------------|
+| cell count                  |    0.220 |       0.011 |
+| mean intensity (5)          |    0.296 |       0.012 |
+| compression profile (65)    |    0.304 |       0.019 |
+| profile + intensity (70)    |    0.327 |       0.022 |
+| profile − count             |    0.243 |       0.015 |
+| profile − count − intensity |    0.190 |       0.014 |
+| CellProfiler                |    0.570 |       0.049 |
+| MorphEM                     |    0.547 |       0.053 |
+
+#+caption: What the compression profile encodes: the first component is brightness and density; later components are channel-specific texture and co-localisation.
+#+attr_html: :width 100%
+[[https://zenodo.org/records/24550088/files/compression-baseline_pca-loadings.png]]
+# PREVIEW (local copy for Emacs; delete these two lines before publishing)
+[[file:../../../../../work/scratch/amunoz/ideas-compression-baseline/zenodo/upload/compression-baseline_pca-loadings.png]]
+
+*** COMMENT gzip vs JPEG-XL
+#+CAPTION: Target-2 (4 plates, 1,536 wells, 306 compounds). Same 65 features, wells and normalization grid; only the codec differs (JPEG-XL lossless effort 1 vs zlib level 6), images >>4. Best-of-grid config per arm, selected by PA nAP x PC nAP (optimistic for every arm).
+| Feature set                              | Codec   | Dims after pipeline | PA % | PA mean nAP [95% CI] | PC % |
+|------------------------------------------+---------+---------------------+------+----------------------+------|
+| Bits/px, 5 channels                      | JPEG-XL |                   5 | 23.5 | 0.189 [0.152, 0.228] |  4.5 |
+| Bits/px, 5 channels                      | gzip    |                   5 | 23.9 | 0.199 [0.164, 0.236] |  1.5 |
+| Compression profile                      | JPEG-XL |                   9 | 23.2 | 0.193 [0.158, 0.228] | 13.9 |
+| Compression profile                      | gzip    |                  27 | 22.9 | 0.172 [0.140, 0.204] | 15.9 |
+| Profile, cell count regressed out        | JPEG-XL |                  27 | 11.4 | 0.127 [0.101, 0.155] | 13.9 |
+| Profile, cell count regressed out        | gzip    |                  32 | 13.4 | 0.132 [0.106, 0.160] | 12.9 |
+| Profile, count + intensity regressed out | JPEG-XL |                  55 |  2.3 | 0.102 [0.083, 0.122] | 10.0 |
+| Profile, count + intensity regressed out | gzip    |                  38 |  4.6 | 0.098 [0.078, 0.119] |  7.0 |
+|------------------------------------------+---------+---------------------+------+----------------------+------|
+| Cell count (reference)                   | -       |                   2 | 18.3 | 0.165 [0.132, 0.196] |  3.5 |
+| Random 65-dim (reference)                | -       |                  65 |  0.0 | 0.040 [0.029, 0.051] |  7.5 |
+
+#+CAPTION: Paired by normalization config (same config for both codecs). The configs are not independent; counts show consistency, not significance. Bits/px gzip has only 4 configs (sphering configs failed with <2 features).
+| Arm                                      | Configs | JPEG-XL better, PA nAP | Median Δ nAP (JXL - gzip) | JPEG-XL better, PC | Median Δ PC (pp) |
+|------------------------------------------+---------+------------------------+---------------------------+--------------------+------------------|
+| Bits/px, 5 channels                      |       4 | 0/4                    |                    -0.022 | 2/4                |             -0.5 |
+| Compression profile                      |     100 | 62/100                 |                    +0.006 | 55/100             |             +1.0 |
+| Profile, cell count regressed out        |     100 | 22/100                 |                    -0.005 | 62/100             |             +1.7 |
+| Profile, count + intensity regressed out |     100 | 99/100                 |                    +0.009 | 90/100             |             +5.0 |
+
+#+CAPTION: Codec comparison outside retrieval (Target-2).
+| Measure                                          | JPEG-XL e1 | gzip (zlib-6) |
+|--------------------------------------------------+------------+---------------|
+| Bits/px, >>4 (461 sites)                         |    3.2-4.8 |       4.4-7.6 |
+| Bits/px, raw 16-bit (461 sites)                  |    6.9-8.7 |      9.5-12.4 |
+| Compute per site, full profile                   |    ~0.11 s |        ~2.9 s |
+| Median abs(rho) of a feature with mean intensity |       0.89 |          0.91 |
+| Median abs(rho) of a feature with cell count     |       0.66 |          0.68 |
+
+Note: after per-plate DMSO normalization, the gzip and JPEG-XL versions of each feature correlate at median Spearman 0.97 (min 0.92, tile_p90_AGP).
+
+*** Cost and accessibility
+- ~17 ms per 5-channel site on one core; no GPU, segmentation or training; `pip install imagecodecs`.
+- I was able to process the entirety of JUMP-lite in ~3 hours using one core, much faster and cheaper than segmenting for cell count.
+- Increassing effort doesn't significantly improve performance, so fast (effort 1) is enough. Spearman ~0.93-0.99.
+
+#+caption: Measured cost of the compression profile on all of JUMP-lite (CPU only).
+#+attr_html: :width 100%
+[[https://zenodo.org/records/24550088/files/compression-baseline_runtime-cost.png]]
+# PREVIEW (local copy for Emacs; delete these two lines before publishing)
+[[file:../../../../../work/scratch/amunoz/ideas-compression-baseline/zenodo/upload/compression-baseline_runtime-cost.png]]
+
+*** Caveats
+- Sensitive to focus, exposure, illumination, saturation; needs per-plate normalization.
+
+*** TODO Compare against pretrained models (DINOv2, OpenPhenom, SubCell) on JUMP-lite
+Notes (lossless inputs; same 12 TVN configs for every arm; archived JUMP-lite sweep for the models):
+| Features             | Dims | Best PA % / nAP  | Best PC % | Mean nAP (12 cfg) | Mean PC % (12 cfg) | Needs                        |
+|----------------------+------+------------------+-----------+-------------------+--------------------+------------------------------|
+| CellProfiler         |  304 | 65.7 / 0.570     |      25.7 |                 - |                  - | segmentation, ~25 CPU-s/site |
+| MorphEM              |  304 | 60.9 / 0.534     |      22.7 |             0.511 |               23.5 | GPU                          |
+| DINOv2               |      | 35.9 / 0.367     |      16.3 |             0.302 |               16.9 | GPU                          |
+| OpenPhenom           |      | 34.7 / 0.357     |      14.2 |             0.298 |               14.7 | GPU                          |
+| SubCell              |      | 33.9 / 0.352     |      14.0 |             0.308 |               14.1 | GPU                          |
+| Profile + intensity5 |   70 | 28.8 / 0.327     |      10.5 |             0.171 |               10.6 | 1 CPU core, ~0.12 s/site     |
+| Profile              |   65 | 25.3 / 0.304     |      10.0 |             0.155 |                8.8 | 1 CPU core                   |
+| Intensity5           |    5 | 43.3 / 0.392 (1) |       2.0 |             0.305 |                3.2 | trivial                      |
+| Cell count           |    2 | 21.9 / 0.220     |       7.0 |             0.238 |                6.3 | segmentation                 |
+| Random DINOv2        |      | 0.0 / 0.042      |       1.1 |            -0.002 |                0.7 | GPU                          |
+(1) Best-PA config (std_all__tvn_efaar_e1.0); balanced selection (PA nAP x PC nAP) picks 24.5 / 0.296.
+- Profile + intensity: 0.03-0.04 nAP behind the pretrained models at its best config, far behind on average (very normalization-sensitive); ~65-75% of their PC.
+- Five mean intensities match or beat DINOv2/OpenPhenom/SubCell on phenotypic activity (best 0.392; mean 0.305 vs ~0.30), but have ~2-3% PC. Activity vs DMSO is largely brightness/density on JUMP-lite; consistency is what separates real models from trivial baselines.
+- Caveats: model best-of-grid over their full 350-config grid is a bit higher (DINOv2 0.389, OpenPhenom 0.378); archived model runs used 166,080 wells vs our canonical 163,776 (CellProfiler/MorphEM reruns agree within 0.003 nAP).
+- Data: bppint/results/sweep_metrics.csv; /work/datasets/JUMP-lite-wacv/sweeps/variance_first_v11_lite/sweep_results.csv
+
+*** Take homes
+- It's worth reporting a compression baseline next to cell count when claiming strong retrieval, are we just measuring general information or have we actually learned to identify non-trivial biological information?
+- The best-performing baseline seems to be a combination of intensity plus multiple levels bites-per-pixel.
+- It's worth considering information theory approaches when executing image-based profiling analyises.
+- I used JPEG-Xl and gzip here, but in theory any compression method could be used. The assumptions are baked-in in the compression method itselt, and they yield surprisingly good results, better than our existing baselines, at a fraction of the compute cost and with fewer hardware requirements.
+  
 ** Nixifying DINOv2 for fine-tuning :nix:deeplearning:python:awk:@post:noexport:
 :PROPERTIES:
 :EXPORT_FILE_NAME: nixifying-dinov2-for-fine-tuning
